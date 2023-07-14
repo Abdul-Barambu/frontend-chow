@@ -592,15 +592,24 @@ div.payment {
 
     }
 
+    .food-price{
+        margin-top: 2.5rem;
+    }
+
+    span.food-text {
+        font-size: .73rem;
+    }
+
     .price-per-qty-div {
         margin-top: .5rem;
-        position: relative;
+        position: absolute;
     }
 
     .food-price-qty {
         font-family: 'Poppins';
         color: #D21A32;
-        position: absolute;
+        margin-bottom: 0.5rem;
+        position: relative;
     }
 
     .price-div {
@@ -790,19 +799,24 @@ div.payment {
 
     }
 
+    .food-price{
+        margin-top: 2.5rem;
+    }
+
     span.food-text {
-        font-size: .8rem;
+        font-size: .73rem;
     }
 
     .price-per-qty-div {
-        margin-top: 1.5rem;
-        position: relative;
+        margin-top: .5rem;
+        position: absolute;
     }
 
     .food-price-qty {
         font-family: 'Poppins';
         color: #D21A32;
-        position: absolute;
+        margin-bottom: 0.5rem;
+        position: relative;
     }
 
     .price-div {
@@ -984,20 +998,24 @@ div.payment {
 
     }
 
+    .food-price{
+        margin-top: 2.5rem;
+    }
+
     span.food-text {
         font-size: .73rem;
     }
 
     .price-per-qty-div {
-        margin-top: 1rem;
-        position: relative;
+        margin-top: .5rem;
+        position: absolute;
     }
 
     .food-price-qty {
         font-family: 'Poppins';
         color: #D21A32;
-        margin-bottom: 0.3rem;
-        position: absolute;
+        margin-bottom: 0.5rem;
+        position: relative;
     }
 
     .price-div {
@@ -1184,20 +1202,24 @@ div.payment {
 
     }
 
+    .food-price{
+        margin-top: 2.5rem;
+    }
+
     span.food-text {
-        font-size: .6rem;
+        font-size: .73rem;
     }
 
     .price-per-qty-div {
-        margin-top: 1rem;
-        position: relative;
+        margin-top: .5rem;
+        position: absolute;
     }
 
     .food-price-qty {
         font-family: 'Poppins';
         color: #D21A32;
-        margin-bottom: 0.3rem;
-        position: absolute;
+        margin-bottom: 0.5rem;
+        position: relative;
     }
 
     .price-div {
@@ -1383,20 +1405,24 @@ div.payment {
 
     }
 
+    .food-price{
+        margin-top: 2.5rem;
+    }
+
     span.food-text {
-        font-size: .42rem;
+        font-size: .73rem;
     }
 
     .price-per-qty-div {
-        margin-top: 1rem;
-        position: relative;
+        margin-top: .5rem;
+        position: absolute;
     }
 
     .food-price-qty {
         font-family: 'Poppins';
         color: #D21A32;
-        margin-bottom: 0.3rem;
-        position: absolute;
+        margin-bottom: 0.5rem;
+        position: relative;
     }
 
     .price-div {

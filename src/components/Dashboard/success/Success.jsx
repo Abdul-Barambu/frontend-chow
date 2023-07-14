@@ -8,6 +8,8 @@ import { BsCartDashFill } from 'react-icons/bs'
 import { AiTwotoneHome } from 'react-icons/ai'
 import { BiUserCircle } from 'react-icons/bi'
 import {useHistory} from 'react-router-dom'
+import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const Success = () => {
 
@@ -17,6 +19,28 @@ const Success = () => {
     const handleHome = () => {
         history.push('/dashboard')
     }
+
+    const accessToken = localStorage.getItem("Access-Token");
+    const refreshToken = localStorage.getItem("Refresh-Token");
+    
+    const headers = {
+        Authorization: `Bearer ${accessToken}`,
+        Cookies: `refreshToken=${refreshToken}`,
+    };
+
+    // Callback API
+
+    const handleCallback = (e) => {
+        e.preventDefault()
+
+        axios.get("https://chow.onrender.com/api/v1/paystack/pay/callback", {headers})
+        .then(response => {
+            console.log(response)
+        }).catch(e => {
+            console.log(e)
+        })
+    }
+
     return (
         <div>
             <div className="profile-container">
@@ -41,7 +65,7 @@ const Success = () => {
                             <h3 className="success-h3">Click the button below to continue...</h3>
                         </div>
                         <div className="done-btn">
-                            <button className="done">Done</button>
+                            <button className="done" onClick={handleCallback}>Done</button>
                         </div>
                     </div>
                 </div>

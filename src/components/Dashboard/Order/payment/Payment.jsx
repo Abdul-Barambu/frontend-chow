@@ -45,13 +45,6 @@ const Payment = ({ handlePayment, price }) => {
             }).catch(e => {
                 console.log(e)
             })
-
-            axios.post("https://chow.onrender.com/api/v1/paystack/pay/callback", { headers })
-            .then(res => {
-                console.log(res)
-            }).catch(e => {
-                console.log(e)
-            })
     }
 
 
