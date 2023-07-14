@@ -1,0 +1,143 @@
+.container-tick {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 7rem; */
+}
+
+.card-tick {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
+    position: absolute;
+    width: 400px;
+    height: 282px;
+    left: calc(50% - 400px/2 - 19px);
+    top: 370px;
+
+    background: #FFFFFF;
+    border-radius: 32px;
+}
+
+.img-tick {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 120px;
+    height: 120px;
+    z-index: 1;
+    border-radius: 50%;
+    border: 2px solid #fafafa;
+    margin-top: -85px;
+}
+
+.sign-text {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 34px;
+    /* identical to box height, or 106% */
+
+    text-align: center;
+
+    color: #000000;
+}
+
+p.text {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 0;
+    /* or 138% */
+
+    text-align: center;
+
+    /* Text 3 (explainer) */
+
+    color: #505780;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.btn-done {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    border: none;
+    /* identical to box height */
+
+    /* White */
+
+    color: #FFFFFF;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 94px;
+    gap: 10px;
+
+    position: absolute;
+    width: 200px;
+    height: 56px;
+    left: 100px;
+    top: 202px;
+    
+
+    background: #D21A32;
+    border-radius: 16px
+}
+
+/* Mobile */
+@media screen and (max-width: 760px) {
+    .card-tick {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
+        position: absolute;
+        width: 330px;
+        height: 242px;
+        left: calc(65% - 400px/2 - 19px);
+        top: 270px;
+
+        background: #FFFFFF;
+        border-radius: 32px;
+    }
+
+    .btn-done {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        border: none;
+        /* identical to box height */
+
+        /* White */
+
+        color: #FFFFFF;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0 94px;
+        gap: 10px;
+
+        position: absolute;
+        width: 200px;
+        height: 56px;
+        left: 50px;
+        top: 162px;
+
+        background: #D21A32;
+        border-radius: 16px
+    }
+
+}

@@ -1,0 +1,2059 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap');
+
+/* NAV */
+
+nav{
+    display: none;
+}
+
+div.logo-img {
+    margin-left: 55px;
+}
+
+div.nav-icons {
+    position: absolute;
+    right: 55px;
+    top: 24px;
+    display: flex;
+    gap: .7rem;
+}
+
+span.nav-icon {
+    border: 1px solid #ababab;
+    padding: 0 .3rem .2rem;
+    border-radius: 8px;
+    color: #000000;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+span.nav-icon:hover {
+    background-color: gray;
+    color: antiquewhite;
+}
+
+.bottom-line {
+    margin-top: 1.5rem;
+}
+
+
+/* BODY */
+div.body {
+    background: #fbf9f9;
+    height: 100%;
+}
+
+div.chef-img {
+    margin-left: 40px;
+}
+
+img.select-img {
+    height: 170px;
+    width: 700px;
+}
+
+img.chef-img-img {
+    margin-left: 71%;
+    margin-top: -29.5%;
+    width: 167px;
+    height: 176px;
+}
+
+.dot-img {
+    position: relative;
+    top: 70%;
+    left: 27%;
+    display: none;
+}
+
+.dot-img-light {
+    position: absolute;
+    top: 57%;
+    left: 28.5%;
+    display: none;
+}
+
+.dot-img-light-2 {
+    position: absolute;
+    top: 47%;
+    left: 30%;
+    display: none;
+}
+
+/* Wallet */
+
+.wallet-img {
+    height: 170px;
+}
+
+div.wallet-texts {
+    margin-top: -30%;
+}
+
+p.total-balance {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+    margin-left: 40px;
+    color: #fff;
+}
+
+h2.wallet-amount {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 20px;
+    margin-left: 52px;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+p.add-fund {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 20px;
+    color: #D21A32;
+    margin-left: 40px;
+    margin-top: .6rem;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 50px;
+    padding: .4rem .6rem .4rem .9rem;
+}
+
+p.add-fund-arrow {
+    float: right;
+    margin-right: 5rem;
+    padding: .2rem;
+    margin-top: .3rem;
+}
+
+.arrow {
+    color: #D21A32;
+    margin-left: -36px;
+    font-size: 2.5rem;
+}
+
+/* Vendor */
+
+.choose-vendor-text {
+    margin-top: 2%;
+
+}
+
+div.vendor {
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+span.choose-vendor {
+    margin-left: 45px;
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.img-bottom-line {
+    margin-left: 45px;
+}
+
+div.vendor-card {
+    background: #E9E9E9;
+    border-radius: 8px;
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+}
+
+
+.button-name {
+    margin-top: 7rem;
+    padding-bottom: .5rem;
+}
+
+.btn-name {
+    margin-left: .4rem;
+    margin-bottom: .3rem;
+    background-color: #D21A32;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: .3rem;
+    width: 90%;
+}
+
+/* DEVICES RESPONSIVENESS */
+
+/* MACBOOK AIR */
+@media screen and (max-width:1280px) {
+    .dot-img {
+        position: absolute;
+        top: 38%;
+        left: 27%;
+    }
+
+    .dot-img-light {
+        position: absolute;
+        top: 38%;
+        left: 28.5%;
+    }
+
+    .dot-img-light-2 {
+        position: absolute;
+        top: 38%;
+        left: 30%;
+    }
+}
+
+/* IPADs */
+@media screen and (max-width: 1024px) {
+
+    /* body */
+    div.body {
+        background: #fbf9f9;
+    }
+
+    div.chef-img {
+        margin-left: 40px;
+    }
+
+    img.select-img {
+        height: 160px;
+        width: 470px;
+    }
+
+    img.chef-img-img {
+        margin-left: 68%;
+        margin-top: -42.5%;
+        width: 137px;
+        height: 166px;
+    }
+
+    .dot-img {
+        position: absolute;
+        top: 20%;
+        left: 27%;
+    }
+
+    .dot-img-light {
+        position: absolute;
+        top: 20%;
+        left: 28.5%;
+    }
+
+    .dot-img-light-2 {
+        position: absolute;
+        top: 20%;
+        left: 30%;
+    }
+
+    /* Wallet */
+
+    .wallet-img {
+        height: 165px;
+        width: 90%;
+    }
+
+    div.wallet-texts {
+        margin-top: -30%;
+    }
+
+    p.total-balance {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        margin-left: 40px;
+        color: #fff;
+    }
+
+    h2.wallet-amount {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 38px;
+        line-height: 20px;
+        margin-left: 52px;
+        margin-top: 1.5rem;
+        color: #fff;
+    }
+
+    p.add-fund {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 20px;
+        color: #D21A32;
+        margin-left: 40px;
+        margin-top: .4rem;
+        width: 100px;
+        background-color: #fff;
+        border-radius: 50px;
+        padding: .4rem .6rem .4rem .9rem;
+    }
+
+    p.add-fund-arrow {
+        float: right;
+        margin-right: 5rem;
+        padding: .2rem;
+        margin-top: .1rem;
+    }
+
+    .arrow {
+        color: #D21A32;
+        margin-left: -36px;
+        font-size: 2.5rem;
+    }
+
+    /* Vendor */
+
+    .choose-vendor-text {
+        margin-top: 2%;
+
+    }
+
+    div.vendor {
+        margin-left: 70px;
+        margin-right: 70px;
+    }
+
+    span.choose-vendor {
+        margin-left: 45px;
+        font-family: 'poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 15px;
+    }
+
+    .img-bottom-line {
+        margin-left: 45px;
+    }
+
+    div.vendor-card {
+        background: #E9E9E9;
+        border-radius: 8px;
+        margin-top: 1rem;
+        margin-bottom: 5rem;
+    }
+
+
+    .button-name {
+        margin-top: 5rem;
+    }
+
+    .btn-name {
+        margin-left: .4rem;
+        margin-bottom: .5rem;
+        background-color: #D21A32;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: .3rem;
+        width: 90%;
+    }
+
+}
+
+
+@media screen and (max-width: 834px) {
+
+    /* body */
+    div.body {
+        background: #fbf9f9;
+    }
+
+    div.chef-img {
+        margin-left: 40px;
+        margin-top: 1.5rem;
+    }
+
+    img.select-img {
+        height: 130px;
+        width: 400px;
+    }
+
+    img.chef-img-img {
+        margin-left: 75%;
+        margin-top: -47.5%;
+        width: 117px;
+        height: 136px;
+    }
+
+    .dot-img {
+        position: absolute;
+        top: 24.5%;
+        left: 27%;
+    }
+
+    .dot-img-light {
+        position: absolute;
+        top: 24.5%;
+        left: 29%;
+    }
+
+    .dot-img-light-2 {
+        position: absolute;
+        top: 24.5%;
+        left: 31%;
+    }
+
+    /* Wallet */
+
+    .wallet-img {
+        height: 130px;
+        width: 90%;
+    }
+
+    div.wallet-texts {
+        margin-top: -33%;
+    }
+
+    p.total-balance {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        margin-left: 40px;
+        color: #fff;
+    }
+
+    h2.wallet-amount {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 33px;
+        line-height: 20px;
+        margin-left: 52px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        color: #fff;
+    }
+
+    p.add-fund {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 20px;
+        color: #D21A32;
+        margin-left: 40px;
+        margin-top: 0;
+        width: 100px;
+        background-color: #fff;
+        border-radius: 50px;
+        padding: .4rem .6rem .4rem .9rem;
+    }
+
+    p.add-fund-arrow {
+        float: right;
+        margin-right: 2rem;
+        padding: .2rem;
+        margin-left: 6rem;
+        margin-top: -.5rem;
+    }
+
+    .arrow {
+        color: #D21A32;
+        margin-left: -36px;
+        font-size: 2.5rem;
+    }
+
+    /* Vendor */
+    /* Vendor */
+
+    .choose-vendor-text {
+        margin-top: 2%;
+
+    }
+
+    div.vendor {
+        margin-left: 70px;
+        margin-right: 70px;
+    }
+
+    span.choose-vendor {
+        margin-left: 45px;
+        font-family: 'poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 15px;
+    }
+
+    .img-bottom-line {
+        margin-left: 45px;
+    }
+
+    div.vendor-card {
+        background: #E9E9E9;
+        border-radius: 8px;
+        /* margin-left: 70px;
+    margin-right: 50px; */
+        margin-top: 1rem;
+        margin-bottom: 5rem;
+    }
+
+
+    .button-name {
+        margin-top: 5rem;
+    }
+
+    .btn-name {
+        margin-left: .4rem;
+        margin-bottom: .5rem;
+        background-color: #D21A32;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: .3rem;
+        width: 90%;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    /* body */
+    div.body {
+        background: #fbf9f9;
+    }
+
+    div.chef-img {
+        margin-left: 40px;
+        margin-top: 1rem;
+    }
+
+    img.select-img {
+        height: 130px;
+        width: 370px;
+    }
+
+    img.chef-img-img {
+        margin-left: 75%;
+        margin-top: -47.5%;
+        width: 100px;
+        height: 126px;
+    }
+
+    .dot-img {
+        position: absolute;
+        top: 27.5%;
+        left: 27%;
+    }
+
+    .dot-img-light {
+        position: absolute;
+        top: 27.5%;
+        left: 29%;
+    }
+
+    .dot-img-light-2 {
+        position: absolute;
+        top: 27.5%;
+        left: 31%;
+    }
+
+    /* Wallet */
+
+    .wallet-img {
+        height: 130px;
+        width: 90%;
+    }
+
+    div.wallet-texts {
+        margin-top: -35%;
+    }
+
+    p.total-balance {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        margin-left: 40px;
+        color: #fff;
+    }
+
+    h2.wallet-amount {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 33px;
+        line-height: 20px;
+        margin-left: 52px;
+        margin-top: 1rem;
+        color: #fff;
+    }
+
+    p.add-fund {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 20px;
+        color: #D21A32;
+        margin-left: 40px;
+        margin-top: .001rem;
+        width: 100px;
+        background-color: #fff;
+        border-radius: 50px;
+        padding: .4rem .6rem .4rem .9rem;
+    }
+
+    p.add-fund-arrow {
+        float: right;
+        margin-right: 3rem;
+        padding: .2rem;
+        margin-left: 6rem;
+        margin-top: -.5rem;
+    }
+
+    .arrow {
+        color: #D21A32;
+        margin-left: -34px;
+        font-size: 2rem;
+    }
+
+    /* Vendor */
+    /* Vendor */
+
+    .choose-vendor-text {
+        margin-top: 2%;
+
+    }
+
+    div.vendor {
+        margin-left: 70px;
+        margin-right: 70px;
+    }
+
+    span.choose-vendor {
+        margin-left: 45px;
+        font-family: 'poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 15px;
+    }
+
+    .img-bottom-line {
+        margin-left: 45px;
+    }
+
+    div.vendor-card {
+        background: #E9E9E9;
+        border-radius: 8px;
+        /* margin-left: 70px;
+    margin-right: 50px; */
+        margin-top: 1rem;
+        margin-bottom: 5rem;
+    }
+
+
+    .button-name {
+        margin-top: 5rem;
+    }
+
+    .btn-name {
+        margin-left: .4rem;
+        margin-bottom: .5rem;
+        background-color: #D21A32;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: .3rem;
+        width: 90%;
+    }
+
+}
+
+/* MOBILE */
+@media screen and (max-width: 540px) {
+
+    div.logo-img {
+        margin-left: 10px;
+    }
+
+    div.nav-icons {
+        position: absolute;
+        right: 55px;
+        top: 24px;
+        display: flex;
+        gap: .7rem;
+        display: none;
+    }
+
+    /* body */
+    div.body {
+        background: white;
+    }
+
+    .bottom-line-hr {
+        display: none;
+    }
+
+    div.chef-img {
+        margin-left: 10px;
+        margin-top: 0;
+    }
+
+    img.select-img {
+        height: 160px;
+        width: 370px;
+        display: none;
+    }
+
+    img.chef-img-img {
+        margin-left: 75%;
+        margin-top: -47.5%;
+        width: 100px;
+        height: 126px;
+        display: none;
+    }
+
+    .dot-img {
+        position: absolute;
+        top: 27.5%;
+        left: 27%;
+        display: none;
+    }
+
+    .dot-img-light {
+        position: absolute;
+        top: 27.5%;
+        left: 29%;
+        display: none;
+    }
+
+    .dot-img-light-2 {
+        position: absolute;
+        top: 27.5%;
+        left: 31%;
+        display: none;
+    }
+
+    /* Wallet */
+
+    .wallet-img {
+        height: 200px;
+        width: 97%;
+    }
+
+    div.wallet-texts {
+        margin-top: -30%;
+    }
+
+    p.total-balance {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 20px;
+        margin-left: 40px;
+        color: #fff;
+    }
+
+    h2.wallet-amount {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 48px;
+        line-height: 20px;
+        margin-left: 52px;
+        margin-top: 2rem;
+        color: #fff;
+    }
+
+    p.add-fund {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 20px;
+        color: #D21A32;
+        margin-left: 40px;
+        margin-top: 1rem;
+        width: 100px;
+        background-color: #fff;
+        border-radius: 50px;
+        padding: .4rem .6rem .4rem .9rem;
+    }
+
+    p.add-fund-arrow {
+        float: right;
+        margin-right: 2rem;
+        padding: .2rem;
+        margin-left: 6rem;
+        margin-top: .7rem;
+    }
+
+    .arrow {
+        color: #D21A32;
+        margin-left: -36px;
+        font-size: 2.5rem;
+    }
+
+    /* Vendor */
+    /* Vendor */
+
+    .choose-vendor-text {
+        margin-top: 12%;
+
+    }
+
+    div.vendor {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    span.choose-vendor {
+        margin-left: 10px;
+        font-family: 'poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 15px;
+    }
+
+    .img-bottom-line {
+        margin-left: 10px;
+    }
+
+    div.vendor-card {
+        background: #E9E9E9;
+        border-radius: 8px;
+        /* margin-left: 70px;
+    margin-right: 50px; */
+        margin-top: 1rem;
+        margin-bottom: 5rem;
+    }
+
+
+    .button-name {
+        margin-top: 5rem;
+    }
+
+    .btn-name {
+        margin-left: .4rem;
+        margin-bottom: .5rem;
+        background-color: #D21A32;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: .3rem;
+        width: 90%;
+    }
+
+    nav {
+        background: #D21A32;
+        display: block;
+        padding: .7rem 2rem;
+        z-index: 2;
+        position: fixed;
+        left: 50%;
+        width: 98%;
+        transform: translateX(-50%);
+        bottom: .5rem;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 1rem;
+        border-radius: 3rem;
+        backdrop-filter: blur(15px);
+    }
+
+    nav a {
+        background: transparent;
+        padding: .7rem;
+        /* border-radius: 50%; */
+        display: flex;
+        color: rgb(230, 225, 225);
+        font-size: 2rem;
+    }
+
+    nav a.active {
+        color: #D21A32;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .3rem;
+        font-size: 1.4rem;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    nav span.none {
+        color: #D21A32;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .3rem;
+        font-size: 1.2rem;
+        text-decoration: none;
+        display: none;
+    }
+
+
+}
+
+@media screen and (max-width: 430px) {
+
+    div.logo-img {
+        margin-left: 10px;
+    }
+
+    div.nav-icons {
+        position: absolute;
+        right: 55px;
+        top: 24px;
+        display: flex;
+        gap: .7rem;
+        display: none;
+    }
+
+    /* body */
+    div.body {
+        background: white;
+    }
+
+    .bottom-line-hr {
+        display: none;
+    }
+
+    div.chef-img {
+        margin-left: 10px;
+        margin-top: 0;
+    }
+
+    img.select-img {
+        height: 160px;
+        width: 370px;
+        display: none;
+    }
+
+    img.chef-img-img {
+        margin-left: 75%;
+        margin-top: -47.5%;
+        width: 100px;
+        height: 126px;
+        display: none;
+    }
+
+    .dot-img {
+        position: absolute;
+        top: 27.5%;
+        left: 27%;
+        display: none;
+    }
+
+    .dot-img-light {
+        position: absolute;
+        top: 27.5%;
+        left: 29%;
+        display: none;
+    }
+
+    .dot-img-light-2 {
+        position: absolute;
+        top: 27.5%;
+        left: 31%;
+        display: none;
+    }
+
+    /* Wallet */
+
+    .wallet-img {
+        height: 200px;
+        width: 97%;
+    }
+
+    div.wallet-texts {
+        margin-top: -40%;
+    }
+
+    p.total-balance {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 20px;
+        margin-left: 40px;
+        color: #fff;
+    }
+
+    h2.wallet-amount {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 48px;
+        line-height: 20px;
+        margin-left: 52px;
+        margin-top: 2rem;
+        color: #fff;
+    }
+
+    p.add-fund {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 20px;
+        color: #D21A32;
+        margin-left: 40px;
+        margin-top: 1rem;
+        width: 100px;
+        background-color: #fff;
+        border-radius: 50px;
+        padding: .4rem .6rem .4rem .9rem;
+    }
+
+    p.add-fund-arrow {
+        float: right;
+        margin-right: 2rem;
+        padding: .2rem;
+        margin-left: 6rem;
+        margin-top: .7rem;
+    }
+
+    .arrow {
+        color: #D21A32;
+        margin-left: -36px;
+        font-size: 2.5rem;
+    }
+
+    /* Vendor */
+    /* Vendor */
+
+    .choose-vendor-text {
+        margin-top: 12%;
+
+    }
+
+    div.vendor {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    span.choose-vendor {
+        margin-left: 10px;
+        font-family: 'poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 15px;
+    }
+
+    .img-bottom-line {
+        margin-left: 10px;
+    }
+
+    div.vendor-card {
+        background: #E9E9E9;
+        border-radius: 8px;
+        /* margin-left: 70px;
+    margin-right: 50px; */
+        margin-top: 1rem;
+        margin-bottom: 5rem;
+    }
+
+
+    .button-name {
+        margin-top: 5rem;
+    }
+
+    .btn-name {
+        margin-left: .4rem;
+        margin-bottom: .5rem;
+        background-color: #D21A32;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: .3rem;
+        width: 90%;
+    }
+
+    nav {
+        background: #D21A32;
+        display: block;
+        padding: .7rem 2rem;
+        z-index: 2;
+        position: fixed;
+        left: 50%;
+        width: 98%;
+        transform: translateX(-50%);
+        bottom: .9rem;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 1.5rem;
+        border-radius: 3rem;
+        backdrop-filter: blur(15px);
+    }
+
+    nav a {
+        background: transparent;
+        padding: .7rem;
+        /* border-radius: 50%; */
+        display: flex;
+        color: rgb(230, 225, 225);
+        font-size: 2rem;
+    }
+
+    nav a.active {
+        color: #D21A32;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        font-size: 1.4rem;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    nav span.none {
+        color: #D21A32;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .3rem;
+        font-size: 1.2rem;
+        text-decoration: none;
+        display: none;
+    }
+
+
+}
+
+@media screen and (max-width: 380px) {
+
+    div.logo-img {
+        margin-left: 10px;
+    }
+
+    div.nav-icons {
+        position: absolute;
+        right: 55px;
+        top: 24px;
+        display: flex;
+        gap: .7rem;
+        display: none;
+    }
+
+    /* body */
+    div.body {
+        background: white;
+    }
+
+    .bottom-line-hr {
+        display: none;
+    }
+
+    div.chef-img {
+        margin-left: 10px;
+        margin-top: 0;
+    }
+
+    img.select-img {
+        height: 160px;
+        width: 370px;
+        display: none;
+    }
+
+    img.chef-img-img {
+        margin-left: 75%;
+        margin-top: -47.5%;
+        width: 100px;
+        height: 126px;
+        display: none;
+    }
+
+    .dot-img {
+        position: absolute;
+        top: 27.5%;
+        left: 27%;
+        display: none;
+    }
+
+    .dot-img-light {
+        position: absolute;
+        top: 27.5%;
+        left: 29%;
+        display: none;
+    }
+
+    .dot-img-light-2 {
+        position: absolute;
+        top: 27.5%;
+        left: 31%;
+        display: none;
+    }
+
+    /* Wallet */
+
+    .wallet-img {
+        height: 200px;
+        width: 97%;
+    }
+
+    div.wallet-texts {
+        margin-top: -46%;
+    }
+
+    p.total-balance {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 20px;
+        margin-left: 40px;
+        color: #fff;
+    }
+
+    h2.wallet-amount {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 20px;
+        margin-left: 52px;
+        margin-top: 2rem;
+        color: #fff;
+    }
+
+    p.add-fund {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 20px;
+        color: #D21A32;
+        margin-left: 40px;
+        margin-top: 1rem;
+        width: 100px;
+        background-color: #fff;
+        border-radius: 50px;
+        padding: .4rem .6rem .4rem .9rem;
+    }
+
+    p.add-fund-arrow {
+        float: right;
+        margin-right: 2rem;
+        padding: .2rem;
+        margin-left: 6rem;
+        margin-top: .7rem;
+    }
+
+    .arrow {
+        color: #D21A32;
+        margin-left: -34px;
+        font-size: 2rem;
+    }
+
+    /* Vendor */
+    /* Vendor */
+
+    .choose-vendor-text {
+        margin-top: 12%;
+
+    }
+
+    div.vendor {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    span.choose-vendor {
+        margin-left: 10px;
+        font-family: 'poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 15px;
+    }
+
+    .img-bottom-line {
+        margin-left: 10px;
+    }
+
+    div.vendor-card {
+        background: #E9E9E9;
+        border-radius: 8px;
+        /* margin-left: 70px;
+    margin-right: 50px; */
+        margin-top: 1rem;
+        margin-bottom: 5rem;
+    }
+
+
+    .button-name {
+        margin-top: 5rem;
+    }
+
+    .btn-name {
+        margin-left: .4rem;
+        margin-bottom: .5rem;
+        background-color: #D21A32;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: .3rem;
+        width: 90%;
+    }
+
+    nav {
+        background: #D21A32;
+        display: block;
+        padding: .7rem 2rem;
+        z-index: 2;
+        position: fixed;
+        left: 50%;
+        width: 98%;
+        transform: translateX(-50%);
+        bottom: .9rem;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 1.5rem;
+        border-radius: 3rem;
+        backdrop-filter: blur(15px);
+    }
+
+    nav a {
+        background: transparent;
+        padding: .7rem;
+        /* border-radius: 50%; */
+        display: flex;
+        color: rgb(230, 225, 225);
+        font-size: 2rem;
+    }
+
+    nav a.active {
+        color: #D21A32;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        font-size: 1.4rem;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    nav span.none {
+        color: #D21A32;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .3rem;
+        font-size: 1.2rem;
+        text-decoration: none;
+        display: none;
+    }
+
+
+}
+
+@media screen and (max-width: 370px) {
+
+    div.logo-img {
+        margin-left: 10px;
+    }
+
+    div.nav-icons {
+        position: absolute;
+        right: 55px;
+        top: 24px;
+        display: flex;
+        gap: .7rem;
+        display: none;
+    }
+
+    /* body */
+    div.body {
+        background: white;
+    }
+
+    .bottom-line-hr {
+        display: none;
+    }
+
+    div.chef-img {
+        margin-left: 10px;
+        margin-top: 0;
+    }
+
+    img.select-img {
+        height: 160px;
+        width: 370px;
+        display: none;
+    }
+
+    img.chef-img-img {
+        margin-left: 75%;
+        margin-top: -47.5%;
+        width: 100px;
+        height: 126px;
+        display: none;
+    }
+
+    .dot-img {
+        position: absolute;
+        top: 27.5%;
+        left: 27%;
+        display: none;
+    }
+
+    .dot-img-light {
+        position: absolute;
+        top: 27.5%;
+        left: 29%;
+        display: none;
+    }
+
+    .dot-img-light-2 {
+        position: absolute;
+        top: 27.5%;
+        left: 31%;
+        display: none;
+    }
+
+    /* Wallet */
+
+    .wallet-img {
+        height: 200px;
+        width: 97%;
+    }
+
+    div.wallet-texts {
+        margin-top: -45%;
+    }
+
+    p.total-balance {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 20px;
+        margin-left: 40px;
+        color: #fff;
+    }
+
+    h2.wallet-amount {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 20px;
+        margin-left: 52px;
+        margin-top: 2rem;
+        color: #fff;
+    }
+
+    p.add-fund {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 20px;
+        color: #D21A32;
+        margin-left: 40px;
+        margin-top: 1rem;
+        width: 100px;
+        background-color: #fff;
+        border-radius: 50px;
+        padding: .4rem .6rem .4rem .9rem;
+    }
+
+    p.add-fund-arrow {
+        float: right;
+        margin-right: 2rem;
+        padding: .2rem;
+        margin-left: 6rem;
+        margin-top: .7rem;
+    }
+
+    .arrow {
+        color: #D21A32;
+        margin-left: -34px;
+        font-size: 2rem;
+    }
+
+    /* Vendor */
+    /* Vendor */
+
+    .choose-vendor-text {
+        margin-top: 12%;
+
+    }
+
+    div.vendor {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    span.choose-vendor {
+        margin-left: 10px;
+        font-family: 'poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 15px;
+    }
+
+    .img-bottom-line {
+        margin-left: 10px;
+    }
+
+    div.vendor-card {
+        background: #E9E9E9;
+        border-radius: 8px;
+        /* margin-left: 70px;
+    margin-right: 50px; */
+        margin-top: 1rem;
+        margin-bottom: 5rem;
+    }
+
+
+    .button-name {
+        margin-top: 5rem;
+    }
+
+    .btn-name {
+        margin-left: .4rem;
+        margin-bottom: .5rem;
+        background-color: #D21A32;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: .3rem;
+        width: 90%;
+    }
+
+    nav {
+        background: #D21A32;
+        display: block;
+        padding: .7rem 2rem;
+        z-index: 2;
+        position: fixed;
+        left: 50%;
+        width: 98%;
+        transform: translateX(-50%);
+        bottom: .5rem;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 1rem;
+        border-radius: 3rem;
+        backdrop-filter: blur(15px);
+    }
+
+    nav a {
+        background: transparent;
+        padding: .7rem;
+        /* border-radius: 50%; */
+        display: flex;
+        color: rgb(230, 225, 225);
+        font-size: 2rem;
+    }
+
+    nav a.active {
+        color: #D21A32;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .3rem;
+        font-size: 1.4rem;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    nav span.none {
+        color: #D21A32;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .3rem;
+        font-size: 1.2rem;
+        text-decoration: none;
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 330px) {
+
+    div.logo-img {
+        margin-left: 10px;
+    }
+
+    div.nav-icons {
+        position: absolute;
+        right: 55px;
+        top: 24px;
+        display: flex;
+        gap: .7rem;
+        display: none;
+    }
+
+    /* body */
+    div.body {
+        background: white;
+    }
+
+    .bottom-line-hr {
+        display: none;
+    }
+
+    div.chef-img {
+        margin-left: 10px;
+        margin-top: 0;
+    }
+
+    img.select-img {
+        height: 160px;
+        width: 370px;
+        display: none;
+    }
+
+    img.chef-img-img {
+        margin-left: 75%;
+        margin-top: -47.5%;
+        width: 100px;
+        height: 126px;
+        display: none;
+    }
+
+    .dot-img {
+        position: absolute;
+        top: 27.5%;
+        left: 27%;
+        display: none;
+    }
+
+    .dot-img-light {
+        position: absolute;
+        top: 27.5%;
+        left: 29%;
+        display: none;
+    }
+
+    .dot-img-light-2 {
+        position: absolute;
+        top: 27.5%;
+        left: 31%;
+        display: none;
+    }
+
+    /* Wallet */
+
+    .wallet-img {
+        height: 200px;
+        width: 97%;
+    }
+
+    div.wallet-texts {
+        margin-top: -50%;
+    }
+
+    p.total-balance {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 20px;
+        margin-left: 40px;
+        color: #fff;
+    }
+
+    h2.wallet-amount {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 35px;
+        line-height: 20px;
+        margin-left: 52px;
+        margin-top: 2rem;
+        color: #fff;
+    }
+
+    p.add-fund {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 20px;
+        color: #D21A32;
+        margin-left: 40px;
+        margin-top: 1rem;
+        width: 100px;
+        background-color: #fff;
+        border-radius: 50px;
+        padding: .4rem .6rem .4rem .9rem;
+    }
+
+    p.add-fund-arrow {
+        float: right;
+        margin-right: 2rem;
+        padding: .2rem;
+        margin-left: 6rem;
+        margin-top: .7rem;
+    }
+
+    .arrow {
+        color: #D21A32;
+        margin-left: -34px;
+        font-size: 2rem;
+    }
+
+    /* Vendor */
+    /* Vendor */
+
+    .choose-vendor-text {
+        margin-top: 12%;
+
+    }
+
+    div.vendor {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    span.choose-vendor {
+        margin-left: 10px;
+        font-family: 'poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 15px;
+    }
+
+    .img-bottom-line {
+        margin-left: 10px;
+    }
+
+    div.vendor-card {
+        background: #E9E9E9;
+        border-radius: 8px;
+        /* margin-left: 70px;
+    margin-right: 50px; */
+        margin-top: 1rem;
+        margin-bottom: 5rem;
+    }
+
+
+    .button-name {
+        margin-top: 5rem;
+    }
+
+    .btn-name {
+        margin-left: .4rem;
+        margin-bottom: .5rem;
+        background-color: #D21A32;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: .3rem;
+        width: 90%;
+    }
+
+    nav {
+        background: #D21A32;
+        display: block;
+        padding: .7rem 2rem;
+        z-index: 2;
+        position: fixed;
+        left: 50%;
+        width: 98%;
+        transform: translateX(-50%);
+        bottom: .9rem;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 1rem;
+        border-radius: 3rem;
+        backdrop-filter: blur(15px);
+    }
+
+    nav a {
+        background: transparent;
+        padding: .4rem;
+        /* border-radius: 50%; */
+        display: flex;
+        color: rgb(230, 225, 225);
+        font-size: 1.5rem;
+    }
+
+    nav a.active {
+        color: #D21A32;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        font-size: 1.2rem;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    nav span.none {
+        color: #D21A32;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .3rem;
+        font-size: 1.2rem;
+        text-decoration: none;
+        display: none;
+    }
+
+
+}
+
+@media screen and (max-width: 300px) {
+
+    div.logo-img {
+        margin-left: 10px;
+    }
+
+    div.nav-icons {
+        position: absolute;
+        right: 55px;
+        top: 24px;
+        display: flex;
+        gap: .7rem;
+        display: none;
+    }
+
+    /* body */
+    div.body {
+        background: white;
+    }
+
+    .bottom-line-hr {
+        display: none;
+    }
+
+    div.chef-img {
+        margin-left: 10px;
+        margin-top: 0;
+    }
+
+    img.select-img {
+        height: 160px;
+        width: 370px;
+        display: none;
+    }
+
+    img.chef-img-img {
+        margin-left: 75%;
+        margin-top: -47.5%;
+        width: 100px;
+        height: 126px;
+        display: none;
+    }
+
+    .dot-img {
+        position: absolute;
+        top: 27.5%;
+        left: 27%;
+        display: none;
+    }
+
+    .dot-img-light {
+        position: absolute;
+        top: 27.5%;
+        left: 29%;
+        display: none;
+    }
+
+    .dot-img-light-2 {
+        position: absolute;
+        top: 27.5%;
+        left: 31%;
+        display: none;
+    }
+
+    /* Wallet */
+
+    .wallet-img {
+        height: 150px;
+        width: 97%;
+    }
+
+    div.wallet-texts {
+        margin-top: -50%;
+    }
+
+    p.total-balance {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 20px;
+        margin-left: 20px;
+        color: #fff;
+    }
+
+    h2.wallet-amount {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 20px;
+        margin-left: 32px;
+        margin-top: 1.5rem;
+        color: #fff;
+    }
+
+    p.add-fund {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 20px;
+        color: #D21A32;
+        margin-left: 20px;
+        margin-top: .2rem;
+        width: 100px;
+        background-color: #fff;
+        border-radius: 50px;
+        padding: .4rem .6rem .4rem .9rem;
+    }
+
+    p.add-fund-arrow {
+        float: right;
+        margin-right: 2rem;
+        padding: .2rem;
+        margin-left: 6rem;
+        margin-top: .1rem;
+    }
+
+    .arrow {
+        color: #D21A32;
+        margin-left: -34px;
+        font-size: 2rem;
+    }
+
+    /* Vendor */
+    /* Vendor */
+
+    .choose-vendor-text {
+        margin-top: 12%;
+
+    }
+
+    div.vendor {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    span.choose-vendor {
+        margin-left: 10px;
+        font-family: 'poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 15px;
+    }
+
+    .img-bottom-line {
+        margin-left: 10px;
+    }
+
+    div.vendor-card {
+        background: #E9E9E9;
+        border-radius: 8px;
+        /* margin-left: 70px;
+    margin-right: 50px; */
+        margin-top: 1rem;
+        margin-bottom: 5rem;
+    }
+
+
+    .button-name {
+        margin-top: 5rem;
+    }
+
+    .btn-name {
+        margin-left: .4rem;
+        margin-bottom: .5rem;
+        background-color: #D21A32;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: .3rem;
+        width: 90%;
+    }
+
+    nav {
+        background: #D21A32;
+        display: block;
+        padding: .7rem 2rem;
+        z-index: 2;
+        position: fixed;
+        left: 50%;
+        width: 98%;
+        transform: translateX(-50%);
+        bottom: .9rem;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 1rem;
+        border-radius: 3rem;
+        backdrop-filter: blur(15px);
+    }
+
+    nav a {
+        background: transparent;
+        padding: .4rem;
+        /* border-radius: 50%; */
+        display: flex;
+        color: rgb(230, 225, 225);
+        font-size: 1.5rem;
+    }
+
+    nav a.active {
+        color: #D21A32;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        font-size: 1.2rem;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    nav span.none {
+        color: #D21A32;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .3rem;
+        font-size: 1.2rem;
+        text-decoration: none;
+        display: none;
+    }
+
+
+}

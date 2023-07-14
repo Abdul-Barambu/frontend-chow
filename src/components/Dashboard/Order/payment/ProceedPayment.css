@@ -1,0 +1,463 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap');
+
+div.cancel-proceed-icon {
+    position: absolute;
+    left: 61%;
+    top: 25%;
+}
+
+.cancel-proceed {
+    font-size: 4.5rem;
+    color: #D21A32;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+div.proceed-container {
+    border-radius: 30px;
+    margin-top: 10%;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    width: 30%;
+    height: 100%;
+    background: white;
+    border: 1px solid red;
+}
+
+h1.payment-method {
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: 'Poppins';
+    font-weight: 700;
+}
+
+p.select-payment-method {
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Poppins';
+}
+
+div.payment-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+button.card-btn {
+    border: 1px solid #D21A32;
+    background: transparent;
+    border-radius: 15px;
+    font-size: .9rem;
+    font-weight: bold;
+    color: #D21A32;
+    padding: .4rem 2rem;
+    font-family: 'Poppins';
+}
+
+button.card-btn:hover {
+    background: #D21A32;
+    color: white;
+}
+
+button.wallet-btn {
+    border: 1px solid #D21A32;
+    background: transparent;
+    border-radius: 15px;
+    font-size: .9rem;
+    font-weight: bold;
+    color: #D21A32;
+    padding: .4rem 2rem;
+    font-family: 'Poppins';
+}
+
+button.wallet-btn:hover {
+    background: #D21A32;
+    color: white;
+}
+
+a.proceed-btn {
+    background-color: transparent;
+    border: 1px solid #D21A32;
+    border-radius: 10px;
+    color: black;
+    padding: .7rem 0;
+    width: 45%;
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+a.proceed-btn:hover{
+    background: #D21A32;
+    color: white;
+}
+
+@media screen and (max-width: 1024px) {
+    div.cancel-proceed-icon {
+        position: absolute;
+        left: 64%;
+        top: 20%;
+    }
+    
+    .cancel-proceed {
+        font-size: 4.5rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.proceed-container {
+        border-radius: 30px;
+        margin-top: 30%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 40%;
+        height: 100%;
+        background: white;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    div.cancel-proceed-icon {
+        position: absolute;
+        left: 69%;
+        top: 41%;
+    }
+    
+    .cancel-proceed {
+        font-size: 4.5rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.proceed-container {
+        border-radius: 30px;
+        margin-top: 28%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 50%;
+        height: 100%;
+        background: white;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    div.cancel-proceed-icon {
+        position: absolute;
+        left: 69%;
+        top: 40%;
+    }
+    
+    .cancel-proceed {
+        font-size: 4.5rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.proceed-container {
+        border-radius: 30px;
+        margin-top: 28%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 50%;
+        height: 100%;
+        background: white;
+    }
+}
+
+@media screen and (max-width: 790px) {
+    div.cancel-proceed-icon {
+        position: absolute;
+        left: 70%;
+        top: 40%;
+    }
+    
+    .cancel-proceed {
+        font-size: 4.5rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.proceed-container {
+        border-radius: 30px;
+        margin-top: 28%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 50%;
+        height: 100%;
+        background: white;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    div.cancel-proceed-icon {
+        position: absolute;
+        left: 80%;
+        top: 23%;
+    }
+    
+    .cancel-proceed {
+        font-size: 4.5rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.proceed-container {
+        border-radius: 30px;
+        margin-top: 28%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 80%;
+        height: 100%;
+        background: white;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    div.cancel-proceed-icon {
+        position: absolute;
+        left: 84%;
+        top: 33%;
+    }
+    
+    .cancel-proceed {
+        font-size: 4rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.proceed-container {
+        border-radius: 30px;
+        margin-top: 40%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 90%;
+        height: 100%;
+        background: white;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    div.cancel-proceed-icon {
+        position: absolute;
+        left: 83%;
+        top: 33%;
+    }
+    
+    .cancel {
+        font-size: 4rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.proceed-container {
+        border-radius: 30px;
+        margin-top: 40%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 90%;
+        height: 100%;
+        background: white;
+    }
+}
+
+@media screen and (max-width: 395px) {
+    div.cancel-proceed-icon {
+        position: absolute;
+        left: 82%;
+        top: 32%;
+    }
+    
+    .cancel {
+        font-size: 4rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.proceed-container {
+        border-radius: 30px;
+        margin-top: 40%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 92%;
+        height: 100%;
+        background: white;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    div.cancel-proceed-icon {
+        position: absolute;
+        left: 82%;
+        top: 15%;
+    }
+    
+    .cancel {
+        font-size: 4rem;
+        color:#D21A32 ;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.proceed-container {
+        border-radius: 30px;
+        margin-top: 40%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 95%;
+        height: 100%;
+        background: white;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    div.cancel-proceed-icon {
+        position: absolute;
+        left: 81%;
+        top: 28%;
+    }
+    
+    .cancel {
+        font-size: 4rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.proceed-container {
+        border-radius: 30px;
+        margin-top: 40%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 88%;
+        height: 100%;
+        background: white;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    div.cancel-proceed-icon {
+        position: absolute;
+        left: 80%;
+        top: 21%;
+    }
+    
+    .cancel {
+        font-size: 3rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+    
+    div.proceed-container {
+        border-radius: 30px;
+        margin-top: 30%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 90%;
+        height: 100%;
+        background: white;
+    }
+    
+    h1.payment-method {
+        font-size: 1.3rem;
+        text-align: center;
+        font-family: 'Poppins';
+        font-weight: 700;
+    }
+    
+    p.select-payment-method {
+        text-align: center;
+        font-size: .6rem;
+        font-family: 'Poppins';
+    }
+    
+    div.payment-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    
+    button.card-btn {
+        border: 1px solid #D21A32;
+        background: transparent;
+        border-radius: 15px;
+        font-size: .9rem;
+        font-weight: bold;
+        color: #D21A32;
+        padding: .4rem 2rem;
+        font-family: 'Poppins';
+    }
+    
+    button.card-btn:hover {
+        background: #D21A32;
+        color: white;
+    }
+    
+    button.wallet-btn {
+        border: 1px solid #D21A32;
+        background: transparent;
+        border-radius: 15px;
+        font-size: .9rem;
+        font-weight: bold;
+        color: #D21A32;
+        padding: .4rem 2rem;
+        font-family: 'Poppins';
+    }
+    
+    button.wallet-btn:hover {
+        background: #D21A32;
+        color: white;
+    }
+    
+    a.proceed-btn {
+        background-color: #D21A32;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: .7rem 0;
+        width: 60%;
+        font-family: 'Poppins';
+        font-weight: 700;
+        font-size: 0.8rem;
+    }
+}

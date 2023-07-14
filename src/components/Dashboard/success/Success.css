@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap');
+
+.success-main-body{
+    background: #F5F5F5;
+    padding: .5rem 2rem 3rem;
+    height: 100vh;
+}
+
+div.success{
+    margin-top: 3rem;
+    border: 2px solid green;
+    padding: 2rem;
+    border-radius: 30px;
+    background: white;
+}
+
+.success-h1{
+    text-align: center;
+    font-weight: 900;
+    font-family: 'Poppins';
+}
+
+.success-h2{
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 900;
+    font-family: 'Poppins';
+}
+
+.success-h3{
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: 'Poppins';
+}
+
+.done-btn{
+    margin-top: 2rem;
+    text-align: center;
+}
+
+button.done{
+    width: 50%;
+    border-radius: 15px;
+    color: green;
+    font-size: 1.3rem;
+    border: 1px solid green;
+    background: white;
+    font-weight: 700;
+}
+
+button.done:hover{
+    background: green;
+    color: white;
+}
+
+@media screen and (max-width: 850px) {
+    .success-h1{
+        text-align: center;
+        font-weight: 900;
+        font-family: 'Poppins';
+    }
+    
+    .success-h2{
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 900;
+        font-family: 'Poppins';
+    }
+    
+    .success-h3{
+        text-align: center;
+        font-size: 1.1rem;
+        font-weight: 700;
+        font-family: 'Poppins';
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .success-h1{
+        text-align: center;
+        font-weight: 900;
+        font-family: 'Poppins';
+        font-size: 1.2rem;
+    }
+    
+    .success-h2{
+        text-align: center;
+        font-size: .5rem;
+        font-weight: 900;
+        font-family: 'Poppins';
+    }
+    
+    .success-h3{
+        text-align: center;
+        font-size: .5rem;
+        font-weight: 700;
+        font-family: 'Poppins';
+    }
+}

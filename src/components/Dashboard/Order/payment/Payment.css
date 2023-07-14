@@ -1,0 +1,480 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap');
+
+div.cancel-icon {
+    position: absolute;
+    left: 76%;
+    top: 10%;
+}
+
+.cancel {
+    font-size: 4.5rem;
+    color: #D21A32;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+div.payment-container {
+    border-radius: 30px;
+    margin-top: 10%;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    width: 70%;
+    height: 100%;
+    background: white;
+}
+
+h1.payment-method {
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: 'Poppins';
+    font-weight: 700;
+}
+
+p.select-payment-method {
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Poppins';
+}
+
+div.payment-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+button.card-btn {
+    border: 1px solid #D21A32;
+    background: transparent;
+    border-radius: 15px;
+    font-size: .9rem;
+    font-weight: bold;
+    color: #D21A32;
+    padding: .4rem 2rem;
+    font-family: 'Poppins';
+}
+
+button.card-btn:hover {
+    background: #D21A32;
+    color: white;
+}
+
+button.wallet-btn {
+    border: 1px solid #D21A32;
+    background: transparent;
+    border-radius: 15px;
+    font-size: .9rem;
+    font-weight: bold;
+    color: #D21A32;
+    padding: .4rem 2rem;
+    font-family: 'Poppins';
+}
+
+button.wallet-btn:hover {
+    background: #D21A32;
+    color: white;
+}
+
+button.continue-btn {
+    background-color: #D21A32;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: .7rem 0;
+    width: 45%;
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+/* Payment */
+.center-proceed,
+.is-proceed {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.is-proceed {
+    background: rgba(49, 49, 49, 0.8);
+}
+
+.center-content-proceed {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    min-width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+    div.cancel-icon {
+        position: absolute;
+        left: 64%;
+        top: 20%;
+    }
+    
+    .cancel {
+        font-size: 4.5rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.payment-container {
+        border-radius: 30px;
+        margin-top: 30%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 80%;
+        height: 100%;
+        background: white;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    div.cancel-icon {
+        position: absolute;
+        left: 75%;
+        top: 17%;
+    }
+    
+    .cancel {
+        font-size: 4.5rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.payment-container {
+        border-radius: 30px;
+        margin-top: 28%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 80%;
+        height: 100%;
+        background: white;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    div.cancel-icon {
+        position: absolute;
+        left: 80%;
+        top: 14%;
+    }
+    
+    .cancel {
+        font-size: 4.5rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.payment-container {
+        border-radius: 30px;
+        margin-top: 28%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 100%;
+        height: 100%;
+        background: white;
+    }
+
+    .center-content-proceed {
+        position: absolute;
+        top: 20%;
+        left: 32%;
+        transform: translate(-50%, -50%);
+        max-width: 100%;
+        min-width: 100%;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    div.cancel-icon {
+        position: absolute;
+        left: 81%;
+        top: 19%;
+    }
+    
+    .cancel {
+        font-size: 4rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.payment-container {
+        border-radius: 30px;
+        margin-top: 40%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 95%;
+        height: 100%;
+        background: white;
+    }
+
+    .center-content-proceed {
+        position: absolute;
+        top: 20%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+        max-width: 100%;
+        min-width: 100%;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    div.cancel-icon {
+        position: absolute;
+        left: 82%;
+        top: 17%;
+    }
+    
+    .cancel {
+        font-size: 4rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.payment-container {
+        border-radius: 30px;
+        margin-top: 40%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 95%;
+        height: 100%;
+        background: white;
+    }
+
+    .center-content-proceed {
+        position: absolute;
+        top: 20%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+        max-width: 100%;
+        min-width: 100%;
+    }
+}
+
+@media screen and (max-width: 395px) {
+    div.cancel-icon {
+        position: absolute;
+        left: 81%;
+        top: 20%;
+    }
+    
+    .cancel {
+        font-size: 4rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.payment-container {
+        border-radius: 30px;
+        margin-top: 40%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 99%;
+        height: 100%;
+        background: white;
+    }
+
+    .center-content-proceed {
+        position: absolute;
+        top: 20%;
+        left: 37%;
+        transform: translate(-50%, -50%);
+        max-width: 100%;
+        min-width: 100%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    div.cancel-icon {
+        position: absolute;
+        left: 82%;
+        top: 10%;
+    }
+    
+    .cancel {
+        font-size: 4rem;
+        color:#D21A32 ;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.payment-container {
+        border-radius: 30px;
+        margin-top: 40%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 95%;
+        height: 100%;
+        background: white;
+    }
+
+}
+
+@media screen and (max-width: 370px) {
+    div.cancel-icon {
+        position: absolute;
+        left: 81%;
+        top: 20%;
+    }
+    
+    .cancel {
+        font-size: 4rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+
+    div.payment-container {
+        border-radius: 30px;
+        margin-top: 40%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 95%;
+        height: 100%;
+        background: white;
+    }
+
+    .center-content-proceed {
+        position: absolute;
+        top: 20%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+        max-width: 100%;
+        min-width: 100%;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    div.cancel-icon {
+        position: absolute;
+        left: 85%;
+        top: 18%;
+    }
+    
+    .cancel {
+        font-size: 3rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+    }
+    
+    div.payment-container {
+        border-radius: 30px;
+        margin-top: 30%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 100%;
+        height: 100%;
+        background: white;
+    }
+    
+    h1.payment-method {
+        font-size: 1.3rem;
+        text-align: center;
+        font-family: 'Poppins';
+        font-weight: 700;
+    }
+    
+    p.select-payment-method {
+        text-align: center;
+        font-size: .6rem;
+        font-family: 'Poppins';
+    }
+    
+    div.payment-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    
+    button.card-btn {
+        border: 1px solid #D21A32;
+        background: transparent;
+        border-radius: 15px;
+        font-size: .9rem;
+        font-weight: bold;
+        color: #D21A32;
+        padding: .4rem 2rem;
+        font-family: 'Poppins';
+    }
+    
+    button.card-btn:hover {
+        background: #D21A32;
+        color: white;
+    }
+    
+    button.wallet-btn {
+        border: 1px solid #D21A32;
+        background: transparent;
+        border-radius: 15px;
+        font-size: .9rem;
+        font-weight: bold;
+        color: #D21A32;
+        padding: .4rem 2rem;
+        font-family: 'Poppins';
+    }
+    
+    button.wallet-btn:hover {
+        background: #D21A32;
+        color: white;
+    }
+    
+    button.continue-btn {
+        background-color: #D21A32;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: .7rem 0;
+        width: 60%;
+        font-family: 'Poppins';
+        font-weight: 700;
+        font-size: 0.8rem;
+    }
+
+    .center-content-proceed {
+        position: absolute;
+        top: 30%;
+        left: 47%;
+        transform: translate(-50%, -50%);
+        max-width: 100%;
+        min-width: 100%;
+    }
+}

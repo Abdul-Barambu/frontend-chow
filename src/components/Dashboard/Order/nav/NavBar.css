@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap');
+
+div.container-navbar {
+    /* box-shadow: 0px 0px 2px 0px #000; */
+    border-radius: 8px;
+    /* margin-top: 1rem; */
+    margin-bottom: 1rem;
+    padding-bottom: .3rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+    background: #F5F5F5;
+}
+
+div.container-nav-bar {
+    background-color: white;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    /* padding: 0.5rem; */
+    
+    
+}
+
+.bottom-line {
+    position: relative;
+    border-bottom: 1px solid #CDCCCC;
+    bottom: 1rem;
+}
+
+.categories {
+    margin-left: 55px;
+    display: flex;
+    gap: 2rem;
+}
+
+span.main {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+span.main:hover {
+    color: #D21A32;
+}
+
+span.main-red {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    color: #D21A32;
+}
+
+span.drinks {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+span.drinks-red {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    color: #D21A32;
+}
+
+span.cart-size-nav{
+    background: white;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #D21A32;
+    font-weight: bold;
+    position: absolute;
+    top: 20%;
+    left: 64%;
+    font-size: 1rem;
+    
+}
