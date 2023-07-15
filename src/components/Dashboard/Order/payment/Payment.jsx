@@ -15,7 +15,7 @@ const Payment = ({ handlePayment, price }) => {
     }
 
     const amount = price
-    const vendorId = '646386e9953bb570f2bd3102'
+    const vendorId = '64635b8d76f82fc6e95cd982'
 
 
     const variables = { amount, vendorId }
