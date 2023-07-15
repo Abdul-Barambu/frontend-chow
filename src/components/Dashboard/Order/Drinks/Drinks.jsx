@@ -61,7 +61,7 @@ const Drinks = ({ size, handleClick, setShow }) => {
   }
 
   useEffect(() => {
-    axios.get("https://api-chow.onrender.com/api/vendors/menu/drinks/646386e9953bb570f2bd3102")
+    axios.get("https://api-chow.onrender.com/api/vendors/menu/drinks/64635b8d76f82fc6e95cd982")
       .then(res => {
         console.log(res.data.data)
         setDrinks(res.data.data)

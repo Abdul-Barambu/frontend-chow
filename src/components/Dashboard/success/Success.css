@@ -6,6 +6,18 @@
     height: 100vh;
 }
 
+div.confirm-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img.success-img{
+    width: 700px;
+    height: 500px;
+    cursor: pointer;
+}
+
 div.success{
     margin-top: 3rem;
     border: 2px solid green;
@@ -55,6 +67,11 @@ button.done:hover{
 }
 
 @media screen and (max-width: 850px) {
+  img.success-img{
+        width: 700px;
+        height: 500px;
+        margin-top: 20%;
+    }
     .success-h1{
         text-align: center;
         font-weight: 900;
@@ -77,6 +94,12 @@ button.done:hover{
 }
 
 @media screen and (max-width: 430px) {
+    img.success-img{
+        width: 450px;
+        height: 250px;
+        margin-top: 20%;
+    }
+
     .success-h1{
         text-align: center;
         font-weight: 900;
@@ -86,15 +109,31 @@ button.done:hover{
     
     .success-h2{
         text-align: center;
-        font-size: .5rem;
+        font-size: .8rem;
         font-weight: 900;
         font-family: 'Poppins';
     }
     
     .success-h3{
         text-align: center;
-        font-size: .5rem;
+        font-size: .6rem;
         font-weight: 700;
         font-family: 'Poppins';
+    }
+}
+
+@media screen and (max-width: 370px) {
+    img.success-img{
+        width: 300px;
+        height: 200px;
+        margin-top: 20%;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    img.success-img{
+        width: 350px;
+        height: 200px;
+        margin-top: 20%;
     }
 }

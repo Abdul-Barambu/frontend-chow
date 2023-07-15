@@ -61,7 +61,7 @@ const Specials = ({ handleClick, setShow, size }) => {
   }
 
   useEffect(() => {
-    axios.get("https://api-chow.onrender.com/api/vendors/menu/specials/646386e9953bb570f2bd3102")
+    axios.get("https://api-chow.onrender.com/api/vendors/menu/specials/64635b8d76f82fc6e95cd982")
       .then(res => {
         console.log(res.data.data)
         setSpecials(res.data.data)

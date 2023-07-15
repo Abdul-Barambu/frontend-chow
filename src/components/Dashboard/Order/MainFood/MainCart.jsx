@@ -170,9 +170,9 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                     <select name="pack" id="pack" className='pack-select'>
                                         <option value="">Choose...</option>
                                         <option value=""></option>
-                                        <option value="jumbo">Jumbo</option>
-                                        <option value="big">Big</option>
-                                        <option value="small">Small</option>
+                                        <option value="jumbo">smallPack</option>
+                                        <option value="big">bigPack</option>
+                                        <option value="small">plasticPack</option>
                                     </select>
                                 </div>
                                 <hr />

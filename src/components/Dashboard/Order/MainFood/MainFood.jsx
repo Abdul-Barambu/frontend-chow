@@ -60,14 +60,26 @@ const MainFood = ({ handleClick, setShow, size }) => {
     mainColor.push('main')
   }
 
-  
+
   const handleProfile = () => {
     history.push('/profile')
   }
 
+  useEffect(() => {
+    const storedItemIds = localStorage.getItem('itemIds');
+    if (storedItemIds) {
+      const itemIds = JSON.parse(storedItemIds);
+      // Access each ID and perform any desired operations
+      itemIds.forEach(id => {
+        console.log(id);
+        // Do something with the ID
+      });
+    }
+  }, []);
+
 
   useEffect(() => {
-    axios.get('https://api-chow.onrender.com/api/vendors/menu/meals/646386e9953bb570f2bd3102')
+    axios.get('https://api-chow.onrender.com/api/vendors/menu/meals/64635b8d76f82fc6e95cd982')
       .then(res => {
         console.log(res.data.data)
         setFood(res.data.data)
@@ -75,6 +87,7 @@ const MainFood = ({ handleClick, setShow, size }) => {
         console.log(err)
       })
   }, [])
+
 
 
   return (
@@ -107,7 +120,7 @@ const MainFood = ({ handleClick, setShow, size }) => {
                 <Grid item lg={3} md={4} sm={4} xs={12}>
                   <div key={item._id} className="cart-main-food">
                     <div className="main-food">
-                      <img src={`https://api-chow.onrender.com/static/${item.food_id}.jpg`} alt="food-img" style={{width: '100px', height: '100px'}} />
+                      <img src={`https://api-chow.onrender.com/static/${item.food_id}.jpg`} alt="food-img" style={{ width: '100px', height: '100px' }} />
                       <span className='food-name'>{item.food_name}
                         <span className="special-price">₦ {item.price}.00</span>
                       </span>

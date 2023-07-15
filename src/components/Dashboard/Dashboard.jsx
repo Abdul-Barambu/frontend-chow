@@ -43,7 +43,19 @@ const Dashboard = () => {
             .then(response => {
                 console.log(response.data.data)
                 setVendors(response.data.data)
+
+                const vendorsArray = response.data.data;
+
+                const itemIds = vendorsArray.map(item => item._id);
+                localStorage.setItem('itemIds', JSON.stringify(itemIds));
+
+                // localStorage.setItem("id-1", response.data.data[0]._id)
+                // localStorage.setItem("id-2", response.data.data[1]._id)
+                // localStorage.setItem("id-3", response.data.data[2]._id)
+                // localStorage.setItem("id-4", response.data.data[3]._id)
+                // localStorage.setItem("id-5", response.data.data[4]._id)
             })
+
             .catch(e => {
                 console.log(e)
             })
@@ -58,7 +70,10 @@ const Dashboard = () => {
             .catch(e => {
                 console.log(e)
             })
+
     }, [])
+
+   
 
     const handleVendor = () => {
         history.push('/order')
