@@ -62,7 +62,7 @@ const Success = () => {
 
                 {/* Main Body */}
                 <div className="success-main-body">
-                    {/* <div className="success">
+                    <div className="success">
                         <div className="success-div">
                             <h1 className="success-h1">HEY!!!</h1>
                             <h2 className="success-h2">Your payment has beend confirmed and your order has been taken successfully.</h2>
@@ -71,12 +71,12 @@ const Success = () => {
                         <div className="done-btn">
                             <button className="done" onClick={handleCallback}>Done</button>
                         </div>
-                    </div> */}
-                    <h2 className="success-h2">Your payment has beend confirmed and your order has been taken successfully.</h2>
+                    </div>
+                    {/* <h2 className="success-h2">Your payment has beend confirmed and your order has been taken successfully.</h2>
                     <h3 className="success-h3">Click the button below to continue...</h3>
                     <div className="confirm-image">
                         <img src={Confirm} alt="success-img" className="success-img"/>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
