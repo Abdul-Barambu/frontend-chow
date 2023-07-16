@@ -41,7 +41,7 @@ const Login = () => {
             password: password
 
         }, { withCredentials: true }).then(response => {
-            console.log(response.data.data.userId)
+            console.log(response)
 
             // Status 200 OK
             if (response.status === 200) {

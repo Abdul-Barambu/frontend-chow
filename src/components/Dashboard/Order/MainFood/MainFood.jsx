@@ -65,17 +65,17 @@ const MainFood = ({ handleClick, setShow, size }) => {
     history.push('/profile')
   }
 
-  useEffect(() => {
-    const storedItemIds = localStorage.getItem('itemIds');
-    if (storedItemIds) {
-      const itemIds = JSON.parse(storedItemIds);
-      // Access each ID and perform any desired operations
-      itemIds.forEach(id => {
-        console.log(id);
-        // Do something with the ID
-      });
-    }
-  }, []);
+
+  // All IDs
+  // useEffect(() => {
+  //   const storedItemIds = localStorage.getItem('itemIds');
+  //   if (storedItemIds) {
+  //     const itemIds = JSON.parse(storedItemIds);
+  //     itemIds.forEach(id => {
+  //       console.log(id);
+  //     });
+  //   }
+  // }, []);
 
 
   useEffect(() => {

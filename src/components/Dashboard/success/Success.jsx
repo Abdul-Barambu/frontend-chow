@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Success.css'
 import Img from '../../../assets/logo.png'
 import Confirm from '../../../assets/confirm-order.png'
@@ -31,18 +31,29 @@ const Success = () => {
 
     // Callback API
 
-    const handleCallback = (e) => {
-        e.preventDefault()
-
+    useEffect(() => {
         axios.get("https://chow.onrender.com/api/v1/paystack/pay/callback", { headers })
             .then(response => {
                 console.log(response)
-                if(response.status === 200 && response.data === 'success'){
-                    axios.post(" https://chow.onrender.com/api/v1/orders", )
+                if (response.status === 200 && response.data === 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'SUCCESS',
+                        text: 'Your payment has beend confirmed and your order has been taken successfully.'
+                    });
+                    // axios.post(" https://chow.onrender.com/api/v1/orders", )
                 }
             }).catch(e => {
                 console.log(e)
             })
+    })
+
+    const handleCallback = (e) => {
+        e.preventDefault()
+
+        history.push("/dashboard")
+
+
     }
 
     return (
@@ -62,7 +73,7 @@ const Success = () => {
 
                 {/* Main Body */}
                 <div className="success-main-body">
-                    <div className="success">
+                    {/* <div className="success">
                         <div className="success-div">
                             <h1 className="success-h1">HEY!!!</h1>
                             <h2 className="success-h2">Your payment has beend confirmed and your order has been taken successfully.</h2>
@@ -71,12 +82,10 @@ const Success = () => {
                         <div className="done-btn">
                             <button className="done" onClick={handleCallback}>Done</button>
                         </div>
-                    </div>
-                    {/* <h2 className="success-h2">Your payment has beend confirmed and your order has been taken successfully.</h2>
-                    <h3 className="success-h3">Click the button below to continue...</h3>
-                    <div className="confirm-image">
-                        <img src={Confirm} alt="success-img" className="success-img"/>
                     </div> */}
+                    <div className="confirm-image">
+                        <img src={Confirm} alt="success-img" className="success-img" onClick={handleCallback} />
+                    </div>
                 </div>
             </div>
 
