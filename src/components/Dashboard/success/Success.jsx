@@ -35,14 +35,14 @@ const Success = () => {
         axios.get("https://chow.onrender.com/api/v1/paystack/pay/callback", { headers })
             .then(response => {
                 console.log(response)
-                if (response.status === 200 && response.data === 'success') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'SUCCESS',
-                        text: 'Your payment has beend confirmed and your order has been taken successfully.'
-                    });
-                    // axios.post(" https://chow.onrender.com/api/v1/orders", )
-                }
+                Swal.fire({
+                    icon: 'success',
+                    title: 'SUCCESS',
+                    text: 'Your payment has beend confirmed and your order has been taken successfully.'
+                });
+                // if (response.status === 200 && response.data === 'success') {
+                //     axios.post(" https://chow.onrender.com/api/v1/orders", )
+                // }
             }).catch(e => {
                 console.log(e)
             })
