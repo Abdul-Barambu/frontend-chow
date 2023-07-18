@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Profile.css'
 import Img from '../../../assets/logo.png'
 import ProfileImg from '../../../assets/profile-img.png'
@@ -28,6 +28,7 @@ const Profile = () => {
     const [modal, setModal] = useState(false)
     const [activeNav, setActiveNav] = useState('')
     const history = useHistory()
+    const [orderHistory, setOrderHistory] = useState([])
 
     const date = new Date().toDateString();
     const time = new Date().toLocaleTimeString();
@@ -35,6 +36,7 @@ const Profile = () => {
     const accessToken = localStorage.getItem("Access-Token");
     const refreshToken = localStorage.getItem("Refresh-Token");
     const profileUsername = localStorage.getItem("username");
+    const userId = localStorage.getItem("User-Id");
 
     const headers = {
         Authorization: `Bearer ${accessToken}`,
@@ -84,6 +86,17 @@ const Profile = () => {
             console.log(e)
         })
     }
+
+    // Food order history api
+
+    useEffect(() => {
+        axios.get(`https://chow.onrender.com/api/v1/orders/myOders/${userId}`, {headers})
+        .then(res => {
+            console.log(res)
+        }).catch(e => {
+            console.log(e)
+        })
+    })
     
     const handleHome = () => {
         history.push('/dashboard')

@@ -51,7 +51,9 @@ const Success = () => {
     useEffect(() => {
         axios.get("https://chow.onrender.com/api/v1/paystack/pay/callback", { headers })
             .then(response => {
-                console.log(response)
+                console.log(response.data.data.item)
+                console.log(response.data.data.item._id)
+                localStorage.setItem("order-id", response.data.data.item._id)
                 Swal.fire({
                     icon: 'success',
                     title: 'SUCCESS',
