@@ -38,7 +38,11 @@ const Success = () => {
         {
             packType: localStorage.getItem("Pack"),
             amount: localStorage.getItem("Pack-Amount"),
-            items
+            items: [
+                {
+                    items
+                }
+            ]
         }
     ]
 
