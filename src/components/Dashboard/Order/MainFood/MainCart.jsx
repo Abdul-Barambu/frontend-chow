@@ -105,8 +105,6 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                 name: item.food_name,
                 price: pricePerQty
             }
-            localStorage.setItem("food-name", item.food_name)
-            localStorage.setItem("food-price", pricePerQty)
 
             cartItems.push(cartItem)
             localStorage.setItem("cartItems", JSON.stringify(cartItems))

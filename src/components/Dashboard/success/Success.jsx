@@ -30,25 +30,24 @@ const Success = () => {
     };
 
     // Getting parameters from localstorage
-    const name = localStorage.getItem("food-name")
-    const price = localStorage.getItem("food-price")
-    const vendorId = localStorage.getItem("vendor-id")
-    const orderTime = localStorage.getItem("Time")
+
+    const cartItems = localStorage.getItem("cartItems");
+    const vendorId = localStorage.getItem("vendor-id");
+    const orderTime = localStorage.getItem("Time");
     const packs = [
         {
             packType: localStorage.getItem("Pack"),
             amount: localStorage.getItem("Pack-Amount"),
+            items: [
+                {
+                    items: cartItems
+                }
+            ]
         }
-    ]
-    const items =  [
-        {
-            name: name,
-            price: price
-        }
-    ]
-
-    const orderVariables = { vendorId, orderTime, packs, items }
-    console.log(orderVariables)
+    ];
+    
+    const orderVariables = { vendorId, orderTime, packs };
+    console.log(orderVariables);
 
     // Callback API
 
