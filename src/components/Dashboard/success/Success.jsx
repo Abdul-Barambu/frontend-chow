@@ -31,7 +31,7 @@ const Success = () => {
 
     // Getting parameters from localstorage
 
-    const items = localStorage.getItem("cartItems")
+    const items = JSON.parse(localStorage.getItem("cartItems"))
     const vendorId = localStorage.getItem("vendor-id")
     const orderTime = localStorage.getItem("Time")
     const packs = [
@@ -39,11 +39,10 @@ const Success = () => {
             packType: localStorage.getItem("Pack"),
             amount: localStorage.getItem("Pack-Amount"),
             items: items
-                
-            
         }
     ]
 
+    console.log(typeof items)
     const orderVariables = { vendorId, orderTime, packs }
     console.log(orderVariables)
 
