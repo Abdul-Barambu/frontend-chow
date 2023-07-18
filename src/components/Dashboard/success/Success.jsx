@@ -30,15 +30,20 @@ const Success = () => {
     };
 
     // Getting parameters from localstorage
-
-    const items = localStorage.getItem("cartItems")
+    const name = localStorage.getItem("food-name")
+    const price = localStorage.getItem("food-price")
     const vendorId = localStorage.getItem("vendor-id")
     const orderTime = localStorage.getItem("Time")
     const packs = [
         {
             packType: localStorage.getItem("Pack"),
             amount: localStorage.getItem("Pack-Amount"),
-            items: items
+            items: [
+                {
+                    name: name,
+                    price: price
+                }
+            ]
         }
     ]
 
