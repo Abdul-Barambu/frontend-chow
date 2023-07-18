@@ -51,28 +51,49 @@ const Payment = ({ handlePayment, price }) => {
 
     // WALLET PAYMENT
 
+    const items = JSON.parse(localStorage.getItem("cartItems"))
+    const orderTime = localStorage.getItem("Time")
+    const packs = [
+        {
+            packType: localStorage.getItem("Pack"),
+            amount: localStorage.getItem("Pack-Amount"),
+            items: items
+        }
+    ]
+
+    console.log(typeof items)
+    const orderVariables = { vendorId, orderTime, packs }
+    console.log(orderVariables)
+
+
     const handleWalletPayment = () => {
-        axios.post("https://chow.onrender.com/api/v1/paystack/paywithWallet", variables, {headers})
-        .then(res => {
-            console.log(res)
-            Swal.fire({
-                icon: 'success',
-                title: 'SUCCESS',
-                text: 'Payment Successfull...'
-            });
-            history.push("/dashboard")
-        }).catch(e => {
-            console.log(e)
-            Swal.fire({
-                icon: 'error',
-                title: 'ERROR',
-                text: 'Insufficient fund'
-            });
-        })
+        axios.post("https://chow.onrender.com/api/v1/paystack/paywithWallet", variables, { headers })
+            .then(res => {
+                console.log(res)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'SUCCESS',
+                    text: 'Payment Successfull...'
+                });
+                axios.post("https://chow.onrender.com/api/v1/orders", orderVariables, { headers })
+                    .then(response => {
+                        console.log(response)
+                    }).catch(e => {
+                        console.log(e)
+                    })
+                history.push("/dashboard")
+            }).catch(e => {
+                console.log(e)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERROR',
+                    text: 'Insufficient fund'
+                });
+            })
     }
 
 
-    
+
 
 
     // const ref = localStorage.getItem("Refrence-code")

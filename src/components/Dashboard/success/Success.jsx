@@ -58,7 +58,7 @@ const Success = () => {
                     text: 'Your payment has been confirmed and your order has been taken successfully.'
                 });
 
-                axios.post(" https://chow.onrender.com/api/v1/orders", orderVariables, { headers })
+                axios.post("https://chow.onrender.com/api/v1/orders", orderVariables, { headers })
                     .then(response => {
                         console.log(response)
                     }).catch(e => {
