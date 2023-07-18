@@ -15,7 +15,7 @@ const Payment = ({ handlePayment, price }) => {
     }
 
     const amount = price
-    const vendorId = '64635b8d76f82fc6e95cd982'
+    const vendorId = localStorage.getItem("vendor-id");
 
 
     const variables = { amount, vendorId }

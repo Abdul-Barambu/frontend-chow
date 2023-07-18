@@ -23,6 +23,7 @@ const Specials = ({ handleClick, setShow, size }) => {
   const [specials, setSpecials] = useState([])
   const history = useHistory()
   const [activeNav, setActiveNav] = useState('')
+  const [loading, setLoading] = useState(false)
 
   if (countOne < 1) {
     setCountOne(1)
@@ -60,11 +61,14 @@ const Specials = ({ handleClick, setShow, size }) => {
     history.push('/profile')
   }
 
+  const vendorId = localStorage.getItem("vendor-id");
+
   useEffect(() => {
-    axios.get("https://api-chow.onrender.com/api/vendors/menu/specials/64635b8d76f82fc6e95cd982")
+    axios.get(`https://api-chow.onrender.com/api/vendors/menu/specials/${vendorId}`)
       .then(res => {
         console.log(res.data.data)
         setSpecials(res.data.data)
+        setLoading(true)
       }).catch(err => {
         console.log(err)
       })
@@ -93,32 +97,38 @@ const Specials = ({ handleClick, setShow, size }) => {
         </div> */}
 
         <div className="main-body">
-          <Grid container spacing={2}>
+          {
+            loading ? (<Grid container spacing={2}>
 
-            {
-              specials.map(item => (
-                <Grid item lg={3} md={4} sm={4} xs={12}>
-                  <div key={item._id} className="cart-main-special">
-                    <div className="main-special">
-                      <img src={Img} alt="" />
-                      <span className='special-name'>{item.food_item}
-                        <span className="special-price">₦ {item.price}.00</span>
-                        {/* <span className="special-qty">
-                          <span className='special-arrow'><AiOutlineMinus onClick={() => setCountOne(countOne - 1)} /></span>
-                          <span className='special-count'>{countOne}</span>
-                          <span className='special-arrow'><AiOutlinePlus onClick={() => setCountOne(countOne + 1)} /></span>
-                        </span> */}
-                      </span>
+              {
+                specials.map(item => (
+                  <Grid item lg={3} md={4} sm={4} xs={12}>
+                    <div key={item._id} className="cart-main-special">
+                      <div className="main-special">
+                        <img src={Img} alt="" />
+                        <span className='special-name'>{item.food_item}
+                          <span className="special-price">₦ {item.price}.00</span>
+                          {/* <span className="special-qty">
+                            <span className='special-arrow'><AiOutlineMinus onClick={() => setCountOne(countOne - 1)} /></span>
+                            <span className='special-count'>{countOne}</span>
+                            <span className='special-arrow'><AiOutlinePlus onClick={() => setCountOne(countOne + 1)} /></span>
+                          </span> */}
+                        </span>
+                      </div>
+                      <div className='button-cart'>
+                        <button className='btn-cart' onClick={() => handleClick(item)}>Add to Cart</button>
+                      </div>
                     </div>
-                    <div className='button-cart'>
-                      <button className='btn-cart' onClick={() => handleClick(item)}>Add to Cart</button>
-                    </div>
-                  </div>
-                </Grid>
-              ))
-            }
+                  </Grid>
+                ))
+              }
 
-          </Grid>
+            </Grid>) : (
+              <div class="ring">Loading
+                <span className='loading-ring'></span>
+              </div>
+            )
+          }
         </div>
 
         {/* Nav */}

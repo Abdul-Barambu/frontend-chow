@@ -23,6 +23,7 @@ const MainFood = ({ handleClick, setShow, size }) => {
   const [food, setFood] = useState([])
   const history = useHistory()
   const [activeNav, setActiveNav] = useState('')
+  const [loading, setLoading] = useState(false)
 
   if (count > 2000) {
     setCount(2000)
@@ -65,10 +66,11 @@ const MainFood = ({ handleClick, setShow, size }) => {
     history.push('/profile')
   }
 
+  // const storedItemIds = localStorage.getItem('itemIds');
 
-  // All IDs
+  // // All IDs
   // useEffect(() => {
-  //   const storedItemIds = localStorage.getItem('itemIds');
+
   //   if (storedItemIds) {
   //     const itemIds = JSON.parse(storedItemIds);
   //     itemIds.forEach(id => {
@@ -77,12 +79,15 @@ const MainFood = ({ handleClick, setShow, size }) => {
   //   }
   // }, []);
 
+  const vendorId = localStorage.getItem("vendor-id");
+
 
   useEffect(() => {
-    axios.get('https://api-chow.onrender.com/api/vendors/menu/meals/64635b8d76f82fc6e95cd982')
+    axios.get(`https://api-chow.onrender.com/api/vendors/menu/meals/${vendorId}`)
       .then(res => {
         console.log(res.data.data)
         setFood(res.data.data)
+        setLoading(true)
       }).catch(err => {
         console.log(err)
       })
@@ -113,26 +118,32 @@ const MainFood = ({ handleClick, setShow, size }) => {
         </div> */}
         <div className='main-body'>
 
+          {
+            loading ? (<Grid container spacing={2}>
+              {
+                food.map(item => (
+                  <Grid item lg={3} md={4} sm={4} xs={12}>
+                    <div key={item._id} className="cart-main-food">
+                      <div className="main-food">
+                        <img src={`https://api-chow.onrender.com/static/${item.food_id}.jpg`} alt="food-img" style={{ width: '100px', height: '100px', borderRadius: '10px' }} />
+                        <span className='food-name'>{item.food_name}
+                          <span className="special-price">₦ {item.price}.00</span>
+                        </span>
+                      </div>
+                      <div className='button-cart'>
+                        <button className='btn-cart' onClick={() => handleClick(item)}>Add to Cart</button>
+                      </div>
+                    </div>
+                  </Grid>
+                ))
+              }
+            </Grid>) : (
+              <div class="ring">Loading
+                <span className='loading-ring'></span>
+              </div>
+            )
+          }
 
-          <Grid container spacing={2}>
-            {
-              food.map(item => (
-                <Grid item lg={3} md={4} sm={4} xs={12}>
-                  <div key={item._id} className="cart-main-food">
-                    <div className="main-food">
-                      <img src={`https://api-chow.onrender.com/static/${item.food_id}.jpg`} alt="food-img" style={{ width: '100px', height: '100px' }} />
-                      <span className='food-name'>{item.food_name}
-                        <span className="special-price">₦ {item.price}.00</span>
-                      </span>
-                    </div>
-                    <div className='button-cart'>
-                      <button className='btn-cart' onClick={() => handleClick(item)}>Add to Cart</button>
-                    </div>
-                  </div>
-                </Grid>
-              ))
-            }
-          </Grid>
         </div>
 
         {/* Nav */}

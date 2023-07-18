@@ -51,6 +51,10 @@ const NavBar = ({ size, handleClick, setShow }) => {
     history.push("/dashboard")
   }
 
+  const handleCart = () => {
+    history.push("/main-cart")
+  }
+
   useEffect(() => {
     handleFood();
   }, [])
@@ -65,7 +69,7 @@ const NavBar = ({ size, handleClick, setShow }) => {
           <div className="nav-icons">
             <span className="nav-icon" onClick={handleProfile}><CiUser /></span>
             <span className="nav-icon"><CiSearch /></span>
-            <span className="nav-icon" onClick={() => setShow(false)}><CiShoppingCart /></span>
+            <span className="nav-icon" onClick={() => {setShow(false) }}><CiShoppingCart /></span>
             <span className='cart-size'>{size}</span>
           </div>
           <div className='bottom-line'></div>

@@ -25,6 +25,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
     const history = useHistory()
     const [activeNav, setActiveNav] = useState('')
     const [price, setPrice] = useState(0)
+    const [packAmount, setPackAmount] = useState('')
 
     if (count > 2000) {
         setCount(2000)
@@ -57,11 +58,12 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
 
 
     const handlePrice = () => {
-        let ans = 0;
+        let ans = 30;
         cart.map(item => {
             ans += item.amount * item.price
         })
         setPrice(ans)
+
     }
 
     const handleRemove = (_id) => {
@@ -86,12 +88,45 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
 
     const handlePayment = () => {
         setModal(!modal)
+        console.log(price)
+        localStorage.setItem("price", price)
+
+        const cartItems = []
+        cart.map(item => {
+
+            const pricePerQty = item.amount * item.price;
+            console.log(pricePerQty)
+
+            const amountNumber = JSON.parse(localStorage.getItem("amountNumber")) || [];
+            amountNumber.push(item.food_name);
+            amountNumber.push(pricePerQty);
+
+            const cartItem = {
+                name: item.food_name,
+                price: pricePerQty
+            }
+
+            cartItems.push(cartItem)
+            localStorage.setItem("cartItems", JSON.stringify(cartItems))
+        })
+        localStorage.setItem("Pack-Amount", packAmount)
     }
 
     const handleProfile = () => {
         history.push('/profile')
     }
 
+    const handleSmall = () => {
+        const pack = document.getElementById("pack").value
+        console.log(pack)
+        localStorage.setItem("Pack", pack)
+    }
+
+    const handleTime = () => {
+        const time = document.getElementById("time").value
+        console.log(time)
+        localStorage.setItem("Time", time)
+    }
 
     return (
         <div>
@@ -123,7 +158,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                     <div className='main-div-food'>
                                         <div key={item._id} className="main-cart">
                                             <div className="main-food" >
-                                                <img src={`https://api-chow.onrender.com/static/${item.food_id}.jpg`} alt="food-img" style={{ width: '100px', height: '100px' }} />
+                                                <img src={`https://api-chow.onrender.com/static/${item.food_id}.jpg`} alt="food-img" style={{ width: '100px', height: '100px', borderRadius: '10px' }} />
                                                 <span className='food-name'>
                                                     <span className="food-text">{item.food_name}{item.food_item}</span>
                                                     <div className="price-per-qty-div">
@@ -167,24 +202,31 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                 <hr />
                                 <div className="pack">
                                     <span className='pack-text'>Pack: </span>
-                                    <select name="pack" id="pack" className='pack-select'>
-                                        <option value="">Choose...</option>
+                                    <select name="pack" id="pack" className='pack-select' onChange={handleSmall}>
+                                        <option value="None">None</option>
                                         <option value=""></option>
-                                        <option value="jumbo">smallPack</option>
-                                        <option value="big">bigPack</option>
-                                        <option value="small">plasticPack</option>
+                                        <option value="smallPack">smallPack</option>
+                                        <option value="bigPack">bigPack</option>
+                                        <option value="plasticPack">plasticPack</option>
                                     </select>
+                                </div>
+                                <br />
+                                <div className="pack-amount">
+                                    <span className="p-amount">Amount: </span>
+                                    <input type="text" className="input-amount"
+                                        name={packAmount}
+                                        onChange={(e) => setPackAmount(e.target.value)} required />
                                 </div>
                                 <hr />
                                 <div className="time">
                                     <span className='time-text'>Time: </span>
-                                    <select name="time" id="time" className='time-select'>
+                                    <select name="time" id="time" className='time-select' onChange={handleTime}>
                                         <option value="">Choose...</option>
                                         <option value=""></option>
-                                        <option value="fifteen">15 minutes</option>
-                                        <option value="thirty">30 minutes</option>
-                                        <option value="one-hour">1 hour</option>
-                                        <option value="night">Night</option>
+                                        <option value="15 minutes">15 minutes</option>
+                                        <option value="30 minutes">30 minutes</option>
+                                        <option value="1 hour">1 hour</option>
+                                        <option value="Night">Night</option>
                                     </select>
                                 </div>
                                 <div className="grand-total">

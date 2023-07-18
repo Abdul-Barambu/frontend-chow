@@ -2,7 +2,7 @@
 
 /* NAV */
 
-nav{
+nav {
     display: none;
 }
 
@@ -141,6 +141,87 @@ p.add-fund-arrow {
 }
 
 /* Vendor */
+
+/* Loading */
+
+.ring-dash {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    background: transparent;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 150px;
+    font-family: sans-serif;
+    font-size: 20px;
+    color: #D21A32;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #D21A32;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+}
+
+.ring-dash:before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top: 3px solid #D21A32;
+    border-right: 3px solid #D21A32;
+    border-radius: 50%;
+    animation: animateC 2s linear infinite;
+}
+
+span.loading-ring-dash {
+    display: block;
+    position: absolute;
+    top: calc(50% - 2px);
+    left: 50%;
+    width: 50%;
+    height: 4px;
+    background: transparent;
+    transform-origin: left;
+    animation: animate 2s linear infinite;
+}
+
+span.loading-ring-dash:before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #D21A32;
+    top: -6px;
+    right: -8px;
+    box-shadow: 0 0 20px #D21A32;
+}
+
+@keyframes animateC {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(45deg);
+    }
+
+    100% {
+        transform: rotate(405deg);
+    }
+}
+
 
 .choose-vendor-text {
     margin-top: 2%;
@@ -893,6 +974,7 @@ div.vendor-card {
         text-decoration: none;
         font-weight: 700;
     }
+
     nav span.none {
         color: #D21A32;
         background-color: white;
@@ -1123,6 +1205,7 @@ div.vendor-card {
         text-decoration: none;
         font-weight: 700;
     }
+
     nav span.none {
         color: #D21A32;
         background-color: white;
@@ -1353,6 +1436,7 @@ div.vendor-card {
         text-decoration: none;
         font-weight: 700;
     }
+
     nav span.none {
         color: #D21A32;
         background-color: white;
@@ -1583,6 +1667,7 @@ div.vendor-card {
         text-decoration: none;
         font-weight: 700;
     }
+
     nav span.none {
         color: #D21A32;
         background-color: white;
@@ -1812,6 +1897,7 @@ div.vendor-card {
         text-decoration: none;
         font-weight: 700;
     }
+
     nav span.none {
         color: #D21A32;
         background-color: white;
@@ -2042,6 +2128,7 @@ div.vendor-card {
         text-decoration: none;
         font-weight: 700;
     }
+
     nav span.none {
         color: #D21A32;
         background-color: white;

@@ -15,7 +15,7 @@ import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
-const Profile = ({name}) => {
+const Profile = () => {
 
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
@@ -34,6 +34,7 @@ const Profile = ({name}) => {
 
     const accessToken = localStorage.getItem("Access-Token");
     const refreshToken = localStorage.getItem("Refresh-Token");
+    const profileUsername = localStorage.getItem("username");
 
     const headers = {
         Authorization: `Bearer ${accessToken}`,
@@ -117,7 +118,7 @@ const Profile = ({name}) => {
                                     <div className="profile-img-text">
                                         <img src={ProfileImg} alt="profile" />
                                         <div className="text">
-                                            <span className="profile-name">{name}</span>
+                                            <span className="profile-name">{profileUsername}</span>
                                             <br />
                                             <span className="profile-date">{date} - {time}</span>
                                         </div>

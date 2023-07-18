@@ -26,6 +26,7 @@ const Dashboard = () => {
     const [balances, setBalances] = useState([])
     const [activeNav, setActiveNav] = useState('#')
     const history = useHistory();
+    const [loading, setLoading] = useState(false)
 
 
 
@@ -43,10 +44,12 @@ const Dashboard = () => {
             .then(response => {
                 console.log(response.data.data)
                 setVendors(response.data.data)
+                setLoading(true)
 
                 // const vendorsArray = response.data.data;
-                // const itemIds = vendorsArray.map(item => item.id);
+                // const itemIds = vendorsArray.map(item => item._id);
                 // localStorage.setItem('itemIds', JSON.stringify(itemIds));
+
                 // localStorage.setItem("id-5", response.data.data[4]._id)
             })
 
@@ -66,7 +69,11 @@ const Dashboard = () => {
             })
     }, [])
 
-    const handleVendor = () => {
+    const handleVendor = (_id) => {
+        // window.location.href = `${_id}`;
+        console.log(_id)
+        localStorage.setItem("vendor-id", _id)
+
         history.push('/order')
     }
 
@@ -138,36 +145,43 @@ const Dashboard = () => {
                 </div>
 
                 <div className="vendor">
-                    <Grid container spacing={2}>
+
+                    {
+                        loading ? (<Grid container spacing={2}>
 
 
 
-                        {
+                            {
 
-                            vendors.map(vendor => {
-                                return (
-                                    <Grid item lg={2} md={3} sm={4} xs={6} >
-                                        <div key={vendor._id}>
-                                            <div className="vendor-card">
-                                                <div className="card-v">
-                                                    <span style={{ color: '#E9E9E9' }}>k</span>
-                                                    {/* Put an Image here */}
-                                                </div>
-                                                <div className="button-name">
-                                                    <button className='btn-name' onClick={handleVendor}>{vendor.username}</button>
+                                vendors.map(vendor => {
+                                    return (
+                                        <Grid item lg={2} md={3} sm={4} xs={6} >
+                                            <div key={vendor._id}>
+                                                <div className="vendor-card">
+                                                    <div className="card-v">
+                                                        <span style={{ color: '#E9E9E9' }}>k</span>
+                                                        {/* Put an Image here */}
+                                                    </div>
+                                                    <div className="button-name">
+                                                        <button className='btn-name' onClick={() => handleVendor(vendor._id)}>{vendor.username}</button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </Grid>
-                                )
-                            })
+                                        </Grid>
+                                    )
+                                })
 
-                        }
-
+                            }
 
 
 
-                    </Grid>
+
+                        </Grid>) : (
+                            <div class="ring-dash">Loading
+                                <span className='loading-ring-dash'></span>
+                            </div>
+                        )
+                    }
 
                 </div>
             </div>
@@ -193,11 +207,3 @@ const Dashboard = () => {
 }
 
 export default Dashboard
-
-{/* <div className='App-class'>
-            <div className="App-grid">
-                <LeftSide />
-                <MiddleSide />
-                <RightSide />
-            </div>
-        </div> */}

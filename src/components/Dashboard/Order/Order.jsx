@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import MainFood from './MainFood/MainFood'
 import Drinks from './Drinks/Drinks'
 import './Order.css'
@@ -19,7 +19,17 @@ const Order = () => {
   const history = useHistory()
   // const [empty, setEmpty] = useState(false)
 
+  let foodNames = [];
+
   const handleClick = (item) => {
+
+
+
+    // let foodNames = JSON.parse(localStorage.getItem("foodNames")) || [];
+    // foodNames.push(item.food_name);
+    // localStorage.setItem("foodNames", JSON.stringify(foodNames));
+
+
     let isPresent = false;
     cart.forEach((product) => {
       if (item._id === product._id)
@@ -64,12 +74,12 @@ const Order = () => {
 
       <Switch>
         {
-          show ? <Route path='/order-main' exact><MainFood size={cart.length} handleClick={handleClick} setShow={setShow}/></Route>
+          show ? <Route path='/order-main' exact><MainFood size={cart.length} handleClick={handleClick} setShow={setShow} /></Route>
             : <Route path='' exact></Route>
         }
 
         {
-          show ? <Route path='/order-drinks' exact><Drinks  size={cart.length} handleClick={handleClick} setShow={setShow}/></Route>
+          show ? <Route path='/order-drinks' exact><Drinks size={cart.length} handleClick={handleClick} setShow={setShow} /></Route>
             : <Route path='' exact></Route>
         }
 

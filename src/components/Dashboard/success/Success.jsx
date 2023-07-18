@@ -29,6 +29,22 @@ const Success = () => {
         Cookies: `refreshToken=${refreshToken}`,
     };
 
+    // Getting parameters from localstorage
+    
+    const items = localStorage.getItem("cartItems")
+    const vendorId = localStorage.getItem("vendor-id")
+    const orderTime = localStorage.getItem("Time")
+    const packs = [
+        {
+            packType: localStorage.getItem("Pack"),
+            amount: localStorage.getItem("Pack-Amount"),
+            items: items
+        }
+    ]
+
+    const orderVariables = {vendorId, orderTime, packs }
+    console.log(orderVariables)
+
     // Callback API
 
     useEffect(() => {
@@ -38,8 +54,15 @@ const Success = () => {
                 Swal.fire({
                     icon: 'success',
                     title: 'SUCCESS',
-                    text: 'Your payment has beend confirmed and your order has been taken successfully.'
+                    text: 'Your payment has been confirmed and your order has been taken successfully.'
                 });
+
+                axios.post(" https://chow.onrender.com/api/v1/orders", orderVariables, {headers})
+                .then(response => {
+                    console.log(response)
+                }).catch(e => {
+                    console.log(e)
+                })
                 // if (response.status === 200 && response.data === 'success') {
                 //     axios.post(" https://chow.onrender.com/api/v1/orders", )
                 // }
