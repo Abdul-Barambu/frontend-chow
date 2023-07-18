@@ -34,17 +34,19 @@ const Success = () => {
     const cartItems = localStorage.getItem("cartItems");
     const vendorId = localStorage.getItem("vendor-id");
     const orderTime = localStorage.getItem("Time");
-    const packs = [
+    const packs = 
         {
             packType: localStorage.getItem("Pack"),
             amount: localStorage.getItem("Pack-Amount"),
-            items: [
-                {
+             
+                
                     items: cartItems
-                }
-            ]
+                
+            
         }
-    ];
+    
+
+
     
     const orderVariables = { vendorId, orderTime, packs };
     console.log(orderVariables);
