@@ -203,7 +203,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                 <div className="pack">
                                     <span className='pack-text'>Pack: </span>
                                     <select name="pack" id="pack" className='pack-select' onChange={handleSmall}>
-                                        <option value="None">None</option>
+                                        <option value="none">None</option>
                                         <option value=""></option>
                                         <option value="smallPack">smallPack</option>
                                         <option value="bigPack">bigPack</option>
@@ -223,9 +223,9 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                     <select name="time" id="time" className='time-select' onChange={handleTime}>
                                         <option value="">Choose...</option>
                                         <option value=""></option>
-                                        <option value="15 minutes">15 minutes</option>
-                                        <option value="30 minutes">30 minutes</option>
-                                        <option value="1 hour">1 hour</option>
+                                        <option value="15mins">15 minutes</option>
+                                        <option value="30mins">30 minutes</option>
+                                        <option value="1hr">1 hour</option>
                                         <option value="Night">Night</option>
                                     </select>
                                 </div>
