@@ -38,11 +38,7 @@ const Success = () => {
         {
             packType: localStorage.getItem("Pack"),
             amount: localStorage.getItem("Pack-Amount"),
-            items: [
-                {
-                    items
-                }
-            ]
+            
         }
     ]
 
@@ -61,15 +57,15 @@ const Success = () => {
                     text: 'Your payment has been confirmed and your order has been taken successfully.'
                 });
 
-
-                if (response.status === 200 && response.data === 'success') {
-                    axios.post(" https://chow.onrender.com/api/v1/orders", orderVariables, { headers })
-                        .then(response => {
-                            console.log(response)
-                        }).catch(e => {
-                            console.log(e)
-                        })
-                }
+                axios.post(" https://chow.onrender.com/api/v1/orders", orderVariables, { headers })
+                    .then(response => {
+                        console.log(response)
+                    }).catch(e => {
+                        console.log(e)
+                    })
+                // if (response.status === 200 && response.data === 'success') {
+                //     axios.post(" https://chow.onrender.com/api/v1/orders", )
+                // }
             }).catch(e => {
                 console.log(e)
             })

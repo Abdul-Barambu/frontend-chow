@@ -4,6 +4,7 @@ import { MdOutlineCancel } from 'react-icons/md'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import ProceedPayment from './ProceedPayment'
+import Swal from 'sweetalert2'
 
 const Payment = ({ handlePayment, price }) => {
 
@@ -54,8 +55,19 @@ const Payment = ({ handlePayment, price }) => {
         axios.post("https://chow.onrender.com/api/v1/paystack/paywithWallet", variables, {headers})
         .then(res => {
             console.log(res)
+            Swal.fire({
+                icon: 'success',
+                title: 'SUCCESS',
+                text: 'Payment Successfull...'
+            });
+            history.push("/dashboard")
         }).catch(e => {
             console.log(e)
+            Swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text: 'Insufficient fund'
+            });
         })
     }
 
