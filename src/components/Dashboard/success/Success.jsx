@@ -37,11 +37,16 @@ const Success = () => {
     const packs = [
         {
             packType: localStorage.getItem("Pack"),
-            amount: localStorage.getItem("Pack-Amount")
+            amount: localStorage.getItem("Pack-Amount"),
+            items: [
+                {
+                    items: items
+                }
+            ]
         }
     ]
 
-    const orderVariables = {vendorId, orderTime, packs, items }
+    const orderVariables = {vendorId, orderTime, packs }
     console.log(orderVariables)
 
     // Callback API
