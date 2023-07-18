@@ -98,8 +98,8 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
             console.log(pricePerQty)
 
             const amountNumber = JSON.parse(localStorage.getItem("amountNumber")) || [];
-            amountNumber.push(item.food_name);
-            amountNumber.push(pricePerQty);
+            // amountNumber.push(item.food_name);
+            // amountNumber.push(pricePerQty);
 
             const cartItem = {
                 name: item.food_name,
