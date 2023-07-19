@@ -95,7 +95,7 @@ const Profile = () => {
     useEffect(() => {
         axios.get(`https://chow.onrender.com/api/v1/orders/myOders/${userId}`, { headers })
             .then(res => {
-                console.log(res.data.data.packs[0].items)
+                console.log(res)
                 setOrderHistory(res.data.data.packs[0].items)
                 console.log(res.data.data._id)
                 localStorage.setItem("order-id", res.data.data.orderId)

@@ -25,6 +25,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
     const history = useHistory()
     const [activeNav, setActiveNav] = useState('')
     const [price, setPrice] = useState(0)
+    const [pricePack, setPricePack] = useState(price)
     const [packAmount, setPackAmount] = useState('')
 
     if (count > 2000) {
@@ -38,6 +39,9 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
     } else if (countOne < 100) {
         setCountOne(100)
     }
+
+    console.log(price)
+    localStorage.setItem("grand-price", price)
 
     const handleSubtotalAmountInc = () => {
         setCount(count + 500);
@@ -55,15 +59,39 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
         mainColor.push('main')
     }
 
+    const handleSmall = () => {
+        const pack = document.getElementById("pack").value
+        console.log(pack)
+        localStorage.setItem("Pack", pack)
+        let packType = localStorage.getItem("Pack")
+        if (packType === 'none') {
+            const pricepackValue = price + 0
+            setPricePack(pricepackValue)
+            console.log(pricepackValue)
+        }
+        else if (packType === 'smallPack') {
+            const pricepackValue = price + 50
+            setPricePack(pricepackValue)
+            console.log(pricepackValue)
+        }
+        else if (packType === 'bigPack') {
+            const pricepackValue = price + 70
+            setPricePack(pricepackValue)
+            console.log(pricepackValue)
+        }
+        else if (packType === 'plasticPack') {
+            const pricepackValue = price + 100
+            setPricePack(pricepackValue)
+            console.log(pricepackValue)
+        }
 
-    let packType = localStorage.getItem("Pack")
-
-    const packPrice = packType === "smallPack" ? 50 : packType === "bigPack" ? 70 : packType === "plasticPack" ? 100 : 0
+    }
 
     const handlePrice = () => {
         let ans = 30;
+
         cart.map(item => {
-            ans += item.amount * (item.price + packPrice)
+            ans += item.amount * item.price
         })
         setPrice(ans)
     }
@@ -75,6 +103,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
 
     useEffect(() => {
         handlePrice()
+        handleSmall()
     })
 
     const handleLogo = () => {
@@ -90,14 +119,14 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
 
     const handlePayment = () => {
         setModal(!modal)
-        console.log(price)
+        // console.log(price)
         localStorage.setItem("price", price)
 
         const cartItems = []
         cart.map(item => {
 
             const pricePerQty = item.amount * item.price;
-            console.log(pricePerQty)
+            // console.log(pricePerQty)
 
             const amountNumber = JSON.parse(localStorage.getItem("amountNumber")) || [];
             amountNumber.push(item.food_name);
@@ -116,13 +145,6 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
 
     const handleProfile = () => {
         history.push('/profile')
-    }
-
-    const handleSmall = () => {
-        const pack = document.getElementById("pack").value
-        console.log(pack)
-        localStorage.setItem("Pack", pack)
-
     }
 
     const handleTime = () => {
@@ -208,9 +230,9 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                     <select name="pack" id="pack" className='pack-select' onChange={handleSmall}>
                                         <option value="none">None</option>
                                         <option value=""></option>
-                                        <option value="smallPack">smallPack</option>
-                                        <option value="bigPack">bigPack</option>
-                                        <option value="plasticPack">plasticPack</option>
+                                        <option value="smallPack" id='smallPack'>smallPack</option>
+                                        <option value="bigPack" id='bigPack'>bigPack</option>
+                                        <option value="plasticPack" id='plasticPack'>plasticPack</option>
                                     </select>
                                 </div>
                                 <br />
@@ -234,7 +256,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                 </div>
                                 <div className="grand-total">
                                     <span className="total-text">Grand Total: </span>
-                                    <span className="total-amount">₦ {price}.00</span>
+                                    <span className="total-amount">₦ {pricePack}.00</span>
                                 </div>
                                 <div className="payment">
                                     <button className="payment-btn" onClick={handlePayment}>Proceed To Payments</button>
