@@ -61,6 +61,7 @@ const Success = () => {
                 axios.post("https://chow.onrender.com/api/v1/orders", orderVariables, { headers })
                     .then(response => {
                         console.log(response.data.data._id)
+                        localStorage.setItem("food-order-id", response.data.data._id)
                     }).catch(e => {
                         console.log(e)
                     })
