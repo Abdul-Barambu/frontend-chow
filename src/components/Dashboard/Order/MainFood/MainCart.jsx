@@ -56,14 +56,16 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
     }
 
 
+    let packType = localStorage.getItem("Pack")
+
+    const packPrice = packType === "smallPack" ? 50 : packType === "bigPack" ? 70 : packType === "plasticPack" ? 100 : 0
 
     const handlePrice = () => {
         let ans = 30;
         cart.map(item => {
-            ans += item.amount * item.price
+            ans += item.amount * (item.price + packPrice)
         })
         setPrice(ans)
-
     }
 
     const handleRemove = (_id) => {
@@ -120,6 +122,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
         const pack = document.getElementById("pack").value
         console.log(pack)
         localStorage.setItem("Pack", pack)
+
     }
 
     const handleTime = () => {

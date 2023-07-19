@@ -11,7 +11,7 @@ import { BiLogOut } from 'react-icons/bi'
 import { BsCartDashFill } from 'react-icons/bs'
 import { AiTwotoneHome } from 'react-icons/ai'
 import { BiUserCircle } from 'react-icons/bi'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
@@ -21,9 +21,9 @@ const Profile = () => {
     const [email, setEmail] = useState("")
     const [oldPassword, setOldPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
-    const changePassword = {oldPassword, newPassword}
-    const userName = {username}
-    const Email = {email}
+    const changePassword = { oldPassword, newPassword }
+    const userName = { username }
+    const Email = { email }
 
     const [modal, setModal] = useState(false)
     const [activeNav, setActiveNav] = useState('')
@@ -50,54 +50,63 @@ const Profile = () => {
 
     const handleChanges = (e) => {
         e.preventDefault()
-        axios.post('https://chow.onrender.com/api/v1/changeUserName', userName, {headers})
-        .then(res => {
-            console.log(res)
-            Swal.fire({
-                icon: 'success',
-                title: 'Username Changed',
-                text: `Your Username has been Successfully Changed to ${username}`
+        axios.post('https://chow.onrender.com/api/v1/changeUserName', userName, { headers })
+            .then(res => {
+                console.log(res)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Username Changed',
+                    text: `Your Username has been Successfully Changed to ${username}`
+                })
+            }).catch(e => {
+                console.log(e)
             })
-        }).catch(e => {
-            console.log(e)
-        })
 
-        axios.post('https://chow.onrender.com/api/v1/changeUserEmail', Email, {headers})
-        .then(res => {
-            console.log(res)
-            Swal.fire({
-                icon: 'success',
-                title: 'Email Changed',
-                text: `Your Email has been Successfully Changed to ${email}`
+        axios.post('https://chow.onrender.com/api/v1/changeUserEmail', Email, { headers })
+            .then(res => {
+                console.log(res)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Email Changed',
+                    text: `Your Email has been Successfully Changed to ${email}`
+                })
+            }).catch(e => {
+                console.log(e)
             })
-        }).catch(e => {
-            console.log(e)
-        })
 
-        axios.post('https://chow.onrender.com/api/v1/changeUserPassword', changePassword, {headers})
-        .then(res => {
-            console.log(res)
-            Swal.fire({
-                icon: 'success',
-                title: 'Password Changed',
-                text: `Your Password has been Successfully Changed`
+        axios.post('https://chow.onrender.com/api/v1/changeUserPassword', changePassword, { headers })
+            .then(res => {
+                console.log(res)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Password Changed',
+                    text: `Your Password has been Successfully Changed`
+                })
+            }).catch(e => {
+                console.log(e)
             })
-        }).catch(e => {
-            console.log(e)
-        })
     }
 
     // Food order history api
 
+    const orderId = localStorage.getItem("order-id")
+    const status = localStorage.getItem("status")
+
     useEffect(() => {
-        axios.get(`https://chow.onrender.com/api/v1/orders/myOders/${userId}`, {headers})
-        .then(res => {
-            console.log(res)
-        }).catch(e => {
-            console.log(e)
-        })
-    })
-    
+        axios.get(`https://chow.onrender.com/api/v1/orders/myOders/${userId}`, { headers })
+            .then(res => {
+                console.log(res.data.data.packs[0].items)
+                setOrderHistory(res.data.data.packs[0].items)
+                console.log(res.data.data._id)
+                localStorage.setItem("order-id", res.data.data.orderId)
+                localStorage.setItem("status", res.data.data.status)
+
+                // TODO: render order history
+            }).catch(e => {
+                console.log(e)
+            })
+    }, [])
+
     const handleHome = () => {
         history.push('/dashboard')
     }
@@ -105,14 +114,14 @@ const Profile = () => {
     const handleLogout = () => {
         localStorage.clear();
         history.push('/')
-      }
+    }
 
     return (
         <div>
             <div className="profile-container">
                 <div className="profile-nav-bar">
                     <div className="profile-logo-img" >
-                        <img src={Img} alt="logo img" onClick={handleHome} style={{cursor: 'pointer'}} />
+                        <img src={Img} alt="logo img" onClick={handleHome} style={{ cursor: 'pointer' }} />
                     </div>
                     <div className="nav-icons">
                         <span className="nav-icon"><CiUser /></span>
@@ -227,30 +236,18 @@ const Profile = () => {
                                             <span className="order-category">Status</span>
                                         </div>
                                         <div className="order-line" style={{ borderBottom: '1.5px solid black' }}></div>
-                                        <div className="order-history">
-                                            <div className="history-detail">
-                                                <span className='detail-text'>Orders #34562</span>
-                                                <span className='detail-text-menu' style={{ marginRight: '2rem' }}>White rice and stew</span>
-                                                <span className='detail-text-price' style={{ marginRight: '4rem' }}>₦1,200</span>
-                                                <span className='detail-text-status'>Pending</span>
-                                            </div>
-                                        </div>
-                                        <div className="order-history">
-                                            <div className="history-detail">
-                                                <span className='detail-text'>Orders #34562</span>
-                                                <span className='detail-text-menu' style={{ marginRight: '2rem' }}>White rice and stew</span>
-                                                <span className='detail-text-price' style={{ marginRight: '4rem' }}>₦1,200</span>
-                                                <span className='detail-text-green'>Completed</span>
-                                            </div>
-                                        </div>
-                                        <div className="order-history">
-                                            <div className="history-detail">
-                                                <span className='detail-text'>Orders #34562</span>
-                                                <span className='detail-text-menu' style={{ marginRight: '2rem' }}>White rice and stew</span>
-                                                <span className='detail-text-price' style={{ marginRight: '4rem' }}>₦1,200</span>
-                                                <span className='detail-text-green'>Completed</span>
-                                            </div>
-                                        </div>
+                                        {
+                                            orderHistory.map(item => (
+                                                <div key={item.name} className="order-history">
+                                                    <div className="history-detail">
+                                                        <span className='detail-text'>Orders #{orderId}</span>
+                                                        <span className='detail-text-menu' style={{ marginRight: '2rem' }}>{item.name}</span>
+                                                        <span className='detail-text-price' style={{ marginRight: '4rem' }}>₦ {item.price}</span>
+                                                        <span className='detail-text-status'>{status}</span>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
                                     </div>
                                 </div>
                             </Grid>

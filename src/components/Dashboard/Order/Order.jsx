@@ -67,6 +67,7 @@ const Order = () => {
   return (
     <div>
 
+{/* TODO: cart.length  */}
       {
         show ? <NavBar size={cart.length} handleClick={handleClick} setShow={setShow} handleChange={handleChange} />
           : <MainCart size={cart.length} cart={cart} setCart={setCart} handleChange={handleChange} />
