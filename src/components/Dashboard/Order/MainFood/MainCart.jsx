@@ -25,7 +25,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
     const history = useHistory()
     const [activeNav, setActiveNav] = useState('')
     const [price, setPrice] = useState(0)
-    const [pricePack, setPricePack] = useState(price)
+    const [pricePack, setPricePack] = useState(0)
     const [packAmount, setPackAmount] = useState('')
 
     if (count > 2000) {
@@ -39,9 +39,6 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
     } else if (countOne < 100) {
         setCountOne(100)
     }
-
-    console.log(price)
-    localStorage.setItem("grand-price", price)
 
     const handleSubtotalAmountInc = () => {
         setCount(count + 500);
@@ -87,6 +84,43 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
 
     }
 
+    const handlePackAmount = () => {
+        const packAmount = document.getElementById("pack-amount").value
+        console.log(packAmount)
+        localStorage.setItem("Pack-Amount", packAmount);
+        let packAmountType = localStorage.getItem("Pack-Amount")
+
+        if(packAmountType === "1"){
+            const calculatePackAmount = pricePack + 0
+            setPackAmount(calculatePackAmount)
+            console.log(calculatePackAmount)
+        }
+
+        else if(packAmountType === "2"){
+            const calculatePackAmount = pricePack * 2
+            setPackAmount(calculatePackAmount)
+            console.log(calculatePackAmount)
+        }
+
+        else if(packAmountType === "3"){
+            const calculatePackAmount = pricePack * 3
+            setPackAmount(calculatePackAmount)
+            console.log(calculatePackAmount)
+        }
+
+        else if(packAmountType === "4"){
+            const calculatePackAmount = pricePack * 4
+            setPackAmount(calculatePackAmount)
+            console.log(calculatePackAmount)
+        }
+
+        else if(packAmountType === "5"){
+            const calculatePackAmount = pricePack * 5
+            setPackAmount(calculatePackAmount)
+            console.log(calculatePackAmount)
+        }
+    }
+
     const handlePrice = () => {
         let ans = 30;
 
@@ -104,6 +138,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
     useEffect(() => {
         handlePrice()
         handleSmall()
+        handlePackAmount()
     })
 
     const handleLogo = () => {
@@ -120,7 +155,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
     const handlePayment = () => {
         setModal(!modal)
         // console.log(price)
-        localStorage.setItem("price", price)
+        localStorage.setItem("price", packAmount)
 
         const cartItems = []
         cart.map(item => {
@@ -140,7 +175,6 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
             cartItems.push(cartItem)
             localStorage.setItem("cartItems", JSON.stringify(cartItems))
         })
-        localStorage.setItem("Pack-Amount", packAmount)
     }
 
     const handleProfile = () => {
@@ -236,12 +270,18 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                     </select>
                                 </div>
                                 <br />
-                                <div className="pack-amount">
-                                    <span className="p-amount">Amount: </span>
-                                    <input type="text" className="input-amount"
-                                        name={packAmount}
-                                        onChange={(e) => setPackAmount(e.target.value)} required />
+                                {/* Amount of Packs */}
+                                <div className="pack">
+                                    <span className='pack-text'>Amount: </span>
+                                    <select name="amount" id="pack-amount" className='amount-select' onChange={handlePackAmount}>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
                                 </div>
+                            
                                 <hr />
                                 <div className="time">
                                     <span className='time-text'>Time: </span>
@@ -256,7 +296,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                 </div>
                                 <div className="grand-total">
                                     <span className="total-text">Grand Total: </span>
-                                    <span className="total-amount">₦ {pricePack}.00</span>
+                                    <span className="total-amount">₦ {packAmount}.00</span>
                                 </div>
                                 <div className="payment">
                                     <button className="payment-btn" onClick={handlePayment}>Proceed To Payments</button>
@@ -272,7 +312,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                     <div className='center'>
                         <div className="is"></div>
                         <div className="center-content">
-                            <Payment handlePayment={handlePayment} price={price} />
+                            <Payment handlePayment={handlePayment} price={packAmount} />
                         </div>
 
                     </div>

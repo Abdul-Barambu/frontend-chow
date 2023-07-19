@@ -370,16 +370,17 @@ div.pack {
     font-family: 'Poppins';
 }
 
-div.pack-amount{
-    display: flex;
-    justify-content: space-between;
-}
-
-.p-amount{
-    font-size: 1.3rem;
-    font-weight: 700;
+.amount-select {
+    color: #D21A32;
+    padding: .1rem 2.5rem .1rem 3.5rem;
+    border: 1px solid #D21A32;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 900;
     font-family: 'Poppins';
 }
+
+
 
 .input-amount{
     width: 44%;
