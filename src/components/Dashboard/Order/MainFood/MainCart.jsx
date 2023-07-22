@@ -294,6 +294,11 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                         <option value="Night">Night</option>
                                     </select>
                                 </div>
+                                <hr />
+                                 <div className="time">
+                                    <span className='time-text'>VAT: </span>
+                                    <span className="total-amount">₦ 30.00</span>
+                                </div>
                                 <div className="grand-total">
                                     <span className="total-text">Grand Total: </span>
                                     <span className="total-amount">₦ {packAmount}.00</span>
