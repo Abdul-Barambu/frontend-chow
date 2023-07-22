@@ -120,7 +120,7 @@ button.done:hover{
         font-weight: 700;
         font-family: 'Poppins';
     }
-}
+} 
 
 @media screen and (max-width: 370px) {
     img.success-img{

@@ -206,7 +206,7 @@ div.main-body {
     background-color: white;
     border-radius: 10px;
     padding: 2rem;
-    margin-left: 2rem;
+    /* margin-left: .; */
 
 }
 
@@ -254,7 +254,7 @@ span.price-count {
     display: flex;
 }
 
-.btn-cart {
+.btn-cart-red {
     background-color: #D21A32;
     border: none;
     border-radius: 10px;
@@ -263,7 +263,16 @@ span.price-count {
     width: 100%;
 }
 
-.btn-cart:hover {
+.btn-cart-green {
+    background-color: green;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: .3rem 0;
+    width: 100%;
+}
+
+.btn-cart-red:hover {
     background-color: #a8091efe;
 }
 
@@ -497,6 +506,10 @@ div.payment {
         margin-top: 1.5rem;
         gap: .1rem;
         border: 1px solid #CDCCCC;
+    }
+
+    .food-price-qty{
+        font-size: 1rem;
     }
 
     .price-arrow {

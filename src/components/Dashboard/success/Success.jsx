@@ -64,9 +64,7 @@ const Success = () => {
                     }).catch(e => {
                         console.log(e)
                     })
-                // if (response.status === 200 && response.data === 'success') {
-                //     axios.post(" https://chow.onrender.com/api/v1/orders", )
-                // }
+                
             }).catch(e => {
                 console.log(e)
             })

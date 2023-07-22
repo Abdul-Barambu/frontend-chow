@@ -1,10 +1,90 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap');
 
+/* Loading */
+
+.ring-profile {
+    position: absolute;
+    top: 70%;
+    left: 65%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    background: transparent;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 150px;
+    font-family: sans-serif;
+    font-size: 20px;
+    color: #D21A32;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #D21A32;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+}
+
+.ring-profile:before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top: 3px solid #D21A32;
+    border-right: 3px solid #D21A32;
+    border-radius: 50%;
+    animation: animateC 2s linear infinite;
+}
+
+span.loading-ring-profile {
+    display: block;
+    position: absolute;
+    top: calc(50% - 2px);
+    left: 50%;
+    width: 50%;
+    height: 4px;
+    background: transparent;
+    transform-origin: left;
+    animation: animate 2s linear infinite;
+}
+
+span.loading-ring-profile:before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #D21A32;
+    top: -6px;
+    right: -8px;
+    box-shadow: 0 0 20px #D21A32;
+}
+
+@keyframes animateC {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(45deg);
+    }
+
+    100% {
+        transform: rotate(405deg);
+    }
+}
+
 div.profile-container {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    height: 100%;
+    /* height: 100vh; */
 }
 
 div.profile-nav-bar {
@@ -19,7 +99,7 @@ div.profile-nav-bar {
 div.profile-main-body {
     background: #F5F5F5;
     padding: .5rem 2rem 3rem;
-    height: 100%;
+    /* height: 100vh; */
 }
 
 .profile-grid {
@@ -183,7 +263,7 @@ div.profile-main-body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 1.5rem 3rem .3rem 1rem;
+    margin: 1.5rem 1rem .3rem 1rem;
 }
 
 .order-category {
@@ -197,7 +277,8 @@ div.profile-main-body {
     margin-top: .7rem;
 }
 
-.history-detail {
+
+.div-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -208,12 +289,15 @@ div.profile-main-body {
     color: white;
     padding: .5rem 0;
     font-family: 'Poppins';
+    font-size: .8rem;
 }
 
 .detail-text-menu {
     color: lightgray;
     font-size: 0.8rem;
     font-family: 'Poppins';
+    /* margin-right: 12rem; */
+
 }
 
 .detail-text-price {
@@ -225,11 +309,15 @@ div.profile-main-body {
 .detail-text-status {
     color: lightsalmon;
     background: rgb(155, 137, 137);
-    padding: .2rem 1.1rem;
+    padding: .2rem 1rem;
     border-radius: 50px;
     font-size: 0.7rem;
     font-family: 'Poppins';
     font-weight: 900;
+    /* margin-left: 10rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .detail-text-green {
@@ -264,6 +352,30 @@ div.profile-main-body {
         font-family: 'Poppins';
         font-size: 0.9rem;
     }
+
+
+    /* Loading */
+
+    .ring-profile {
+        position: absolute;
+        top: 50%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        width: 150px;
+        height: 150px;
+        background: transparent;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 150px;
+        font-family: sans-serif;
+        font-size: 20px;
+        color: #D21A32;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        text-shadow: 0 0 10px #D21A32;
+        box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+    }
+
 }
 
 @media screen and (max-width: 850px) {
@@ -484,6 +596,29 @@ div.profile-main-body {
         font-family: 'Poppins';
         font-weight: 900;
     }
+
+       /* Loading */
+
+.ring-profile
+{
+  position:absolute;
+  top:110%;
+  left:55%;
+  transform:translate(-50%,-50%);
+  width:150px;
+  height:150px;
+  background:transparent;
+  border-radius:50%;
+  text-align:center;
+  line-height:150px;
+  font-family:sans-serif;
+  font-size:20px;
+  color: #D21A32;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  text-shadow:0 0 10px #D21A32;
+  box-shadow:0 0 20px rgba(0,0,0,.5);
+}
 
 }
 
@@ -949,5 +1084,28 @@ div.profile-main-body {
         font-family: 'Poppins';
         font-weight: 900;
     }
+
+       /* Loading */
+
+.ring-profile
+{
+  position:absolute;
+  top:150%;
+  left:55%;
+  transform:translate(-50%,-50%);
+  width:150px;
+  height:150px;
+  background:transparent;
+  border-radius:50%;
+  text-align:center;
+  line-height:150px;
+  font-family:sans-serif;
+  font-size:20px;
+  color: #D21A32;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  text-shadow:0 0 10px #D21A32;
+  box-shadow:0 0 20px rgba(0,0,0,.5);
+}
 
 }

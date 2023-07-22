@@ -24,6 +24,15 @@ const MainFood = ({ handleClick, setShow, size }) => {
   const history = useHistory()
   const [activeNav, setActiveNav] = useState('')
   const [loading, setLoading] = useState(false)
+  const [clickedButtons, setClickedButtons] = useState([]);
+
+  // Function to handle button click and update clicked buttons
+  const handleClickChange = (itemId) => {
+    if (!clickedButtons.includes(itemId)) {
+      setClickedButtons((prevClickedButtons) => [...prevClickedButtons, itemId]);
+    }
+  };
+  
 
   if (count > 2000) {
     setCount(2000)
@@ -66,18 +75,6 @@ const MainFood = ({ handleClick, setShow, size }) => {
     history.push('/profile')
   }
 
-  // const storedItemIds = localStorage.getItem('itemIds');
-
-  // // All IDs
-  // useEffect(() => {
-
-  //   if (storedItemIds) {
-  //     const itemIds = JSON.parse(storedItemIds);
-  //     itemIds.forEach(id => {
-  //       console.log(id);
-  //     });
-  //   }
-  // }, []);
 
   const vendorId = localStorage.getItem("vendor-id");
 
@@ -130,8 +127,15 @@ const MainFood = ({ handleClick, setShow, size }) => {
                           <span className="special-price">₦ {item.price}.00</span>
                         </span>
                       </div>
-                      <div className='button-cart'>
-                        <button className='btn-cart' onClick={() => handleClick(item)}>Add to Cart</button>
+                      <div className="button-cart">
+                        <button
+                          className={clickedButtons.includes(item._id) ? 'btn-cart-green' : 'btn-cart-red'}
+                          onClick={() => {
+                            handleClickChange(item._id)
+                            handleClick(item)
+                          }}>
+                          {clickedButtons.includes(item._id) ? 'Added to Cart' : 'Add to Cart'}
+                        </button>
                       </div>
                     </div>
                   </Grid>

@@ -19,16 +19,8 @@ const Order = () => {
   const history = useHistory()
   // const [empty, setEmpty] = useState(false)
 
-  let foodNames = [];
 
   const handleClick = (item) => {
-
-
-
-    // let foodNames = JSON.parse(localStorage.getItem("foodNames")) || [];
-    // foodNames.push(item.food_name);
-    // localStorage.setItem("foodNames", JSON.stringify(foodNames));
-
 
     let isPresent = false;
     cart.forEach((product) => {

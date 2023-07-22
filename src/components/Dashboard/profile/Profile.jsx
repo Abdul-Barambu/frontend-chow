@@ -29,6 +29,8 @@ const Profile = () => {
     const [activeNav, setActiveNav] = useState('')
     const history = useHistory()
     const [orderHistory, setOrderHistory] = useState([])
+    const [dynamicIndex, setDynamicIndex] = useState(0);
+    const [loading, setLoading] = useState(false)
 
     const date = new Date().toDateString();
     const time = new Date().toLocaleTimeString();
@@ -37,6 +39,7 @@ const Profile = () => {
     const refreshToken = localStorage.getItem("Refresh-Token");
     const profileUsername = localStorage.getItem("username");
     const userId = localStorage.getItem("User-Id");
+    const orderId = localStorage.getItem("order-id");
 
     const headers = {
         Authorization: `Bearer ${accessToken}`,
@@ -89,23 +92,17 @@ const Profile = () => {
 
     // Food order history api
 
-    const orderId = localStorage.getItem("order-id")
-    const status = localStorage.getItem("status")
-
     useEffect(() => {
         axios.get(`https://chow.onrender.com/api/v1/orders/myOders/${userId}`, { headers })
             .then(res => {
-                console.log(res)
-                setOrderHistory(res.data.data.packs[0].items)
-                console.log(res.data.data._id)
-                localStorage.setItem("order-id", res.data.data.orderId)
-                localStorage.setItem("status", res.data.data.status)
-
+                console.log(res.data.data)
+                setOrderHistory(res.data.data)
+                setLoading(true)
                 // TODO: render order history
             }).catch(e => {
                 console.log(e)
             })
-    }, [])
+    }, [userId])
 
     const handleHome = () => {
         history.push('/dashboard')
@@ -231,22 +228,38 @@ const Profile = () => {
                                         </div>
                                         <div className="order-categories">
                                             <span className="order-category">Customer</span>
-                                            <span className="order-category">Menu</span>
+                                            <span className="order-category">Meal orders</span>
                                             <span className="order-category">Total Payment</span>
                                             <span className="order-category">Status</span>
                                         </div>
                                         <div className="order-line" style={{ borderBottom: '1.5px solid black' }}></div>
+
                                         {
-                                            orderHistory.map(item => (
-                                                <div key={item.name} className="order-history">
-                                                    <div className="history-detail">
-                                                        <span className='detail-text'>Orders #{orderId}</span>
-                                                        <span className='detail-text-menu' style={{ marginRight: '2rem' }}>{item.name}</span>
-                                                        <span className='detail-text-price' style={{ marginRight: '4rem' }}>₦ {item.price}</span>
-                                                        <span className='detail-text-status'>{status}</span>
+                                            loading ? (<div>{
+                                                orderHistory.map((order, index) => (
+                                                    <div key={index} className="order-history">
+
+                                                        {order.packs && order.packs.length > 0 ? (
+                                                            <div>
+                                                                {order.packs[0].items.map((item, itemIndex) => (
+                                                                    <div key={itemIndex} className='div-flex'>
+                                                                        <span className='detail-text'>Orders #{order.orderId}</span>
+                                                                        <span className='detail-text-menu'>{item.name}</span>
+                                                                        <span className='detail-text-price'>₦ {item.price}</span>
+                                                                        <span className='detail-text-status'>{order.status}</span>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        ) : (
+                                                            <p>No items in this order.</p>
+                                                        )}
+
+
                                                     </div>
-                                                </div>
-                                            ))
+                                                ))
+                                            }</div>) : (<div class="ring-profile">Loading
+                                                <span className='loading-ring-profile'></span>
+                                            </div>)
                                         }
                                     </div>
                                 </div>
