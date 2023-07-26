@@ -198,6 +198,7 @@ div.main-body {
     background-color: white;
     border-radius: 10px;
     padding: .3rem;
+    margin-bottom: 2.5rem;
 
 
 }
@@ -301,6 +302,7 @@ div.main-body {
         background-color: white;
         border-radius: 7px;
         padding: .3rem;
+        margin-bottom: 2.5rem;
     }
 
     .drink-name {
@@ -351,6 +353,7 @@ div.main-body {
         background-color: white;
         border-radius: 7px;
         padding: .3rem;
+        margin-bottom: 2.5rem;
     }
 
     .drink-name {
@@ -402,6 +405,7 @@ div.main-body {
         background-color: white;
         border-radius: 7px;
         padding: .3rem;
+        margin-bottom: 2.5rem;
         display: flex;
         flex-direction: column;
     }
@@ -461,6 +465,7 @@ div.main-body {
         background-color: white;
         border-radius: 7px;
         padding: .3rem;
+        margin-bottom: 2.5rem;
         display: flex;
         flex-direction: column;
     }
@@ -514,6 +519,7 @@ div.main-body {
         background-color: white;
         border-radius: 7px;
         padding: .3rem;
+        margin-bottom: 2.5rem;
         display: flex;
         flex-direction: column;
     }
@@ -567,6 +573,7 @@ div.main-body {
         background-color: white;
         border-radius: 7px;
         padding: .3rem;
+        margin-bottom: 2.5rem;
         display: flex;
         flex-direction: column;
     }

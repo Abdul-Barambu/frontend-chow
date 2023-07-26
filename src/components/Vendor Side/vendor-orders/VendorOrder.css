@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap');
+
+div.container-vendor-order {
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding-bottom: .3rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+    background: #F5F5F5;
+}
+
+div.container-vendor-navbar {
+    background-color: white;
+}
+
+.logo-img-vendor{
+    margin-left: 3rem;
+}
+
+.bottom-line {
+    position: relative;
+    border-bottom: 1px solid #CDCCCC;
+    bottom: 1rem;
+}
+
+/* Main body */
+/* Nav */
+
+.vendor-dashboard-body{
+    margin: 2rem 2rem;
+}
+
+.nav-menu{
+    background-color: white;
+    height: 100%;
+}
+
+.menu-items{
+    padding: 1.3rem 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.menu-items-color{
+    background: rgb(239, 192, 174);
+    cursor: pointer;
+    color: #D21A32;
+    padding: 1.3rem 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.menu-items:hover{
+    background: rgb(239, 192, 174);
+    cursor: pointer;
+    color: #D21A32;
+}
+
+.menu-item{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+span.menu-icon{
+    font-size: 1.3rem;
+}
+
+span.menu-text{
+    margin-top: 0.55rem;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: "Poppins";
+}
+
+
+.below-text{
+    display: flex;
+    justify-content: center;
+}
+
+span.menu-below-text{
+    color: darkgray;
+    font-family: "Poppins";
+    font-size: 0.7rem;
+    /* margin-left: .rem; */
+}
+
+span.menu-below-text-order{
+    color: darkgray;
+    font-family: "Poppins";
+    font-size: 0.7rem;
+    margin-right: 2rem;
+}
+
+span.menu-below-text-menu{
+    color: darkgray;
+    font-family: "Poppins";
+    font-size: 0.7rem;
+    margin-left: 2.2rem;
+}
+
+span.menu-below-text-setting{
+    color: darkgray;
+    font-family: "Poppins";
+    font-size: 0.7rem;
+    margin-right: 1.8rem;
+}
+
+/* dashboard contents */
+
+.dashboard-text{
+    margin-top: 0.1rem;
+    margin-bottom: 3rem;
+}
+
+.dash-text{
+    font-size: 1.5em;
+    font-family: "Poppins";
+    color: #D21A32;
+    font-weight: 700;
+}
+
+.bottom-line-dashboard {
+    position: relative;
+    border-bottom: 1.5px solid black;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.cart-container{
+    margin-bottom: 1.5rem;
+}
+
+.total-revenue{
+    background: white;
+    border-radius: 10px;
+    padding: 1rem 2rem  .5rem;
+}
+
+.money-icon{
+    color: rgb(6, 216, 6);
+    font-size: 0.8rem;
+    font-family: "Poppins";
+}
+
+.naira-icon{
+    border-radius: 10px;
+    background: black;
+    width: 40px;
+    height: 40px;
+    padding: .5rem;   
+    color: rgb(84, 84, 220);
+    margin-bottom: 0.3rem;
+    margin-right: 1rem;
+}
+
+h2.revenue-amount{
+    margin-bottom: .2rem;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+p.revenue-text{
+    margin: 0;
+    color: darkgray;
+    font-family: "Poppins";
+    font-size: 0.75rem;
+}
+
+.total-dish{
+    background: white;
+    border-radius: 10px;
+    padding: 1rem 2rem .5rem;
+}
+
+.dish-icon{
+    color: #D21A32;
+    font-size: 0.8rem;
+    font-family: "Poppins";
+}
+
+.bookmark-icon{
+    border-radius: 10px;
+    background: black;
+    width: 40px;
+    height: 40px;
+    padding: .5rem;   
+    color: orange;
+    margin-bottom: 0.3rem;
+    margin-right: 1rem;
+}
+
+h2.dish-amount{
+    margin-bottom: .2rem;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+p.dish-text{
+    margin: 0;
+    color: darkgray;
+    font-family: "Poppins";
+    font-size: 0.75rem;
+}
+
+.normal-order{
+    background: white;
+    border-radius: 10px;
+    padding: 3rem 1rem;
+}
+
+.normal-text{
+    font-size: 1.2rem;
+    font-family: "Poppins";
+    font-weight: 900;
+    color: #D21A32;
+    margin-bottom: 1.5rem;
+    margin-left: 1rem;
+}
+
+.order-menu-text{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+span.order-text-menu{
+    color: #D21A32;
+    font-size: 0.8rem;
+    font-family: "Poppins";
+    font-weight: 700;
+    padding: 0 .5rem;
+}
+
+.bottom-line-normal {
+    position: relative;
+    border-bottom: 1.5px solid black;
+    margin-top: .1rem;
+    margin-bottom: .5rem;
+}
+
+.order-menu-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+span.order-list-text{
+    font-size: 0.75rem;
+    font-family: "Poppins";
+    font-weight: 500;
+    padding: 0 .5rem;
+    margin-bottom: 1rem;
+}
+
+span.order-list-text:nth-child(4){
+    background: rgb(169, 240, 169);
+    color: darkgreen;
+    padding: .3rem .7rem;
+    border-radius: 10px;
+    font-weight: 700;
+    /* margin-bottom: .5rem; */
+}

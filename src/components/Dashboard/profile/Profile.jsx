@@ -111,6 +111,11 @@ const Profile = () => {
     const handleLogout = () => {
         localStorage.clear();
         history.push('/')
+        Swal.fire({
+            icon: 'success',
+            title: 'LOGOUT',
+            text: 'Logged Out Successfully'
+        });
     }
 
     return (

@@ -5,7 +5,7 @@ import Logo from '../../assets/logo.png'
 import Rec from '../../assets/Rectangle2.png'
 import { AiOutlineEye } from 'react-icons/ai'
 import { AiOutlineEyeInvisible } from 'react-icons/ai'
-import  { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const Login = () => {
@@ -19,6 +19,7 @@ const Login = () => {
     const [button, setButton] = useState(false)
 
     const history = useHistory();
+
 
     const handleVisible = () => {
         setVisible(!visible)
@@ -41,15 +42,48 @@ const Login = () => {
             password: password
 
         }, { withCredentials: true }).then(response => {
-            console.log(response)
+            console.log(response.data.data.role)
 
-            // Status 200 OK
-            if (response.status === 200) {
+            localStorage.setItem("role", response.data.data.role)
+
+            const userRole = localStorage.getItem("role")
+
+            if (userRole === "vendor") {
                 Swal.fire({
                     icon: 'success',
                     title: 'SUCCESS',
                     text: 'Logged In Successfully, Click OK to continue'
                 });
+
+                localStorage.setItem("Access-Token", response.data.val.acessToken)
+                localStorage.setItem("Refresh-Token", response.data.val.refreshToken)
+                localStorage.setItem("User-Id", response.data.data.userId)
+                localStorage.setItem("username", username)
+
+                //vendor balance API
+
+                const accessToken = localStorage.getItem("Access-Token");
+
+                const headers = {
+                    Authorization: `Bearer ${accessToken}`
+                };
+                axios.get("https://api-chow.onrender.com/api/vendors/user", { headers })
+                    .then(res => {
+                        console.log(res)
+                        localStorage.setItem("Vendor-Balance", res.data.data.balance)
+                        localStorage.setItem("Total-Ordered", res.data.data.total_orders_served)
+                    }).catch(e => {
+                        console.log(e)
+                    })
+
+                history.push("/vendor-dashboard")
+            } else if (userRole === "student") {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'SUCCESS',
+                    text: 'Logged In Successfully, Click OK to continue'
+                });
+
                 localStorage.setItem("Access-Token", response.data.val.acessToken)
                 localStorage.setItem("Refresh-Token", response.data.val.refreshToken)
                 localStorage.setItem("User-Id", response.data.data.userId)
@@ -58,8 +92,13 @@ const Login = () => {
                 history.push('/dashboard')
             }
 
+            // Status 200 OK
+            // if (response.status === 200) {
+
+            // }
+
             // AUTH ERROR
-            else{
+            else {
                 Swal.fire({
                     icon: 'error',
                     title: 'ERROR',

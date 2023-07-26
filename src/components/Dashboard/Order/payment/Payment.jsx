@@ -93,23 +93,6 @@ const Payment = ({ handlePayment, price }) => {
     }
 
 
-
-
-
-    // const ref = localStorage.getItem("Refrence-code")
-
-    // const payCallback = {vendorId, ref}
-
-    // useEffect(() => {
-    //     axios.get("https://chow.onrender.com/api/v1/paystack/pay/callback", payCallback, {headers})
-    //     .then(res => {
-    //         console.log(res)
-    //     }).catch(e => {
-    //         console.log(e)
-    //     })
-    // })
-
-
     return (
         <div>
             {/* <div className="cancel-icon"><MdOutlineCancel className='cancel' onClick={handlePayment} /></div> */}

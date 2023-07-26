@@ -196,7 +196,7 @@ span.drinks-red {
 div.main-body {
     background: #CDCCCC;
     margin: 1rem 1rem;
-    height: 100vh;
+    height: 100%;
 }
 
 
@@ -206,8 +206,6 @@ div.main-body {
     background-color: white;
     border-radius: 10px;
     padding: 2rem;
-    /* margin-left: .; */
-
 }
 
 .main-food {
@@ -525,7 +523,7 @@ div.payment {
         background-color: white;
         border-radius: 10px;
         padding: 2rem;
-        margin-left: 0;
+        margin-bottom: 2.5rem;
 
     }
 
@@ -566,6 +564,7 @@ div.payment {
         background-color: white;
         border-radius: 7px;
         padding: 2rem;
+        margin-bottom: 2.5rem;
     }
 
     .food-name {
@@ -599,6 +598,7 @@ div.payment {
         border-radius: 10px;
         padding: 2rem;
         margin-left: 0;
+        margin-bottom: 2.5rem;
 
     }
 
@@ -644,6 +644,7 @@ div.payment {
         background-color: white;
         border-radius: 7px;
         padding: 2rem;
+        margin-bottom: 2.5rem;
     }
 
     .food-name {
@@ -669,6 +670,7 @@ div.payment {
         border-radius: 10px;
         padding: 2rem;
         margin-left: 0;
+        margin-bottom: 2.5rem;
 
     }
 
@@ -732,6 +734,7 @@ div.payment {
         background-color: white;
         border-radius: 7px;
         padding: 2rem;
+        margin-bottom: 2.5rem;
         display: flex;
         flex-direction: column;
     }
@@ -952,6 +955,7 @@ div.payment {
         background-color: white;
         border-radius: 7px;
         padding: 2rem;
+        margin-bottom: 2.5rem;
         display: flex;
         flex-direction: column;
     }
@@ -1172,6 +1176,7 @@ div.payment {
         background-color: white;
         border-radius: 7px;
         padding: 2rem;
+        margin-bottom: 2.5rem;
         display: flex;
         flex-direction: column;
     }
@@ -1388,6 +1393,7 @@ div.payment {
         background-color: white;
         border-radius: 7px;
         padding: 2rem;
+        margin-bottom: 2.5rem;
         display: flex;
         flex-direction: column;
     }
@@ -1404,6 +1410,7 @@ div.payment {
     .price-arrow {
         background: #D21A32;
         padding: 3px 8px;
+    margin-bottom: 2.5rem;
         color: white;
         cursor: pointer;
 
@@ -1608,6 +1615,7 @@ div.payment {
         background-color: white;
         border-radius: 7px;
         padding: 2rem;
+        margin-bottom: 2.5rem;
         display: flex;
         flex-direction: column;
     }

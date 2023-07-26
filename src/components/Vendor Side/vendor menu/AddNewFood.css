@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap');
+
+div.cancel-icon-add {
+    position: absolute;
+    left: 71%;
+    top: 23%;
+}
+
+.cancel-add {
+    font-size: 4.5rem;
+    color: #D21A32;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+div.payment-container-add {
+    border-radius: 30px;
+    margin-top: 10%;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    width: 50%;
+    height: 100%;
+    background: white;
+}
+
+.label-text-add {
+    color: #D21A32;
+}
+
+.input-add {
+    border: 1px solid #D21A32;
+    height: 35px;
+}
+
+
+/* Payment */
+.center-add,
+.is-add {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.is-add {
+    background: rgba(49, 49, 49, 0.8);
+}
+
+.center-content-add {
+    position: absolute;
+    top: 40%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.add-btn {
+    text-align: right;
+    color: white;
+    border: none;
+    background: #D21A32;
+    font-family: "Poppins";
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: .5rem 1rem;
+    border-radius: 10px;
+}
