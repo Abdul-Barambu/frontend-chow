@@ -321,8 +321,7 @@ const VendorMenuDrinks = () => {
                 </div>
                 {/* Main body */}
                 <div className="vendor-dashboard-body">
-                    <marquee style={{fontSize: "1.5rem", background: "#FFFF8F", fontFamily: "Poppins", fontWeight: "900"}}>This Application is still under development!!!</marquee>
-                    <Grid container spacing={3}>
+                   <Grid container spacing={3}>
                         <Grid item lg={3} md={3}>
                             <div className="nav-menu">
                                 <div className={coloredHome} onClick={handleClickedHome}>

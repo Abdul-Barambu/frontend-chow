@@ -99,7 +99,6 @@ const Dashboard = () => {
             </div>
 
             <div className="body">
-                    <marquee style={{fontSize: "1.5rem", background: "#FFFF8F", fontFamily: "Poppins", fontWeight: "900"}}>This Application is still under development!!!</marquee>
                 <hr className='bottom-line-hr' />
                 <Grid container spacing={2}>
                     <Grid item lg={7} md={6} sm={6} xs={12}>

@@ -139,7 +139,6 @@ const VendorOrder = () => {
 
                 {/* Main body */}
                 <div className="vendor-dashboard-body">
-                    <marquee style={{fontSize: "1.5rem", background: "#FFFF8F", fontFamily: "Poppins", fontWeight: "900"}}>This Application is still under development!!!</marquee>
                     <Grid container spacing={3}>
                         <Grid item lg={3} md={3}>
                             <div className="nav-menu">
@@ -193,7 +192,7 @@ const VendorOrder = () => {
                                         {/* Normal order */}
                                         <div className="col-lg-12 col-md-12">
                                             <div className="normal-order">
-                                                <h2 className="normal-text">Normal Orders</h2>
+                                                <h2 className="normal-text">All Orders</h2>
                                                 <div className="order-menu-text">
                                                     <span className="order-text-menu">Customer</span>
                                                     <span className="order-text-menu">Order</span>
