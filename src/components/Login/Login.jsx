@@ -55,14 +55,14 @@ const Login = () => {
                     text: 'Logged In Successfully, Click OK to continue'
                 });
 
-                localStorage.setItem("Access-Token", response.data.val.acessToken)
-                localStorage.setItem("Refresh-Token", response.data.val.refreshToken)
+                localStorage.setItem("Access-Token-vendor", response.data.val.acessToken)
+                localStorage.setItem("Refresh-Token-vendor", response.data.val.refreshToken)
                 localStorage.setItem("Vendor-Id", response.data.data.userId)
-                localStorage.setItem("username", username)
+                localStorage.setItem("vendor-username", username)
 
                 //vendor balance API
 
-                const accessToken = localStorage.getItem("Access-Token");
+                const accessToken = localStorage.getItem("Access-Token-vendor");
 
                 const headers = {
                     Authorization: `Bearer ${accessToken}`
@@ -87,7 +87,7 @@ const Login = () => {
                 localStorage.setItem("Access-Token", response.data.val.acessToken)
                 localStorage.setItem("Refresh-Token", response.data.val.refreshToken)
                 localStorage.setItem("User-Id", response.data.data.userId)
-                localStorage.setItem("username", username)
+                localStorage.setItem("student-username", username)
 
                 history.push('/dashboard')
             }

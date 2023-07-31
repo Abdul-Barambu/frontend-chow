@@ -8,7 +8,8 @@ const VendorProfile = () => {
     const history = useHistory()
 
     const out = () => {
-        localStorage.clear();
+        localStorage.removeItem("Refresh-Token-vendor");
+        localStorage.removeItem("Access-Token-vendor");
         Swal.fire({
             icon: 'success',
             title: 'SUCCESS',

@@ -48,7 +48,7 @@ const VendorMenuDrinks = () => {
 
 
     // Auth
-    const accessToken = localStorage.getItem("Access-Token");
+    const accessToken = localStorage.getItem("Access-Token-vendor");
 
     const headers = {
         Authorization: `Bearer ${accessToken}`

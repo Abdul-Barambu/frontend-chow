@@ -30,7 +30,7 @@ const VendorDashboard = () => {
     const [serveButton, setServeButton] = useState({})
     const history = useHistory();
 
-    const accessToken = localStorage.getItem("Access-Token");
+    const accessToken = localStorage.getItem("Access-Token-vendor");
 
     const headers = {
         Authorization: `Bearer ${accessToken}`
@@ -161,7 +161,7 @@ const VendorDashboard = () => {
         try {
             console.log("Handling serve for _id:", _id);
 
-            const accessToken = localStorage.getItem("Access-Token");
+            const accessToken = localStorage.getItem("Access-Token-vendor");
             const headers = {
                 Authorization: `Bearer ${accessToken}`
             };
@@ -180,10 +180,26 @@ const VendorDashboard = () => {
             // Toggle the button text based on the current text
             const buttonText = serveButtonText === 'Serve' ? 'Confirmed' : 'Serve';
             setServeButton(prevButtonTexts => ({ ...prevButtonTexts, [_id]: buttonText }));
+
+
+            // Save the state in session storage
+            // sessionStorage.setItem('serveButtonState', JSON.stringify(prevButtonTexts));
+
         } catch (error) {
             console.error("Error occurred while handling serve:", error);
         }
     };
+
+    // Retrieve the initial state from session storage when the component mounts
+    useEffect(() => {
+        const initialServeButtonState = JSON.parse(sessionStorage.getItem('serveButtonState')) || {};
+        setServeButton(initialServeButtonState);
+    }, []);
+
+    // Save the updated state in session storage whenever it changes
+    useEffect(() => {
+        sessionStorage.setItem('serveButtonState', JSON.stringify(serveButton));
+    }, [serveButton]);
 
     return (
         <div>

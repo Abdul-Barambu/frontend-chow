@@ -37,7 +37,7 @@ const Profile = () => {
 
     const accessToken = localStorage.getItem("Access-Token");
     const refreshToken = localStorage.getItem("Refresh-Token");
-    const profileUsername = localStorage.getItem("username");
+    const profileUsername = localStorage.getItem("student-username");
     const userId = localStorage.getItem("User-Id");
     const orderId = localStorage.getItem("order-id");
 
@@ -109,7 +109,8 @@ const Profile = () => {
     }
 
     const handleLogout = () => {
-        localStorage.clear();
+        localStorage.removeItem("Refresh-Token");
+        localStorage.removeItem("Access-Token");
         history.push('/')
         Swal.fire({
             icon: 'success',

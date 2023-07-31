@@ -9,7 +9,7 @@ const AddNewSpecial = ({ handleAddDish }) => {
     const [food_name, setFood_Name] = useState('');
     const [price, setPrice] = useState('');
 
-    const accessToken = localStorage.getItem("Access-Token");
+    const accessToken = localStorage.getItem("Access-Token-vendor");
 
     const headers = {
         Authorization: `Bearer ${accessToken}`
