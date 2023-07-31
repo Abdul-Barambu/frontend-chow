@@ -57,7 +57,7 @@ const Login = () => {
 
                 localStorage.setItem("Access-Token", response.data.val.acessToken)
                 localStorage.setItem("Refresh-Token", response.data.val.refreshToken)
-                localStorage.setItem("User-Id", response.data.data.userId)
+                localStorage.setItem("Vendor-Id", response.data.data.userId)
                 localStorage.setItem("username", username)
 
                 //vendor balance API

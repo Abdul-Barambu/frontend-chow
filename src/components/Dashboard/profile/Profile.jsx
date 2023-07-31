@@ -251,7 +251,9 @@ const Profile = () => {
                                                                         <span className='detail-text'>Orders #{order.orderId}</span>
                                                                         <span className='detail-text-menu'>{item.name}</span>
                                                                         <span className='detail-text-price'>₦ {item.price}</span>
-                                                                        <span className='detail-text-status'>{order.status}</span>
+                                                                        <span className={`${order.status === 'served' ? 'detail-text-status-green' : 'detail-text-status'}`}>
+                                                                            {order.status}
+                                                                        </span>
                                                                     </div>
                                                                 ))}
                                                             </div>

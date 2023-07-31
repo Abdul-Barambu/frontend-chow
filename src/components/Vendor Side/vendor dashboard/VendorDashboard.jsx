@@ -11,6 +11,7 @@ import { CiBookmarkMinus } from 'react-icons/ci'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const VendorDashboard = () => {
 
@@ -26,11 +27,10 @@ const VendorDashboard = () => {
     const [night, setNight] = useState([])
     const [packOrders, setPackOrders] = useState([])
     const [modal, setModal] = useState(false)
+    const [serveButton, setServeButton] = useState({})
     const history = useHistory();
 
     const accessToken = localStorage.getItem("Access-Token");
-    const refreshToken = localStorage.getItem("Refresh-Token");
-    const userId = localStorage.getItem("User-Id")
 
     const headers = {
         Authorization: `Bearer ${accessToken}`
@@ -155,6 +155,35 @@ const VendorDashboard = () => {
     const handleCancel = () => {
         setModal(false)
     }
+
+    // serve button
+    const handleServe = async (_id) => {
+        try {
+            console.log("Handling serve for _id:", _id);
+
+            const accessToken = localStorage.getItem("Access-Token");
+            const headers = {
+                Authorization: `Bearer ${accessToken}`
+            };
+
+            const serveButtonText = serveButton[_id] || 'Serve'; // Default to 'Serve' if undefined
+
+            // Use a ternary operator to determine which API to call based on button text
+            const apiUrl = serveButtonText === 'Serve'
+                ? `https://api-chow.onrender.com/api/orders/serve/${_id}`
+                : `https://api-chow.onrender.com/api/orders/unserve/${_id}`;
+
+            // Call the appropriate API based on button text
+            const response = await axios.patch(apiUrl, {}, { headers });
+            console.log("API Response:", response);
+
+            // Toggle the button text based on the current text
+            const buttonText = serveButtonText === 'Serve' ? 'Confirmed' : 'Serve';
+            setServeButton(prevButtonTexts => ({ ...prevButtonTexts, [_id]: buttonText }));
+        } catch (error) {
+            console.error("Error occurred while handling serve:", error);
+        }
+    };
 
     return (
         <div>
@@ -340,15 +369,16 @@ const VendorDashboard = () => {
                                                     <span className="total-order-text">Total:</span>
                                                     <h2 className="total-order-total">₦ {order.total}.00</h2>
                                                 </div>
-
+                                                <div className="btn-pop">
+                                                    {/* <button type='Submit' className='delay-btn btn-pop-up'>Delay</button> */}
+                                                    <button type='Submit' className=' btn-pop-up' onClick={() => handleServe(order._id)}>
+                                                        {serveButton[order._id] === 'Confirmed' ? 'Confirmed' : 'Serve'}
+                                                    </button>
+                                                </div>
 
                                             </div>
                                         ))
                                     }
-                                </div>
-                                <div className="btn-pop">
-                                    {/* <button type='Submit' className='delay-btn btn-pop-up'>Delay</button> */}
-                                    <button type='Submit' className=' btn-pop-up'>Serve</button>
                                 </div>
                             </div>
                         </div>

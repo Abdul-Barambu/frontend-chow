@@ -268,7 +268,7 @@ const VendorMenuDrinks = () => {
 
     // Drinks
 
-    const vendorId = localStorage.getItem("User-Id")
+    const vendorId = localStorage.getItem("Vendor-Id")
 
     useEffect(() => {
         // Food API

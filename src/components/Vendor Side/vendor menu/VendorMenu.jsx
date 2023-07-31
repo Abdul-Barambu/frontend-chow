@@ -147,7 +147,7 @@ const VendorMenu = () => {
         // Check the current status of the food
         const currentStatus = availabilityStatus[foodId];
 
-        if (currentStatus === "Available") {
+        if (currentStatus === "Available --") {
             // Food is available, perform the API call to delete the food
             const mealToUpdate = mealsMenu.find(menuMeal => menuMeal.food_id === foodId);
             if (mealToUpdate) {
@@ -280,7 +280,7 @@ const VendorMenu = () => {
 
     // Meal API
 
-    const vendorId = localStorage.getItem("User-Id")
+    const vendorId = localStorage.getItem("Vendor-Id")
 
     useEffect(() => {
         // Food API
