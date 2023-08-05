@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap');
+
+div.vendor-container-withdrawal {
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding-bottom: .3rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+    background: #F5F5F5;
+}
+
+.nav-menu-with {
+    background-color: white;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.withdrawal-contents {
+    background: white;
+    border-radius: 10px;
+    padding: .1rem 3rem 8rem;
+}
+
+.withdrawal-info-logout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.withdrawal-info {
+    display: flex;
+    align-items: center;
+
+}
+
+.withdrawal-paras p {
+    margin: 0 0 0 1rem;
+}
+
+.withdrawal-info-name {
+    font-family: "Poppins";
+    font-weight: 700;
+    font-size: 0.8em;
+}
+
+.withdrawal-info-date {
+    font-family: "Poppins";
+    font-weight: 700;
+    font-size: 0.8em;
+    color: gray;
+    padding-top: .5rem;
+}
+
+.logout-ven-btn {
+    border: 1.3px solid #D21A32;
+    padding: .5rem 2rem;
+    border-radius: 7px;
+    color: #D21A32;
+    font-family: "Poppins";
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.withdrawal-form-setting{
+    margin: 5rem 2.2rem 0;
+}
+
+.withdrawal-input-vendor{
+    border: 1px solid black;
+}
+
+.label-text-withdrawal{
+    font-weight: 700;
+}
+
+.withdrawal-input-vendor{
+    width: 50%;
+}
+
+.withdrawal-btn{
+  font-size: 0.7em;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.bank-names{
+    width: 100%;
+    padding: 6px 12px;
+    border: 1.34px solid black;
+    border-radius: 7px;
+    
+    font-family: "Poppins";
+}
+
+option.bank-name{
+    font-family: "Poppins";
+}
+
+span.account-name{
+    width: 100%;
+    border: 1.34px solid black;
+}
+
+.invalid-account-name{
+    color: red;
+    font-style: italic;
+    font-size: 1.2rem;
+    font-family: "Poppins";
+    font-weight: 700;
+}
+
+@media screen and (max-width: 500px) {
+    .withdrawal-contents {
+        background: white;
+        border-radius: 10px;
+        padding: .1rem 0 8rem;
+    }
+}

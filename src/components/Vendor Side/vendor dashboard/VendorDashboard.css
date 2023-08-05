@@ -32,7 +32,7 @@ div.container-vendor-navbar {
     margin: 2rem 2rem;
 }
 
-.nav-menu {
+.nav-menu-dash {
     background-color: white;
     height: 100%;
     border-radius: 10px;
@@ -67,7 +67,7 @@ span.menu-icon {
     font-size: 1.3rem;
 }
 
-span.menu-text {
+span.menu-text-dash {
     margin-top: 0.55rem;
     font-size: 1rem;
     font-weight: 700;
@@ -80,28 +80,28 @@ span.menu-text {
     justify-content: center;
 }
 
-span.menu-below-text {
+span.menu-below-text-dash {
     color: darkgray;
     font-family: "Poppins";
     font-size: 0.7rem;
     /* margin-left: .rem; */
 }
 
-span.menu-below-text-order {
+span.menu-below-text-order-dash {
     color: darkgray;
     font-family: "Poppins";
     font-size: 0.7rem;
     margin-right: 2rem;
 }
 
-span.menu-below-text-menu {
+span.menu-below-text-menu-dash {
     color: darkgray;
     font-family: "Poppins";
     font-size: 0.7rem;
     margin-left: 2.2rem;
 }
 
-span.menu-below-text-setting {
+span.menu-below-text-setting-dash {
     color: darkgray;
     font-family: "Poppins";
     font-size: 0.7rem;
@@ -130,6 +130,10 @@ span.menu-below-text-setting {
 
 .cart-container {
     margin-bottom: 1.5rem;
+}
+
+.orders-cart-container {
+    padding: 1rem 3rem;
 }
 
 .total-revenue {
@@ -206,6 +210,39 @@ p.dish-text {
     font-size: 0.75rem;
 }
 
+.order-normal-card {
+    padding: 1.2rem 1rem .7rem;
+}
+
+.btn-normal-card {
+    width: 100%;
+    border: none;
+    background: #D21A32;
+    padding: .7rem;
+    border-radius: 5px;
+    color: white;
+    font-family: "Poppins";
+    font-weight: 700;
+}
+
+.card-title-normal {
+    font-size: 2rem;
+    font-family: "Poppins";
+    font-weight: 700;
+    color: rgb(70, 68, 68);
+}
+
+.card-text-normal-today {
+    font-size: .7rem;
+    font-weight: 700;
+    font-family: "Poppins";
+    color: lightgray;
+}
+
+.card-text-normal {
+    font-family: "Poppins";
+}
+
 .normal-order {
     background: white;
     border-radius: 10px;
@@ -221,7 +258,7 @@ p.dish-text {
     margin-left: 1rem;
 }
 
-.order-menu-text {
+.order-menu-text-dash {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -345,14 +382,14 @@ span.order-id {
     color: #D21A32;
 }
 
-.btn-pop{
+.btn-pop {
     display: flex;
     gap: 1rem;
     padding-top: 2rem;
     margin-left: 80%;
 }
 
-.btn-pop-up{
+.btn-pop-up {
     text-align: right;
     color: white;
     border: none;
@@ -364,7 +401,7 @@ span.order-id {
     border-radius: 10px;
 }
 
-.btn-pop-up:hover{
+.btn-pop-up:hover {
     text-align: right;
     color: white;
     border: none;
@@ -378,13 +415,337 @@ span.order-id {
 
 
 
-.delay-btn{
+.delay-btn {
     background: transparent;
     border: 1px solid #D21A32;
     color: #D21A32;
 }
 
-.delay-btn:hover{
+.delay-btn:hover {
     background: #D21A32;
     color: white;
+}
+
+.unserve-btn {
+    background-color: transparent;
+    border: 1.2px solid #D21A32;
+    color: #D21A32;
+    font-family: "Poppins";
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: .5rem 2rem;
+    border-radius: 10px;
+}
+
+.unserve-btn:hover {
+    background-color: transparent;
+    border: 1.6px solid #D21A32;
+    color: #D21A32;
+}
+
+
+/* Screen Responsiveness */
+
+/* Ipad */
+@media screen and (max-width: 850px) {
+
+    div.container-vendor-dashboard {
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        padding-bottom: .3rem;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        height: 100%;
+        background: #F5F5F5;
+    }
+
+    .vendor-dashboard-body {
+        margin: 0;
+    }
+
+    .menu-items {
+        padding: .8rem .8rem;
+        margin-bottom: 0;
+    }
+
+    .menu-items-color {
+        background: rgb(239, 192, 174);
+        cursor: pointer;
+        color: #D21A32;
+        padding: .8rem .8rem;
+        margin-bottom: 0;
+    }
+
+    .menu-icon {
+        font-size: 1.5rem;
+    }
+
+
+    span.menu-text-dash {
+        margin-top: 0.55rem;
+        font-size: .8rem;
+        font-weight: 700;
+        font-family: "Poppins";
+    }
+
+
+    span.menu-text-dash {
+        margin-top: 0.55rem;
+        font-size: 1rem;
+        font-weight: 700;
+        font-family: "Poppins";
+    }
+    
+    
+    .below-text {
+        display: flex;
+        justify-content: center;
+    }
+    
+    span.menu-below-text-dash {
+        color: darkgray;
+        font-family: "Poppins";
+        font-size: 0.5rem;
+        margin-right: -2.5rem;
+    }
+    
+    span.menu-below-text-order-dash {
+        color: darkgray;
+        font-family: "Poppins";
+        font-size: 0.5rem;
+        margin-right: -2rem;
+    }
+    
+    span.menu-below-text-menu-dash {
+        color: darkgray;
+        font-family: "Poppins";
+        font-size: 0.4rem;
+        margin-left: 2.2rem;
+    }
+    
+    span.menu-below-text-setting-dash {
+        color: darkgray;
+        font-family: "Poppins";
+        font-size: 0.4rem;
+        margin-right: -2rem;
+    }
+
+    .orders-cart-container {
+        padding: 0;
+    }
+    
+    
+    .order-normal-card {
+        padding: .5rem;
+    }
+
+    .card-title-normal {
+        font-size: 1.5rem;
+        font-family: "Poppins";
+        font-weight: 900;
+        color: rgb(70, 68, 68);
+    }
+    
+    .card-text-normal-today {
+        font-size: .7rem;
+        font-weight: 700;
+        font-family: "Poppins";
+        color: lightgray;
+    }
+    
+    .card-text-normal {
+        font-family: "Poppins";
+        font-size: 0.7rem;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .menu-items {
+        padding: .8rem .8rem;
+        margin-bottom: 0;
+    }
+
+    .menu-items-color {
+        background: rgb(239, 192, 174);
+        cursor: pointer;
+        color: #D21A32;
+        padding: .4rem .4rem;
+        margin-bottom: 0;
+    }
+
+    .menu-icon {
+        font-size: 1.5rem;
+    }
+
+
+    span.menu-text-dash {
+        margin-top: 0.55rem;
+        font-size: .8rem;
+        font-weight: 700;
+        font-family: "Poppins";
+    }
+    
+    
+    .below-text {
+        display: flex;
+        justify-content: center;
+    }
+    
+    span.menu-below-text-dash {
+        color: darkgray;
+        font-family: "Poppins";
+        font-size: 0.5rem;
+        margin-right: -2.5rem;
+    }
+    
+    span.menu-below-text-order-dash {
+        color: darkgray;
+        font-family: "Poppins";
+        font-size: 0.5rem;
+        margin-right: -2rem;
+    }
+    
+    span.menu-below-text-menu-dash {
+        color: darkgray;
+        font-family: "Poppins";
+        font-size: 0.4rem;
+        margin-left: 2.2rem;
+    }
+    
+    span.menu-below-text-setting-dash {
+        color: darkgray;
+        font-family: "Poppins";
+        font-size: 0.45rem;
+        margin-right: -3rem;
+    }
+
+    .orders-cart-container {
+        padding: 0;
+    }
+    
+    
+    .order-normal-card {
+        padding: .5rem;
+    }
+
+    .card-title-normal {
+        font-size: 1.5rem;
+        font-family: "Poppins";
+        font-weight: 900;
+        color: rgb(70, 68, 68);
+    }
+    
+    .card-text-normal-today {
+        font-size: .7rem;
+        font-weight: 700;
+        font-family: "Poppins";
+        color: lightgray;
+    }
+    
+    .card-text-normal {
+        font-family: "Poppins";
+        font-size: 0.7rem;
+    }
+}
+
+
+/* Mobile Phone */
+
+@media screen and (max-width: 500px) {
+    
+    div.nav-menu{
+        display: none;
+    }
+
+    .total-revenue {
+        background: white;
+        border-radius: 10px;
+        padding: 1rem 2rem .5rem;
+        margin-bottom: 1rem;
+    }
+
+    span.order-name{
+        font-size: 0.6rem;
+    }
+
+    span.order-updated{
+        font-size: 0.6rem;
+    }
+
+    span.order-id{
+        font-size: 0.6rem;
+    }
+
+    .name-order-price {
+        display: flex;
+        justify-content: space-between;
+        padding: .5rem 2rem 0rem;
+    }
+
+    .order-total {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-left: 45%;
+        padding-top: 1rem;
+    }
+
+    .btn-pop {
+        display: flex;
+        gap: 1rem;
+        padding-top: 2rem;
+        margin-left: 60%;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+    
+    div.nav-menu{
+        display: none;
+    }
+
+    .total-revenue {
+        background: white;
+        border-radius: 10px;
+        padding: 1rem 2rem .5rem;
+        margin-bottom: 1rem;
+    }
+
+    span.order-name{
+        font-size: 0.5rem;
+    }
+
+    span.order-updated{
+        font-size: 0.5rem;
+    }
+
+    span.order-id{
+        font-size: 0.5rem;
+    }
+
+    .name-order-price {
+        display: flex;
+        justify-content: space-between;
+        padding: .5rem 1rem 0rem;
+    }
+
+    .order-total {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-left: 45%;
+        padding-top: 1rem;
+    }
+
+    .btn-pop {
+        display: flex;
+        gap: 1rem;
+        padding-top: 2rem;
+        margin-left: 60%;
+    }
+
 }

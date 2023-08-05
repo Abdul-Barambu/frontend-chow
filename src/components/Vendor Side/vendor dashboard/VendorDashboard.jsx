@@ -9,6 +9,7 @@ import { RiListSettingsLine } from 'react-icons/ri'
 import { TbCurrencyNaira } from 'react-icons/tb'
 import { CiBookmarkMinus } from 'react-icons/ci'
 import { MdOutlineCancel } from 'react-icons/md'
+import { BiMoneyWithdraw } from 'react-icons/bi'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
@@ -22,12 +23,9 @@ const VendorDashboard = () => {
     const [clickedOrder, setClickedOrder] = useState(false);
     const [clickedMenu, setClickedMenu] = useState(false);
     const [clickedSettings, setClickedSettings] = useState(false);
+    const [activeNav, setActiveNav] = useState('')
+    const [clickedWithdrawal, setClickedWithdrawal] = useState(false);
     const [balances, setBalances] = useState([])
-    const [normal, setNormal] = useState([])
-    const [night, setNight] = useState([])
-    const [packOrders, setPackOrders] = useState([])
-    const [modal, setModal] = useState(false)
-    const [serveButton, setServeButton] = useState({})
     const history = useHistory();
 
     const accessToken = localStorage.getItem("Access-Token-vendor");
@@ -41,6 +39,7 @@ const VendorDashboard = () => {
     let coloredOrder = [];
     let coloredMenu = [];
     let coloredSettings = [];
+    let coloredWithdrawal = [];
 
     if (clickedHome) {
         coloredHome.push('menu-items-color')
@@ -66,18 +65,26 @@ const VendorDashboard = () => {
         coloredSettings.push('menu-items')
     }
 
+    if (clickedWithdrawal) {
+        coloredWithdrawal.push('menu-items-color')
+    } else {
+        coloredWithdrawal.push('menu-items')
+    }
+
 
     const handleClickedHome = () => {
         setClickedHome(true)
         setClickedOrder(false)
         setClickedMenu(false)
         setClickedSettings(false)
+        setClickedWithdrawal(false)
     }
     const handleClickedOrder = () => {
         setClickedHome(false)
         setClickedOrder(true)
         setClickedMenu(false)
         setClickedSettings(false)
+        setClickedWithdrawal(false)
         history.push("/vendor-order")
     }
     const handleClickedMenu = () => {
@@ -85,6 +92,7 @@ const VendorDashboard = () => {
         setClickedOrder(false)
         setClickedMenu(true)
         setClickedSettings(false)
+        setClickedWithdrawal(false)
         history.push("/vendor-menu")
     }
     const handleClickedSettings = () => {
@@ -92,7 +100,17 @@ const VendorDashboard = () => {
         setClickedOrder(false)
         setClickedMenu(false)
         setClickedSettings(true)
+        setClickedWithdrawal(false)
         history.push("/vendor-profile")
+    }
+
+    const handleClickedWithdrawal = () => {
+        setClickedHome(false)
+        setClickedOrder(false)
+        setClickedMenu(false)
+        setClickedSettings(false)
+        setClickedWithdrawal(true)
+        history.push("/vendor-withdrawal")
     }
 
     useEffect(() => {
@@ -115,91 +133,15 @@ const VendorDashboard = () => {
     const vendorBalance = localStorage.getItem("Vendor-Balance")
     const totalOrdered = localStorage.getItem("Total-Ordered")
 
-
-    // Normal Orders
-    useEffect(() => {
-        axios.get("https://api-chow.onrender.com/api/orders/today/normal", { headers })
-            .then(response => {
-                console.log(response.data.data)
-                setNormal(response.data.data)
-            }).catch(e => {
-                console.log(e)
-            })
-    }, [])
-
-    // Night
-    useEffect(() => {
-        axios.get("https://api-chow.onrender.com/api/orders/today/night", { headers })
-            .then(response => {
-                console.log(response)
-                setNight(response.data.data)
-            })
-            .catch(e => {
-                console.log(e)
-            })
-    }, [])
-
-    const handlePacks = (_id) => {
-        console.log(_id)
-        axios.get(`https://api-chow.onrender.com/api/orders/id/${_id}`, { headers })
-            .then(response => {
-                console.log(response)
-                setPackOrders(response.data.data)
-                setModal(true)
-            })
-            .catch(e => {
-                console.log(e)
-            })
-    }
-    // cancel
-    const handleCancel = () => {
-        setModal(false)
+    const handleNormal = (e) => {
+        e.preventDefault()
+        history.push("/vendor-normal")
     }
 
-    // serve button
-    const handleServe = async (_id) => {
-        try {
-            console.log("Handling serve for _id:", _id);
-
-            const accessToken = localStorage.getItem("Access-Token-vendor");
-            const headers = {
-                Authorization: `Bearer ${accessToken}`
-            };
-
-            const serveButtonText = serveButton[_id] || 'Serve'; // Default to 'Serve' if undefined
-
-            // Use a ternary operator to determine which API to call based on button text
-            const apiUrl = serveButtonText === 'Serve'
-                ? `https://api-chow.onrender.com/api/orders/serve/${_id}`
-                : `https://api-chow.onrender.com/api/orders/unserve/${_id}`;
-
-            // Call the appropriate API based on button text
-            const response = await axios.patch(apiUrl, {}, { headers });
-            console.log("API Response:", response);
-
-            // Toggle the button text based on the current text
-            const buttonText = serveButtonText === 'Serve' ? 'Confirmed' : 'Serve';
-            setServeButton(prevButtonTexts => ({ ...prevButtonTexts, [_id]: buttonText }));
-
-
-            // Save the state in session storage
-            // sessionStorage.setItem('serveButtonState', JSON.stringify(prevButtonTexts));
-
-        } catch (error) {
-            console.error("Error occurred while handling serve:", error);
-        }
-    };
-
-    // Retrieve the initial state from session storage when the component mounts
-    useEffect(() => {
-        const initialServeButtonState = JSON.parse(sessionStorage.getItem('serveButtonState')) || {};
-        setServeButton(initialServeButtonState);
-    }, []);
-
-    // Save the updated state in session storage whenever it changes
-    useEffect(() => {
-        sessionStorage.setItem('serveButtonState', JSON.stringify(serveButton));
-    }, [serveButton]);
+    const handleNight = (e) => {
+        e.preventDefault()
+        history.push("/vendor-night")
+    }
 
     return (
         <div>
@@ -213,48 +155,57 @@ const VendorDashboard = () => {
 
                 {/* Main body */}
                 <div className="vendor-dashboard-body">
-                    <Grid container spacing={3}>
-                        <Grid item lg={3} md={3}>
+                    <Grid container spacing={2}>
+                        <Grid item lg={3} md={3} sm={3} padding={0} >
                             <div className="nav-menu">
                                 <div className={coloredHome} onClick={handleClickedHome}>
                                     <div className="menu-item">
                                         <span className="menu-icon"><AiFillHome /></span>
-                                        <span className="menu-text">Home</span> <br />
+                                        <span className="menu-text-dash">Home</span> <br />
                                     </div>
                                     <div className="below-text">
-                                        <span className="menu-below-text">Analysis, order report, etc...</span>
+                                        <span className="menu-below-text-dash">Analysis, order report, etc...</span>
                                     </div>
                                 </div>
                                 <div className={coloredOrder} onClick={handleClickedOrder}>
                                     <div className="menu-item">
                                         <span className="menu-icon"><MdRestaurantMenu /></span>
-                                        <span className="menu-text">Order</span> <br />
+                                        <span className="menu-text-dash">Order</span> <br />
                                     </div>
                                     <div className="below-text">
-                                        <span className="menu-below-text-order">Your previous orders</span>
+                                        <span className="menu-below-text-order-dash">Your previous orders</span>
                                     </div>
                                 </div>
                                 <div className={coloredMenu} onClick={handleClickedMenu}>
                                     <div className="menu-item">
                                         <span className="menu-icon"><BsDashCircleDotted /></span>
-                                        <span className="menu-text">Menu</span> <br />
+                                        <span className="menu-text-dash">Menu</span> <br />
                                     </div>
                                     <div className="below-text">
-                                        <span className="menu-below-text-menu">Manage your product, pricing, etc</span>
+                                        <span className="menu-below-text-menu-dash">Manage your product, pricing, etc</span>
+                                    </div>
+                                </div>
+                                <div className={coloredWithdrawal} onClick={handleClickedWithdrawal}>
+                                    <div className="menu-item">
+                                        <span className="menu-icon"><BiMoneyWithdraw /></span>
+                                        <span className="menu-text-dash">Withdrawal</span> <br />
+                                    </div>
+                                    <div className="below-text">
+                                        <span className="menu-below-text-setting-dash">Manage your withdrawal</span>
                                     </div>
                                 </div>
                                 <div className={coloredSettings} onClick={handleClickedSettings}>
                                     <div className="menu-item">
                                         <span className="menu-icon"><RiListSettingsLine /></span>
-                                        <span className="menu-text">Profile Setting</span> <br />
+                                        <span className="menu-text-dash">Profile Setting</span> <br />
                                     </div>
                                     <div className="below-text">
-                                        <span className="menu-below-text-setting">Manage your account</span>
+                                        <span className="menu-below-text-setting-dash">Manage your account</span>
                                     </div>
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item lg={9} md={9}>
+                        <Grid item lg={9} md={9} sm={9} paddingLeft={1.6}>
                             <div className="vendor-dashboard">
                                 <div className="dashboard-text">
                                     <span className="dash-text">Dashboard</span> <br />
@@ -281,57 +232,34 @@ const VendorDashboard = () => {
                                 </div>
                                 {/* Orders */}
                                 <div className="orders-cart-container">
+
+
+                                    {/* Bootstrap card */}
                                     <div className="row">
-                                        {/* Normal order */}
-                                        <div className="col-lg-6 col-md-6">
-                                            <div className="normal-order">
-                                                <h2 className="normal-text">Normal Orders</h2>
-                                                <div className="order-menu-text">
-                                                    <span className="order-text-menu">Customer</span>
-                                                    <span className="order-text-menu">Order</span>
-                                                    <span className="order-text-menu">Total Payment</span>
-                                                    <span className="order-text-menu">Time</span>
+                                        <div className="col-sm-6 mb-3 mb-sm-0">
+                                            <div className="card order-normal-card">
+                                                <div className="card-body">
+                                                    <h3 className="card-title-normal">Today's Orders</h3>
+                                                    <p className="card-text-normal-today">Click to view today's normal orders.</p>
+                                                    <p className="card-text-normal">View and manage today's orders from your student customers. Deliver delicious meals to brighten their day!</p>
+                                                    <button className="btn-normal-card" onClick={handleNormal}>Click me</button>
                                                 </div>
-                                                <div className='bottom-line-normal' style={{ bottom: '0' }}></div>
-                                                {
-                                                    normal.map(norm => (
-                                                        <div key={norm._id} className="order-menu-list"
-                                                            onClick={() => { handlePacks(norm._id) }}
-                                                            style={{ cursor: "pointer" }}>
-                                                            <span className="order-list-text">{norm.firstname}</span>
-                                                            <span className="order-list-text">{norm.orderId}</span>
-                                                            <span className="order-list-text">₦ {norm.total}</span>
-                                                            <span className="order-list-text">{norm.orderTime}</span>
-                                                        </div>
-                                                    ))
-                                                }
                                             </div>
                                         </div>
-                                        {/* Night Order */}
-                                        <div className="col-lg-6 col-md-6">
-                                            <div className="normal-order">
-                                                <h2 className="normal-text">Night Orders</h2>
-                                                <div className="order-menu-text">
-                                                    <span className="order-text-menu">Customer</span>
-                                                    <span className="order-text-menu">Order</span>
-                                                    <span className="order-text-menu">Total Payment</span>
+
+                                        <div className="col-sm-6 mb-3 mb-sm-0">
+                                            <div className="card order-normal-card">
+                                                <div className="card-body">
+                                                    <h3 className="card-title-normal">Night Orders</h3>
+                                                    <p className="card-text-normal-today">Click to view today's night orders.</p>
+                                                    <p className="card-text-normal">View, prepare and handle late-night orders for students. Keep them fueled during their study sessions!</p>
+                                                    <button className="btn-normal-card" onClick={handleNight}>Click me</button>
                                                 </div>
-                                                <div className='bottom-line-normal' style={{ bottom: '0' }}></div>
-                                                {
-                                                    night.map(night => (
-                                                        <div key={night._id} className="order-menu-list"
-                                                            onClick={() => { handlePacks(night._id) }}
-                                                            style={{ cursor: "pointer" }}>
-                                                            <span className="order-list-text">{night.firstname}</span>
-                                                            <span className="order-list-text">{night.orderId}</span>
-                                                            <span className="order-list-text">₦ {night.total}.00</span>
-                                                            <span className="order-list-text">{night.orderTime}</span>
-                                                        </div>
-                                                    ))
-                                                }
                                             </div>
                                         </div>
+
                                     </div>
+                                    {/* Bootstrap card */}
                                 </div>
                             </div>
                         </Grid>
@@ -340,69 +268,48 @@ const VendorDashboard = () => {
             </div>
 
 
-            {/* each packs */}
+            {/* Nav */}
+            <nav>
+                {/* Home */}
+                <a href='#' onClick={() => {
+                    setActiveNav('#')
+                    handleClickedHome()
+                }} className={activeNav === '#' ? 'active' : ''}><AiFillHome />
+                    {/* <span onClick={() => setActiveNav('#')} className={activeNav === '#' ? '' : 'none'}>Home</span> */}
+                </a>
 
-            {
-                modal && (<div>
-                    <div className='center-add'>
-                        <div className="is-add"></div>
-                        <div className="center-content-add">
-                            <div className="payment-container-add">
-                                <div className="cancel-icon-add"><MdOutlineCancel className='cancel-add' onClick={handleCancel} /></div>
-                                <div className='input-food-div'>
-                                    <div className="order-view">
-                                        <h2 className="o-v">Order View</h2>
-                                    </div>
+                {/* Search */}
+                <a href='#a' onClick={() => {
+                    setActiveNav('#a')
+                    handleClickedOrder()
+                }} className={activeNav === '#a' ? 'active' : ''}><MdRestaurantMenu />
+                    {/* <span onClick={() => setActiveNav('#a')} className={activeNav === '#a' ? 'active' : 'none'}>Order</span> */}
+                </a>
 
-                                    {
-                                        packOrders.map((order, index) => (
-                                            <div key={index} className="">
-                                                <div className="name-order-time-id">
-                                                    <span className="order-name">{order.firstname}</span>
-                                                    <span className="order-updated">{order.updatedAt}</span>
-                                                    <span className="order-id">{order.orderId}</span>
-                                                    <span className="order-list-text">{order.orderTime}</span>
-                                                </div>
+                {/* Cart */}
+                <a href='#b' onClick={() => {
+                    setActiveNav('#b')
+                    handleClickedMenu()
+                }} className={activeNav === '#b' ? 'active' : ''}><BsDashCircleDotted />
+                    {/* <span onClick={() => { setActiveNav('#b') }} className={activeNav === '#b' ? 'active' : 'none'}>Menu</span> */}
+                </a>
 
-                                                <div className='bottom-line-order' style={{ bottom: '0' }}></div>
-                                                {order.packs && order.packs.length > 0 ? (
-                                                    <div>
-                                                        {order.packs[0].items.map((item, itemIndex) => (
-                                                            <div key={itemIndex}>
-                                                                <div className="name-order-price">
-                                                                    <span className="name-order-name">{item.name}</span>
-                                                                    <span className="time-order-price">₦ {item.price}.00</span>
-                                                                </div>
+                {/* Cart */}
+                <a href='#d' onClick={() => {
+                    setActiveNav('#d')
+                    handleClickedWithdrawal()
+                }} className={activeNav === '#d' ? 'active' : ''}><BiMoneyWithdraw />
+                    {/* <span onClick={() => { setActiveNav('#d') }} className={activeNav === '#d' ? 'active' : 'none'}>withdrawal</span> */}
+                </a>
 
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                ) : (
-                                                    <p>No items in this order.</p>
-                                                )}
-
-                                                <div className="order-total">
-                                                    <span className="total-order-text">Total:</span>
-                                                    <h2 className="total-order-total">₦ {order.total}.00</h2>
-                                                </div>
-                                                <div className="btn-pop">
-                                                    {/* <button type='Submit' className='delay-btn btn-pop-up'>Delay</button> */}
-                                                    <button type='Submit' className=' btn-pop-up' onClick={() => handleServe(order._id)}>
-                                                        {serveButton[order._id] === 'Confirmed' ? 'Confirmed' : 'Serve'}
-                                                    </button>
-                                                </div>
-
-                                            </div>
-                                        ))
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                )
-            }
-
+                {/* Profile */}
+                <a href='#c' onClick={() => {
+                    setActiveNav('#c')
+                    handleClickedSettings()
+                }} className={activeNav === '#c' ? 'active' : ''}><RiListSettingsLine />
+                    {/* <span onClick={() => { setActiveNav('#c') }} className={activeNav === '#c' ? 'active' : 'none'}>Profile</span> */}
+                </a>
+            </nav>
 
         </div>
     )

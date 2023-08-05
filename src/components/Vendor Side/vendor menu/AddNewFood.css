@@ -72,3 +72,63 @@ div.payment-container-add {
     padding: .5rem 1rem;
     border-radius: 10px;
 }
+
+@media screen and (max-width: 850px) {
+
+    div.cancel-icon-add {
+        position: absolute;
+        left: 79%;
+        top: 13%;
+    }
+    
+    .cancel-add {
+        font-size: 4.5rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    
+    div.payment-container-add {
+        border-radius: 30px;
+        margin-top: 10%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 70%;
+        height: 100%;
+        background: white;
+    }
+    
+}
+
+@media screen and (max-width: 430px) {
+
+    div.cancel-icon-add {
+        position: absolute;
+        left: 85%;
+        top: 5%;
+    }
+    
+    .cancel-add {
+        font-size: 3.5rem;
+        color: #D21A32;
+        background: white;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    
+    div.payment-container-add {
+        border-radius: 30px;
+        margin-top: 10%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        width: 90%;
+        height: 100%;
+        background: white;
+    }
+    
+}

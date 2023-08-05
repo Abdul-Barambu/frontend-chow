@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import './VendorOrder.css'
+import React, { useEffect, useState } from 'react'
+import './VendorDashboard.css'
 import Img from '../../../assets/logo.png'
 import { Grid } from '@mui/material'
 import { AiFillHome } from 'react-icons/ai'
 import { MdRestaurantMenu } from 'react-icons/md'
 import { BsDashCircleDotted } from 'react-icons/bs'
 import { RiListSettingsLine } from 'react-icons/ri'
+import { TbCurrencyNaira } from 'react-icons/tb'
+import { CiBookmarkMinus } from 'react-icons/ci'
+import { MdOutlineCancel } from 'react-icons/md'
 import { BiMoneyWithdraw } from 'react-icons/bi'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
-import { MdOutlineCancel } from "react-icons/md"
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
-const VendorOrder = () => {
+const VendorDashboardNormal = () => {
 
     const date = new Date().toDateString();
     const time = new Date().toLocaleTimeString();
@@ -22,13 +25,14 @@ const VendorOrder = () => {
     const [clickedMenu, setClickedMenu] = useState(false);
     const [clickedSettings, setClickedSettings] = useState(false);
     const [clickedWithdrawal, setClickedWithdrawal] = useState(false);
-    const [orders, setOrders] = useState([])
-    const [modal, setModal] = useState(false)
+    const [balances, setBalances] = useState([])
+    const [normal, setNormal] = useState([])
+    const [night, setNight] = useState([])
     const [packOrders, setPackOrders] = useState([])
+    const [modal, setModal] = useState(false)
+    const [serveButton, setServeButton] = useState({})
     const history = useHistory();
 
-
-    // Auth
     const accessToken = localStorage.getItem("Access-Token-vendor");
 
     const headers = {
@@ -78,6 +82,7 @@ const VendorOrder = () => {
         setClickedOrder(false)
         setClickedMenu(false)
         setClickedSettings(false)
+        setClickedWithdrawal(false)
         history.push("/vendor-dashboard")
     }
     const handleClickedOrder = () => {
@@ -85,12 +90,15 @@ const VendorOrder = () => {
         setClickedOrder(true)
         setClickedMenu(false)
         setClickedSettings(false)
+        setClickedWithdrawal(false)
+        history.push("/vendor-order")
     }
     const handleClickedMenu = () => {
         setClickedHome(false)
         setClickedOrder(false)
         setClickedMenu(true)
         setClickedSettings(false)
+        setClickedWithdrawal(false)
         history.push("/vendor-menu")
     }
     const handleClickedSettings = () => {
@@ -98,6 +106,7 @@ const VendorOrder = () => {
         setClickedOrder(false)
         setClickedMenu(false)
         setClickedSettings(true)
+        setClickedWithdrawal(false)
         history.push("/vendor-profile")
     }
 
@@ -111,25 +120,41 @@ const VendorOrder = () => {
     }
 
     useEffect(() => {
-        setClickedOrder(true)
+        setClickedHome(true)
     }, [])
 
-
-    // Get All Orders
+    // Vendor balance
     useEffect(() => {
-        axios.get("https://api-chow.onrender.com/api/orders", { headers })
-            .then(response => {
-                console.log(response.data.data)
-                setOrders(response.data.data)
+        axios.get("https://api-chow.onrender.com/api/vendors/user", { headers })
+            .then(res => {
+                console.log(res)
+                setBalances(res.data.data.balance)
+                localStorage.setItem("Vendor-Balance", res.data.data.balance)
+                localStorage.setItem("Total-Ordered", res.data.data.total_orders_served)
             }).catch(e => {
                 console.log(e)
             })
     }, [])
 
-    // show packs
+    const vendorBalance = localStorage.getItem("Vendor-Balance")
+    const totalOrdered = localStorage.getItem("Total-Ordered")
+
+
+    // Normal Orders
+    useEffect(() => {
+        axios.get("https://api-chow.onrender.com/api/orders/today/normal", { headers })
+            .then(response => {
+                console.log(response.data.data)
+                setNormal(response.data.data)
+            }).catch(e => {
+                console.log(e)
+            })
+    }, [])
+
+
     const handlePacks = (_id) => {
         console.log(_id)
-        axios.get(`https://api-chow.onrender.com/api/orders/no/${_id}`, { headers })
+        axios.get(`https://api-chow.onrender.com/api/orders/id/${_id}`, { headers })
             .then(response => {
                 console.log(response)
                 setPackOrders(response.data.data)
@@ -144,11 +169,54 @@ const VendorOrder = () => {
         setModal(false)
     }
 
+    // serve button
+    const handleServe = async (_id) => {
+        try {
+            console.log("Handling serve for _id:", _id);
 
+            const accessToken = localStorage.getItem("Access-Token-vendor");
+            const headers = {
+                Authorization: `Bearer ${accessToken}`
+            };
+
+            const serveButtonText = serveButton[_id] || 'Serve'; // Default to 'Serve' if undefined
+
+            // Use a ternary operator to determine which API to call based on button text
+            const apiUrl = serveButtonText === 'Serve'
+                ? `https://api-chow.onrender.com/api/orders/serve/${_id}`
+                : `https://api-chow.onrender.com/api/orders/unserve/${_id}`;
+
+            // Call the appropriate API based on button text
+            const response = await axios.patch(apiUrl, {}, { headers });
+            console.log("API Response:", response);
+
+            // Toggle the button text based on the current text
+            const buttonText = serveButtonText === 'Serve' ? 'Unserve' : 'Serve';
+            setServeButton(prevButtonTexts => ({ ...prevButtonTexts, [_id]: buttonText }));
+
+
+            // Save the state in session storage
+            // sessionStorage.setItem('serveButtonState', JSON.stringify(prevButtonTexts));
+
+        } catch (error) {
+            console.error("Error occurred while handling serve:", error);
+        }
+    };
+
+    // Retrieve the initial state from session storage when the component mounts
+    useEffect(() => {
+        const initialServeButtonState = JSON.parse(sessionStorage.getItem('serveButtonState')) || {};
+        setServeButton(initialServeButtonState);
+    }, []);
+
+    // Save the updated state in session storage whenever it changes
+    useEffect(() => {
+        sessionStorage.setItem('serveButtonState', JSON.stringify(serveButton));
+    }, [serveButton]);
 
     return (
         <div>
-            <div className="container-vendor-order">
+            <div className='container-vendor-dashboard'>
                 <div className="container-vendor-navbar">
                     <div className="logo-img-vendor">
                         <img src={Img} alt="logo img" style={{ cursor: 'pointer' }} className='logo-img-dashboard' />
@@ -208,19 +276,38 @@ const VendorOrder = () => {
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item lg={9} md={9} sm={9} xs={12}>
+                        <Grid item lg={9} md={9} sm={9} paddingLeft={1.6}>
                             <div className="vendor-dashboard">
                                 <div className="dashboard-text">
-                                    <span className="dash-text">Orders</span> <br />
+                                    <span className="dash-text">Dashboard</span> <br />
                                     <span className="profile-date">{date} - {time}</span>
+                                </div>
+                                <div className='bottom-line-dashboard' style={{ bottom: '0' }}></div>
+                                <div className="cart-container">
+                                    <div className="row">
+                                        <div className="col-lg-6 col-md-6">
+                                            <div className="total-revenue">
+                                                <div className="money-icon"><TbCurrencyNaira className='naira-icon' /> +32.60%</div>
+                                                <h2 className='revenue-amount'>₦ {vendorBalance}.00</h2>
+                                                <p className="revenue-text">Total Revenue</p>
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-6 col-md-6">
+                                            <div className="total-dish">
+                                                <div className="dish-icon"><CiBookmarkMinus className='bookmark-icon' /> -12.12%</div>
+                                                <h2 className='dish-amount'>{totalOrdered}</h2>
+                                                <p className="dish-text">Total Dish Ordered</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 {/* Orders */}
                                 <div className="orders-cart-container">
+
                                     <div className="row">
-                                        {/* Normal order */}
-                                        <div className="col-lg-12 col-md-12" style={{ padding: 0 }}>
-                                            <div className="normal-order">
-                                                <h2 className="normal-text">All Orders</h2>
+                                        <div className="col-lg-12">
+                                            <div className="normal-order" style={{marginBottom: '2rem'}}>
+                                                <h2 className="normal-text">Today's Normal Orders</h2>
                                                 <div className="order-menu-text">
                                                     <span className="order-text-menu">Customer</span>
                                                     <span className="order-text-menu">Order</span>
@@ -229,20 +316,17 @@ const VendorOrder = () => {
                                                 </div>
                                                 <div className='bottom-line-normal' style={{ bottom: '0' }}></div>
                                                 {
-                                                    orders.map(order => (
-                                                        <div key={order._id} className="order-menu-list"
-                                                            onClick={() => handlePacks(order.orderId)}
+                                                    normal.map(norm => (
+                                                        <div key={norm._id} className="order-menu-list"
+                                                            onClick={() => { handlePacks(norm._id) }}
                                                             style={{ cursor: "pointer" }}>
-                                                            <span className="order-list-text">{order.firstname}</span>
-                                                            <span className="order-list-text">{order.orderId}</span>
-                                                            <span className="order-list-text">₦ {order.total}</span>
-                                                            <span className="order-list-text">{order.orderTime}</span>
+                                                            <span className="order-list-text">{norm.firstname}</span>
+                                                            <span className="order-list-text">{norm.orderId}</span>
+                                                            <span className="order-list-text">₦ {norm.total}</span>
+                                                            <span className="order-list-text">{norm.orderTime}</span>
                                                         </div>
                                                     ))
                                                 }
-
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -299,7 +383,15 @@ const VendorOrder = () => {
                                                     <span className="total-order-text">Total:</span>
                                                     <h2 className="total-order-total">₦ {order.total}.00</h2>
                                                 </div>
+                                                <div className="btn-pop">
+                                                    <button
+                                                        type='Submit'
+                                                        className={`btn-pop-up ${serveButton[order._id] === 'Unserve' ? 'unserve-btn' : ''}`}
+                                                        onClick={() => handleServe(order._id)}>
+                                                        {serveButton[order._id] === 'Unserve' ? 'Unserve' : 'Serve'}
+                                                    </button>
 
+                                                </div>
 
                                             </div>
                                         ))
@@ -359,4 +451,4 @@ const VendorOrder = () => {
     )
 }
 
-export default VendorOrder
+export default VendorDashboardNormal

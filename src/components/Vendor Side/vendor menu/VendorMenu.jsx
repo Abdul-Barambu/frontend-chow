@@ -14,13 +14,16 @@ import AddNewFood from './AddNewFood'
 import EditPrice from './EditPrice'
 import { MdOutlineCancel } from 'react-icons/md'
 import Swal from 'sweetalert2'
+import { BiMoneyWithdraw } from 'react-icons/bi'
 
 const VendorMenu = () => {
 
     const [clickedHome, setClickedHome] = useState(false);
     const [clickedOrder, setClickedOrder] = useState(false);
+    const [activeNav, setActiveNav] = useState('')
     const [clickedMenu, setClickedMenu] = useState(false);
     const [clickedSettings, setClickedSettings] = useState(false);
+    const [clickedWithdrawal, setClickedWithdrawal] = useState(false);
     const [available, setAvailable] = useState(false)
     const [text, setText] = useState(false)
     const [meals, setMeals] = useState([])
@@ -35,17 +38,6 @@ const VendorMenu = () => {
     const [menuIdToUpdate, setMenuIdToUpdate] = useState(null);
     const [refresh, setRefresh] = useState(false);
     const history = useHistory();
-
-    // useEffect(() => {
-    //     const storedClickedButtons = JSON.parse(localStorage.getItem('clickedButtons') || '[]');
-    //     setClickedButtons(storedClickedButtons);
-    // }, []);
-
-    // Update local storage whenever the "clickedButtons" state changes.
-    // useEffect(() => {
-    //     localStorage.setItem('clickedButtons', JSON.stringify(clickedButtons));
-    // }, [clickedButtons]);
-
 
     // Auth
     const accessToken = localStorage.getItem("Access-Token-vendor");
@@ -72,6 +64,7 @@ const VendorMenu = () => {
     let coloredSettings = [];
     let colored = [];
     let availableText = [];
+    let coloredWithdrawal = [];
 
     if (clickedHome) {
         coloredHome.push('menu-items-color')
@@ -110,11 +103,18 @@ const VendorMenu = () => {
         availableText.push('Not available')
     }
 
+    if (clickedWithdrawal) {
+        coloredWithdrawal.push('menu-items-color')
+    } else {
+        coloredWithdrawal.push('menu-items')
+    }
+
     const handleClickedHome = () => {
         setClickedHome(true)
         setClickedOrder(false)
         setClickedMenu(false)
         setClickedSettings(false)
+        setClickedWithdrawal(false)
         history.push("/vendor-dashboard")
     }
     const handleClickedOrder = () => {
@@ -122,6 +122,7 @@ const VendorMenu = () => {
         setClickedOrder(true)
         setClickedMenu(false)
         setClickedSettings(false)
+        setClickedWithdrawal(false)
         history.push("/vendor-order")
     }
     const handleClickedMenu = () => {
@@ -129,13 +130,24 @@ const VendorMenu = () => {
         setClickedOrder(false)
         setClickedMenu(true)
         setClickedSettings(false)
+        setClickedWithdrawal(false)
     }
     const handleClickedSettings = () => {
         setClickedHome(false)
         setClickedOrder(false)
         setClickedMenu(false)
         setClickedSettings(true)
+        setClickedWithdrawal(false)
         history.push("/vendor-profile")
+    }
+
+    const handleClickedWithdrawal = () => {
+        setClickedHome(false)
+        setClickedOrder(false)
+        setClickedMenu(false)
+        setClickedSettings(false)
+        setClickedWithdrawal(true)
+        history.push("/vendor-withdrawal")
     }
 
     useEffect(() => {
@@ -320,6 +332,12 @@ const VendorMenu = () => {
         setModal(!modal)
     }
 
+    const styling = {
+        container: {
+            paddingLeft: 0
+        }
+    }
+
 
     return (
         <div>
@@ -333,47 +351,56 @@ const VendorMenu = () => {
                 {/* Main body */}
                 <div className="vendor-dashboard-body">
                     <Grid container spacing={3}>
-                        <Grid item lg={3} md={3}>
+                        <Grid item lg={3} md={3} sm={3} >
                             <div className="nav-menu">
                                 <div className={coloredHome} onClick={handleClickedHome}>
                                     <div className="menu-item">
                                         <span className="menu-icon"><AiFillHome /></span>
-                                        <span className="menu-text">Home</span> <br />
+                                        <span className="menu-text-dash">Home</span> <br />
                                     </div>
                                     <div className="below-text">
-                                        <span className="menu-below-text">Analysis, order report, etc...</span>
+                                        <span className="menu-below-text-dash">Analysis, order report, etc...</span>
                                     </div>
                                 </div>
                                 <div className={coloredOrder} onClick={handleClickedOrder}>
                                     <div className="menu-item">
                                         <span className="menu-icon"><MdRestaurantMenu /></span>
-                                        <span className="menu-text">Order</span> <br />
+                                        <span className="menu-text-dash">Order</span> <br />
                                     </div>
                                     <div className="below-text">
-                                        <span className="menu-below-text-order">Your previous orders</span>
+                                        <span className="menu-below-text-order-dash">Your previous orders</span>
                                     </div>
                                 </div>
                                 <div className={coloredMenu} onClick={handleClickedMenu}>
                                     <div className="menu-item">
                                         <span className="menu-icon"><BsDashCircleDotted /></span>
-                                        <span className="menu-text">Menu</span> <br />
+                                        <span className="menu-text-dash">Menu</span> <br />
                                     </div>
                                     <div className="below-text">
-                                        <span className="menu-below-text-menu">Manage your product, pricing, etc</span>
+                                        <span className="menu-below-text-menu-dash">Manage your product, pricing, etc</span>
+                                    </div>
+                                </div>
+                                <div className={coloredWithdrawal} onClick={handleClickedWithdrawal}>
+                                    <div className="menu-item">
+                                        <span className="menu-icon"><BiMoneyWithdraw /></span>
+                                        <span className="menu-text-dash">Withdrawal</span> <br />
+                                    </div>
+                                    <div className="below-text">
+                                        <span className="menu-below-text-setting-dash">Manage your withdrawal</span>
                                     </div>
                                 </div>
                                 <div className={coloredSettings} onClick={handleClickedSettings}>
                                     <div className="menu-item">
                                         <span className="menu-icon"><RiListSettingsLine /></span>
-                                        <span className="menu-text">Profile Setting</span> <br />
+                                        <span className="menu-text-dash">Profile Setting</span> <br />
                                     </div>
                                     <div className="below-text">
-                                        <span className="menu-below-text-setting">Manage your account</span>
+                                        <span className="menu-below-text-setting-dash">Manage your account</span>
                                     </div>
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item lg={9} md={9}>
+                        <Grid item lg={9} md={9} sm={9} xs={12} sx={styling.container}>
                             <div className="vendor-menu-body">
                                 <div className="ven-menu-text">
                                     <h2 className="ven-text">Menu</h2>
@@ -385,8 +412,8 @@ const VendorMenu = () => {
                                 </div>
                                 <div className='bottom-line-menu' style={{ bottom: '0' }}></div>
                                 <div className="ven-menu-foods">
-                                    <div className="row">
-                                        <div className="col-lg-3 col-md-3">
+                                    <div className="row row-last">
+                                        <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
                                             <div className="add-new-dish" onClick={handleAddDish}>
                                                 <span className="add-dish-icon">+</span>
                                                 <p className="add-dish-text">Add new dish</p>
@@ -396,7 +423,7 @@ const VendorMenu = () => {
                                         {
 
                                             meals.map((meal, index) => (
-                                                <div className="col-lg-3 col-md-3" key={meal.food_id}>
+                                                <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6" key={meal.food_id}>
                                                     <div className="ven-menu-food">
                                                         <img src={`https://api-chow.onrender.com/static/${meal.food_id}.jpg`} alt="Food img" className='ven-food-img' />
                                                         <p className="ven-food-name">{meal.food_name}</p>
@@ -418,8 +445,6 @@ const VendorMenu = () => {
                                                 </div>
                                             ))
                                         }
-
-
                                     </div>
                                 </div>
                             </div>
@@ -475,6 +500,49 @@ const VendorMenu = () => {
                     </div>
                 )
             }
+
+            {/* Nav */}
+            <nav>
+                {/* Home */}
+                <a href='#' onClick={() => {
+                    setActiveNav('#')
+                    handleClickedHome()
+                }} className={activeNav === '#' ? 'active' : ''}><AiFillHome />
+                    {/* <span onClick={() => setActiveNav('#')} className={activeNav === '#' ? '' : 'none'}>Home</span> */}
+                </a>
+
+                {/* Search */}
+                <a href='#a' onClick={() => {
+                    setActiveNav('#a')
+                    handleClickedOrder()
+                }} className={activeNav === '#a' ? 'active' : ''}><MdRestaurantMenu />
+                    {/* <span onClick={() => setActiveNav('#a')} className={activeNav === '#a' ? 'active' : 'none'}>Order</span> */}
+                </a>
+
+                {/* Cart */}
+                <a href='#b' onClick={() => {
+                    setActiveNav('#b')
+                    handleClickedMenu()
+                }} className={activeNav === '#b' ? 'active' : ''}><BsDashCircleDotted />
+                    {/* <span onClick={() => { setActiveNav('#b') }} className={activeNav === '#b' ? 'active' : 'none'}>Menu</span> */}
+                </a>
+
+                {/* Cart */}
+                <a href='#d' onClick={() => {
+                    setActiveNav('#d')
+                    handleClickedWithdrawal()
+                }} className={activeNav === '#d' ? 'active' : ''}><BiMoneyWithdraw />
+                    {/* <span onClick={() => { setActiveNav('#d') }} className={activeNav === '#d' ? 'active' : 'none'}>withdrawal</span> */}
+                </a>
+
+                {/* Profile */}
+                <a href='#c' onClick={() => {
+                    setActiveNav('#c')
+                    handleClickedSettings()
+                }} className={activeNav === '#c' ? 'active' : ''}><RiListSettingsLine />
+                    {/* <span onClick={() => { setActiveNav('#c') }} className={activeNav === '#c' ? 'active' : 'none'}>Profile</span> */}
+                </a>
+            </nav>
 
         </div>
     )

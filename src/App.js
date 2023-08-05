@@ -18,6 +18,9 @@ import VendorMenu from './components/Vendor Side/vendor menu/VendorMenu';
 import VendorMenuDrinks from './components/Vendor Side/vendor menu/VendorMenuDrinks';
 import VendorMenuSpecials from './components/Vendor Side/vendor menu/VendorSpecials';
 import VendorProfile from './components/Vendor Side/vendor profile/VendorProfile';
+import VendorWithdrawal from './components/Vendor Side/vendor withdrawal/VendorWithdrawal';
+import VendorDashboardNormal from './components/Vendor Side/vendor dashboard/VendorDashboardNormal';
+import VendorDashboardNight from './components/Vendor Side/vendor dashboard/VendorDashboardNight';
 
 function App() {
 
@@ -41,6 +44,9 @@ function App() {
         <Route path="/vendor-drink" component={VendorMenuDrinks} />
         <Route path="/vendor-special" component={VendorMenuSpecials} />
         <Route path="/vendor-profile" component={VendorProfile} />
+        <Route path="/vendor-withdrawal" component={VendorWithdrawal} />
+        <Route path="/vendor-normal" component={VendorDashboardNormal} />
+        <Route path="/vendor-night" component={VendorDashboardNight} />
         <Route path="/order" component={Order} /><Order />
       </Switch>
 

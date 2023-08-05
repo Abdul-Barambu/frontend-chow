@@ -135,7 +135,6 @@ const Login = () => {
                             </div>
                             <div className="text">
                                 <small className='welcome'>Welcome Back!</small>
-                                <p className="text-paragraph">Let’s continue with your 30 days free trial.</p>
                             </div>
                             <div className="form">
                                 <div className="mb-3">
