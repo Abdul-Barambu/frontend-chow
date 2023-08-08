@@ -49,11 +49,8 @@ const Login = () => {
             const userRole = localStorage.getItem("role")
 
             if (userRole === "vendor") {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'SUCCESS',
-                    text: 'Logged In Successfully, Click OK to continue'
-                });
+
+               
 
                 localStorage.setItem("Access-Token-vendor", response.data.val.acessToken)
                 localStorage.setItem("Refresh-Token-vendor", response.data.val.refreshToken)
@@ -78,11 +75,6 @@ const Login = () => {
 
                 history.push("/vendor-dashboard")
             } else if (userRole === "student") {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'SUCCESS',
-                    text: 'Logged In Successfully, Click OK to continue'
-                });
 
                 localStorage.setItem("Access-Token", response.data.val.acessToken)
                 localStorage.setItem("Refresh-Token", response.data.val.refreshToken)
@@ -91,11 +83,6 @@ const Login = () => {
 
                 history.push('/dashboard')
             }
-
-            // Status 200 OK
-            // if (response.status === 200) {
-
-            // }
 
             // AUTH ERROR
             else {

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Registration.css';
 import './success.css'
-import UserService from '../../Services/UserService'
 import Logo from '../../assets/logo.png'
 import Rec from '../../assets/Rectangle.png'
 import { AiOutlineEye } from 'react-icons/ai'

@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './Specials.css'
 import Img from '../../../../assets/special.png'
-import { AiOutlinePlus } from 'react-icons/ai'
-import { AiOutlineMinus } from 'react-icons/ai'
 import { BsCartDashFill } from 'react-icons/bs'
-import { CiUser } from 'react-icons/ci'
 import { CiSearch } from 'react-icons/ci'
-import { CiShoppingCart } from 'react-icons/ci'
 import { AiTwotoneHome } from 'react-icons/ai'
 import { BiUserCircle } from 'react-icons/bi'
-import Special from '../../../../assets/special.png'
 import { Grid } from '@mui/material'
 import { useHistory } from 'react-router-dom'
-import { Link } from 'react-router-dom/cjs/react-router-dom'
 import axios from 'axios'
 
 const Specials = ({ handleClick, setShow, size }) => {
@@ -85,25 +79,7 @@ const Specials = ({ handleClick, setShow, size }) => {
   return (
     <div>
       <div className="container-special">
-        {/* <div className="container-nav">
-          <div className="logo-img" onClick={() => setShow(true)}>
-            <img src={Img} alt="logo img" />
-          </div>
-          <div className="nav-icons">
-            <span className="nav-icon"><CiUser /></span>
-            <span className="nav-icon"><CiSearch /></span>
-            <span className="nav-icon" onClick={() => setShow(false)}><CiShoppingCart /></span>
-            <span className='cart-size'>{size}</span>
-          </div>
-          <div className='bottom-line'></div>
-          <div className="categories">
-            <span className="main" onClick={handleMainFood}>Main food</span>
-            <span className="specials" onClick={handleDrink}>Drinks</span>
-            <span className={specialColor} onClick={handleSpecialRed}>Specials</span>
-          </div>
-          <div className='bottom-line' style={{ bottom: '0' }}></div>
-        </div> */}
-
+        
         <div className="main-body">
           {
             loading ? (<Grid container spacing={2}>
@@ -116,11 +92,6 @@ const Specials = ({ handleClick, setShow, size }) => {
                         <img src={Img} alt="" />
                         <span className='special-name'>{item.food_item}
                           <span className="special-price">₦ {item.price}.00</span>
-                          {/* <span className="special-qty">
-                            <span className='special-arrow'><AiOutlineMinus onClick={() => setCountOne(countOne - 1)} /></span>
-                            <span className='special-count'>{countOne}</span>
-                            <span className='special-arrow'><AiOutlinePlus onClick={() => setCountOne(countOne + 1)} /></span>
-                          </span> */}
                         </span>
                       </div>
                       <div className="button-cart">

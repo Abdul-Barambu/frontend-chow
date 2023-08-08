@@ -12,7 +12,6 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { BiMoneyWithdraw } from 'react-icons/bi'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import axios from 'axios'
-import Swal from 'sweetalert2'
 
 const VendorDashboardNight = () => {
 
@@ -25,6 +24,7 @@ const VendorDashboardNight = () => {
     const [clickedSettings, setClickedSettings] = useState(false);
     const [clickedWithdrawal, setClickedWithdrawal] = useState(false);
     const [balances, setBalances] = useState([])
+    const [loading, setLoading] = useState(false)
     const [normal, setNormal] = useState([])
     const [night, setNight] = useState([])
     const [packOrders, setPackOrders] = useState([])
@@ -144,6 +144,7 @@ const VendorDashboardNight = () => {
         axios.get("https://api-chow.onrender.com/api/orders/today/night", { headers })
             .then(response => {
                 console.log(response)
+                setLoading(true)
                 setNight(response.data.data)
             })
             .catch(e => {
@@ -190,7 +191,7 @@ const VendorDashboardNight = () => {
             console.log("API Response:", response);
 
             // Toggle the button text based on the current text
-            const buttonText = serveButtonText === 'Serve' ? 'Confirmed' : 'Serve';
+            const buttonText = serveButtonText === 'Serve' ? 'Unserve' : 'Serve';
             setServeButton(prevButtonTexts => ({ ...prevButtonTexts, [_id]: buttonText }));
 
 
@@ -311,20 +312,38 @@ const VendorDashboardNight = () => {
                                                     <span className="order-text-menu">Customer</span>
                                                     <span className="order-text-menu">Order</span>
                                                     <span className="order-text-menu">Total Payment</span>
+                                                    <span className="order-text-menu">Time</span>
+                                                    <span className="order-text-menu">Status</span>
                                                 </div>
                                                 <div className='bottom-line-normal' style={{ bottom: '0' }}></div>
                                                 {
-                                                    night.map(night => (
-                                                        <div key={night._id} className="order-menu-list"
-                                                            onClick={() => { handlePacks(night._id) }}
-                                                            style={{ cursor: "pointer" }}>
-                                                            <span className="order-list-text">{night.firstname}</span>
-                                                            <span className="order-list-text">{night.orderId}</span>
-                                                            <span className="order-list-text">₦ {night.total}.00</span>
-                                                            <span className="order-list-text">{night.orderTime}</span>
+                                                    loading ? (
+                                                        <div className='order-list-container'>
+                                                            {
+                                                                night.length > 0 ? (
+                                                                    night.map(night => (
+                                                                        <div key={night._id} className="order-menu-list"
+                                                                            onClick={() => { handlePacks(night._id) }}
+                                                                            style={{ cursor: "pointer" }}>
+                                                                            <span className="order-list-text">{night.firstname}</span>
+                                                                            <span className="order-list-text">{night.orderId}</span>
+                                                                            <span className="order-list-text">₦ {night.total}.00</span>
+                                                                            <span className="order-list-text">{night.orderTime}</span>
+                                                                            <span className="order-list-text">{night.status}</span>
+                                                                        </div>
+                                                                    ))
+                                                                ) : (
+                                                                    <div className="no-orders-text">No orders yet.</div>
+                                                                )
+                                                            }
                                                         </div>
-                                                    ))
+                                                    ) : (
+                                                        <div className="ring-normal">Loading
+                                                            <span className='loading-ring-normal'></span>
+                                                        </div>
+                                                    )
                                                 }
+
                                             </div>
                                         </div>
                                     </div>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './MainFood.css'
 import Img from '../../../../assets/logo.png'
-import FoodImg from '../../../../assets/food-img.jpg'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { AiOutlineMinus } from 'react-icons/ai'
 import { BsCartDashFill } from 'react-icons/bs'
@@ -13,7 +12,6 @@ import { BiUserCircle } from 'react-icons/bi'
 import { Grid } from '@mui/material'
 import { useHistory } from 'react-router-dom'
 import { RiDeleteBin6Line } from 'react-icons/ri'
-import { MdOutlineCancel } from 'react-icons/md'
 import Payment from '../payment/Payment'
 
 

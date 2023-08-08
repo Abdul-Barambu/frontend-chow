@@ -27,6 +27,7 @@ const Dashboard = () => {
     const [activeNav, setActiveNav] = useState('#')
     const history = useHistory();
     const [loading, setLoading] = useState(false)
+    const [success, setSuccess] = useState(false)
 
 
 
@@ -45,12 +46,6 @@ const Dashboard = () => {
                 console.log(response.data.data)
                 setVendors(response.data.data)
                 setLoading(true)
-
-                // const vendorsArray = response.data.data;
-                // const itemIds = vendorsArray.map(item => item._id);
-                // localStorage.setItem('itemIds', JSON.stringify(itemIds));
-
-                // localStorage.setItem("id-5", response.data.data[4]._id)
             })
 
             .catch(e => {
@@ -67,6 +62,13 @@ const Dashboard = () => {
             .catch(e => {
                 console.log(e)
             })
+    }, [])
+
+    useEffect(() => {
+        setSuccess(true)
+        setTimeout(() => {
+            setSuccess(false)
+        }, 3000);
     }, [])
 
     const handleVendor = (_id) => {
@@ -87,6 +89,7 @@ const Dashboard = () => {
 
     return (
         <div className='dashboard-container'>
+           {success &&  <div className='success-login'>Logged in successfully</div>}
             <div className="nav">
                 <div className="logo-img">
                     <img src={Logo} alt="logo img" />

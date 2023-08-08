@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import "./VendorMenu.css"
 import Img from '../../../assets/logo.png'
-import Food from '../../../assets/drink-v.jpg'
 import { Grid } from '@mui/material'
 import { AiFillHome } from 'react-icons/ai'
 import { MdRestaurantMenu } from 'react-icons/md'
@@ -12,8 +11,6 @@ import { FaEdit } from 'react-icons/fa'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import axios from 'axios'
 import { MdOutlineCancel } from 'react-icons/md'
-import AddNewFood from './AddNewFood'
-import EditPrice from './EditPrice'
 import AddNewDrink from './AddNewDrink'
 import Swal from 'sweetalert2'
 
@@ -31,6 +28,7 @@ const VendorMenuDrinks = () => {
     const [mealsMenu, setMealsMenu] = useState([])
     const [clickedButtons, setClickedButtons] = useState([]);
     const [availabilityStatus, setAvailabilityStatus] = useState({});
+    const [loading, setLoading] = useState(false)
     const [dataLoaded, setDataLoaded] = useState(false);
     const [modal, setModal] = useState(false);
     const [modala, setModala] = useState(false);
@@ -38,16 +36,6 @@ const VendorMenuDrinks = () => {
     const [price, setPrice] = useState('')
     const [refresh, setRefresh] = useState(false)
     const history = useHistory();
-
-    // useEffect(() => {
-    //     const storedClickedButtons = JSON.parse(localStorage.getItem('clickedButtons') || '[]');
-    //     setClickedButtons(storedClickedButtons);
-    // }, []);
-
-    // Update local storage whenever the "clickedButtons" state changes.
-    // useEffect(() => {
-    //     localStorage.setItem('clickedButtons', JSON.stringify(clickedButtons));
-    // }, [clickedButtons]);
 
 
     // Auth
@@ -79,11 +67,6 @@ const VendorMenuDrinks = () => {
                             [foodId]: "Not available"
                         }));
 
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'SUCCESS',
-                            text: 'Drink successfully removed from meals menu, click ok to continue'
-                        });
                         setRefresh(prevState => !prevState)
                     })
                     .catch(e => {
@@ -117,11 +100,6 @@ const VendorMenuDrinks = () => {
                             [foodId]: "Available --"
                         }));
 
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'SUCCESS',
-                            text: 'Drinks successfully added to meals menu, click ok to continue'
-                        });
                         setRefresh(prevState => !prevState)
                     })
                     .catch(e => {
@@ -296,6 +274,7 @@ const VendorMenuDrinks = () => {
             try {
                 const foodResponse = await axios.get("https://api-chow.onrender.com/api/food/drinks");
                 console.log(foodResponse);
+                setLoading(true)
                 setDrinks(foodResponse.data.data);
                 setDataLoaded(true);
 
@@ -341,8 +320,8 @@ const VendorMenuDrinks = () => {
                 </div>
                 {/* Main body */}
                 <div className="vendor-dashboard-body">
-                   <Grid container spacing={3}>
-                   <Grid item lg={3} md={3} sm={3} padding={0} >
+                    <Grid container spacing={3}>
+                        <Grid item lg={3} md={3} sm={3} padding={0} >
                             <div className="nav-menu">
                                 <div className={coloredHome} onClick={handleClickedHome}>
                                     <div className="menu-item">
@@ -403,31 +382,39 @@ const VendorMenuDrinks = () => {
                                 </div>
                                 <div className='bottom-line-menu' style={{ bottom: '0' }}></div>
                                 <div className="ven-menu-foods">
-                                    <div className="row row-last">
-                                        <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                                            <div className="add-new-dish" onClick={handleAddDish}>
-                                                <span className="add-dish-icon">+</span>
-                                                <p className="add-dish-text">Add new drink</p>
-                                            </div>
-                                        </div>
-                                        {
-                                            drinks.map((drink, index) => (
-                                                <div key={drink.food_id} className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                                                    <div className="ven-menu-food" onClick={() => { handleAvailable(drink.food_id) }}>
-                                                        <img src={`https://api-chow.onrender.com/static/${drink.food_id}.jpg`} alt="Food img" className='ven-food-img' />
-                                                        <p className="ven-food-name">{drink.food_name}</p>
-                                                        <p className="ven-food-price">₦ {mealsMenu.find(menuMeal => menuMeal.food_id === drink.food_id)?.price}.00</p>
-                                                        <div className={availabilityStatus[drink.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
-                                                            <span className={availabilityStatus[drink.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
-                                                                {availabilityStatus[drink.food_id]}
-                                                            </span>
-                                                            {availabilityStatus[drink.food_id] === "Available --" ? <FaEdit className='edit-icon' onClick={(e) => { e.stopPropagation(); handleEdit(drink.food_id); }} /> : ""}
-                                                        </div>
+                                    {
+                                        loading ? (
+                                            <div className="row row-last order-list-container">
+                                                <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                                    <div className="add-new-dish" onClick={handleAddDish}>
+                                                        <span className="add-dish-icon">+</span>
+                                                        <p className="add-dish-text">Add new drink</p>
                                                     </div>
                                                 </div>
-                                            ))
-                                        }
-                                    </div>
+                                                {
+                                                    drinks.map((drink, index) => (
+                                                        <div key={drink.food_id} className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                                            <div className="ven-menu-food" onClick={() => { handleAvailable(drink.food_id) }}>
+                                                                <img src={`https://api-chow.onrender.com/static/${drink.food_id}.jpg`} alt="Food img" className='ven-food-img' />
+                                                                <p className="ven-food-name">{drink.food_name}</p>
+                                                                <p className="ven-food-price">₦ {mealsMenu.find(menuMeal => menuMeal.food_id === drink.food_id)?.price}.00</p>
+                                                                <div className={availabilityStatus[drink.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
+                                                                    <span className={availabilityStatus[drink.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
+                                                                        {availabilityStatus[drink.food_id]}
+                                                                    </span>
+                                                                    {availabilityStatus[drink.food_id] === "Available --" ? <FaEdit className='edit-icon' onClick={(e) => { e.stopPropagation(); handleEdit(drink.food_id); }} /> : ""}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                        ) : (
+                                            <div className="ring-all">Loading
+                                                <span className='loading-ring-all'></span>
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </Grid>

@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './MainFood.css'
-import Img from '../../../../assets/logo.png'
-import Meal from '../../../../assets/food.png'
-import { IoIosArrowUp } from 'react-icons/io'
-import { IoIosArrowDown } from 'react-icons/io'
 import { BsCartDashFill } from 'react-icons/bs'
-import { CiUser } from 'react-icons/ci'
 import { CiSearch } from 'react-icons/ci'
-import { CiShoppingCart } from 'react-icons/ci'
 import { AiTwotoneHome } from 'react-icons/ai'
 import { BiUserCircle } from 'react-icons/bi'
 import { Grid } from '@mui/material'
@@ -95,24 +89,7 @@ const MainFood = ({ handleClick, setShow, size }) => {
   return (
     <div>
       <div className="container-food">
-        {/* <div className="container-nav">
-          <div className="logo-img" onClick={() => setShow(false)}>
-            <img src={Img} alt="logo img" />
-          </div>
-          <div className="nav-icons">
-            <span className="nav-icon"><CiUser /></span>
-            <span className="nav-icon"><CiSearch /></span>
-            <span className="nav-icon"  onClick={() => setShow(false)}><CiShoppingCart /></span>
-            <span className='cart-size'>{size}</span>
-          </div>
-          <div className='bottom-line'></div>
-          <div className="categories">
-            <span className={mainColor} onClick={handleMainColor}>Main food</span>
-            <span className='drinks' onClick={handleDrink}>Drinks</span>
-            <span className="specials" onClick={handleSpecial}>Specials</span>
-          </div>
-          <div className='bottom-line' style={{ bottom: '0' }}></div>
-        </div> */}
+        
         <div className='main-body'>
           {
             loading ? (<Grid container spacing={2}>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import "./VendorMenu.css"
 import Img from '../../../assets/logo.png'
-import Food from '../../../assets/meat.jpeg'
 import { Grid } from '@mui/material'
 import { AiFillHome } from 'react-icons/ai'
 import { MdRestaurantMenu } from 'react-icons/md'
@@ -11,10 +10,8 @@ import { BiMoneyWithdraw } from 'react-icons/bi'
 import { FaEdit } from 'react-icons/fa'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import axios from 'axios'
-import AddNewFood from './AddNewFood'
 import { MdOutlineCancel } from 'react-icons/md'
 import Swal from 'sweetalert2'
-import EditPrice from './EditPrice'
 import AddNewSpecial from './AddNewSpecial'
 
 const VendorMenuSpecials = () => {
@@ -31,6 +28,7 @@ const VendorMenuSpecials = () => {
     const [mealsMenu, setMealsMenu] = useState([])
     const [clickedButtons, setClickedButtons] = useState([]);
     const [availabilityStatus, setAvailabilityStatus] = useState({});
+    const [loading, setLoading] = useState(false)
     const [dataLoaded, setDataLoaded] = useState(false);
     const [modal, setModal] = useState(false);
     const [modala, setModala] = useState(false);
@@ -66,11 +64,6 @@ const VendorMenuSpecials = () => {
                             [foodId]: "Not available"
                         }));
 
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'SUCCESS',
-                            text: 'Drink successfully removed from meals menu, click ok to continue'
-                        });
                     })
                     .catch(e => {
                         console.log(e);
@@ -103,11 +96,6 @@ const VendorMenuSpecials = () => {
                             [foodId]: "Available --"
                         }));
 
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'SUCCESS',
-                            text: 'Drinks successfully added to meals menu, click ok to continue'
-                        });
                     })
                     .catch(e => {
                         console.log(e);
@@ -284,6 +272,7 @@ const VendorMenuSpecials = () => {
             try {
                 const foodResponse = await axios.get("https://api-chow.onrender.com/api/food/specials");
                 console.log(foodResponse);
+                setLoading(true)
                 setSpecials(foodResponse.data.data);
                 setDataLoaded(true);
 
@@ -330,7 +319,7 @@ const VendorMenuSpecials = () => {
                 {/* Main body */}
                 <div className="vendor-dashboard-body">
                     <Grid container spacing={3}>
-                    <Grid item lg={3} md={3} sm={3} padding={0} >
+                        <Grid item lg={3} md={3} sm={3} padding={0} >
                             <div className="nav-menu">
                                 <div className={coloredHome} onClick={handleClickedHome}>
                                     <div className="menu-item">
@@ -391,31 +380,39 @@ const VendorMenuSpecials = () => {
                                 </div>
                                 <div className='bottom-line-menu' style={{ bottom: '0' }}></div>
                                 <div className="ven-menu-foods">
-                                    <div className="row row-last">
-                                        <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                                            <div className="add-new-dish" onClick={handleAddDish}>
-                                                <span className="add-dish-icon">+</span>
-                                                <p className="add-dish-text">Add new special</p>
-                                            </div>
-                                        </div>
-                                        {
-                                            specials.map((special, index) => (
-                                                <div key={special.food_id} className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                                                    <div className="ven-menu-food" onClick={() => { handleAvailable(special.food_id) }}>
-                                                        <img src={`https://api-chow.onrender.com/static/${special.food_id}.jpg`} alt="Food img" className='ven-food-img' />
-                                                        <p className="ven-food-name">{special.food_name}</p>
-                                                        <p className="ven-food-price">₦ {special.price}.00</p>
-                                                        <div className={availabilityStatus[special.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
-                                                            <span className={availabilityStatus[special.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
-                                                                {availabilityStatus[special.food_id]}
-                                                            </span>
-                                                            {availabilityStatus[special.food_id] === "Available --" ? <FaEdit className='edit-icon' onClick={(e) => { e.stopPropagation(); handleEdit(special.food_id); }} /> : ""}
-                                                        </div>
+                                    {
+                                        loading ? (
+                                            <div className="row row-last order-list-container">
+                                                <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                                    <div className="add-new-dish" onClick={handleAddDish}>
+                                                        <span className="add-dish-icon">+</span>
+                                                        <p className="add-dish-text">Add new special</p>
                                                     </div>
                                                 </div>
-                                            ))
-                                        }
-                                    </div>
+                                                {
+                                                    specials.map((special, index) => (
+                                                        <div key={special.food_id} className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                                            <div className="ven-menu-food" onClick={() => { handleAvailable(special.food_id) }}>
+                                                                <img src={`https://api-chow.onrender.com/static/${special.food_id}.jpg`} alt="Food img" className='ven-food-img' />
+                                                                <p className="ven-food-name">{special.food_name}</p>
+                                                                <p className="ven-food-price">₦ {special.price}.00</p>
+                                                                <div className={availabilityStatus[special.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
+                                                                    <span className={availabilityStatus[special.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
+                                                                        {availabilityStatus[special.food_id]}
+                                                                    </span>
+                                                                    {availabilityStatus[special.food_id] === "Available --" ? <FaEdit className='edit-icon' onClick={(e) => { e.stopPropagation(); handleEdit(special.food_id); }} /> : ""}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                        ) : (
+                                            <div className="ring-all">Loading
+                                                <span className='loading-ring-all'></span>
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </Grid>

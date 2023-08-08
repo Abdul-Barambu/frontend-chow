@@ -53,7 +53,7 @@ const ForgotPassword = () => {
                             <div className="text">
                                 <text className='F-password'>Forgot Password</text>
                                 <p className="text-paragraph">Please fill in the email field below,
-                                    we’ll send you an email to reset your password.
+                                    we'll send you an email to reset your password.
                                 </p>
                             </div>
                             <div className="form">

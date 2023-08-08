@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react'
 import MainFood from './MainFood/MainFood'
 import Drinks from './Drinks/Drinks'
 import './Order.css'
-import Cart from './Cart'
 import MainCart from './MainFood/MainCart'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min'
-import EmptyCart from '../Cart/EmptyCart'
 import Specials from './Specials/Specials'
 import NavBar from './nav/NavBar';
 

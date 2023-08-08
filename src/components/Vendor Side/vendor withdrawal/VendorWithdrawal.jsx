@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import "./VendorWithdrawal.css"
 import Img from '../../../assets/logo.png'
-import ProfileImg from '../../../assets/profile-img.png'
 import { Grid } from '@mui/material'
 import { AiFillHome } from 'react-icons/ai'
 import { MdRestaurantMenu } from 'react-icons/md'
@@ -10,7 +9,6 @@ import { RiListSettingsLine } from 'react-icons/ri'
 import { BiMoneyWithdraw } from 'react-icons/bi'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import axios from 'axios'
-import Swal from 'sweetalert2'
 
 const VendorWithdrawal = () => {
 

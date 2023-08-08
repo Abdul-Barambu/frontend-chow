@@ -8,9 +8,6 @@ import { AiTwotoneHome } from 'react-icons/ai'
 import { BiUserCircle } from 'react-icons/bi'
 import { BsCartDashFill } from 'react-icons/bs'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import MainFood from '../MainFood/MainFood'
-import Drinks from '../Drinks/Drinks'
-import Specials from '../Specials/Specials'
 
 const NavBar = ({ size, handleClick, setShow }) => {
 
@@ -81,7 +78,6 @@ const NavBar = ({ size, handleClick, setShow }) => {
           <div className='bottom-line' style={{ bottom: '0' }}></div>
         </div>
 
-        {/* <MainFood handleClick={handleClick}/> */}
 
         {/* Nav */}
         <nav>

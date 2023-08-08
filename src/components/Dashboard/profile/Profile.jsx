@@ -241,33 +241,39 @@ const Profile = () => {
                                         <div className="order-line" style={{ borderBottom: '1.5px solid black' }}></div>
 
                                         {
-                                            loading ? (<div>{
-                                                orderHistory.map((order, index) => (
-                                                    <div key={index} className="order-history">
+                                            loading ? (
+                                                <div className='order-list-container'>
+                                                    {
+                                                        orderHistory.map((order, index) => (
+                                                            <div key={index} className="order-history">
 
-                                                        {order.packs && order.packs.length > 0 ? (
-                                                            <div>
-                                                                {order.packs[0].items.map((item, itemIndex) => (
-                                                                    <div key={itemIndex} className='div-flex'>
-                                                                        <span className='detail-text'>Orders #{order.orderId}</span>
-                                                                        <span className='detail-text-menu'>{item.name}</span>
-                                                                        <span className='detail-text-price'>₦ {item.price}</span>
-                                                                        <span className={`${order.status === 'served' ? 'detail-text-status-green' : 'detail-text-status'}`}>
-                                                                            {order.status}
-                                                                        </span>
+                                                                {order.packs && order.packs.length > 0 ? (
+                                                                    <div>
+                                                                        {order.packs[0].items.map((item, itemIndex) => (
+                                                                            <div key={itemIndex} className='div-flex'>
+                                                                                <span className='detail-text'>Orders #{order.orderId}</span>
+                                                                                <span className='detail-text-menu'>{item.name}</span>
+                                                                                <span className='detail-text-price'>₦ {item.price}</span>
+                                                                                <span className={`${order.status === 'served' ? 'detail-text-status-green' : 'detail-text-status'}`}>
+                                                                                    {order.status}
+                                                                                </span>
+                                                                            </div>
+                                                                        ))}
                                                                     </div>
-                                                                ))}
+                                                                ) : (
+                                                                    <p>No items in this order.</p>
+                                                                )}
+
+
                                                             </div>
-                                                        ) : (
-                                                            <p>No items in this order.</p>
-                                                        )}
-
-
-                                                    </div>
-                                                ))
-                                            }</div>) : (<div class="ring-profile">Loading
-                                                <span className='loading-ring-profile'></span>
-                                            </div>)
+                                                        ))
+                                                    }
+                                                </div>
+                                            ) : (
+                                                <div class="ring-profile">Loading
+                                                    <span className='loading-ring-profile'></span>
+                                                </div>
+                                            )
                                         }
                                     </div>
                                 </div>

@@ -8,7 +8,6 @@ import { BsDashCircleDotted } from 'react-icons/bs'
 import { RiListSettingsLine } from 'react-icons/ri'
 import { TbCurrencyNaira } from 'react-icons/tb'
 import { CiBookmarkMinus } from 'react-icons/ci'
-import { MdOutlineCancel } from 'react-icons/md'
 import { BiMoneyWithdraw } from 'react-icons/bi'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import axios from 'axios'
@@ -25,6 +24,7 @@ const VendorDashboard = () => {
     const [clickedSettings, setClickedSettings] = useState(false);
     const [activeNav, setActiveNav] = useState('')
     const [clickedWithdrawal, setClickedWithdrawal] = useState(false);
+    const [success, setSuccess] = useState(false)
     const [balances, setBalances] = useState([])
     const history = useHistory();
 
@@ -143,8 +143,27 @@ const VendorDashboard = () => {
         history.push("/vendor-night")
     }
 
+    useEffect(() => {
+        setSuccess(true)
+        setTimeout(() => {
+            setSuccess(false)
+        }, 3000);
+    }, [])
+
+    const out = () => {
+        localStorage.removeItem("Refresh-Token-vendor");
+        localStorage.removeItem("Access-Token-vendor");
+        Swal.fire({
+            icon: 'success',
+            title: 'SUCCESS',
+            text: 'Logged Out Successfully'
+        });
+        history.push("/")
+    }
+
     return (
         <div>
+            {success && <div className='success-login'>Logged in successfully</div>}
             <div className='container-vendor-dashboard'>
                 <div className="container-vendor-navbar">
                     <div className="logo-img-vendor">
@@ -207,9 +226,14 @@ const VendorDashboard = () => {
                         </Grid>
                         <Grid item lg={9} md={9} sm={9} paddingLeft={1.6}>
                             <div className="vendor-dashboard">
-                                <div className="dashboard-text">
-                                    <span className="dash-text">Dashboard</span> <br />
-                                    <span className="profile-date">{date} - {time}</span>
+                                <div className="dash-out">
+                                    <div className="dashboard-text">
+                                        <span className="dash-text">Dashboard</span> <br />
+                                        <span className="profile-date">{date} - {time}</span>
+                                    </div>
+                                    <div className="profile-vendor-logout">
+                                        <button className="logout-ven-btn" onClick={out}>Logout</button>
+                                    </div>
                                 </div>
                                 <div className='bottom-line-dashboard' style={{ bottom: '0' }}></div>
                                 <div className="cart-container">

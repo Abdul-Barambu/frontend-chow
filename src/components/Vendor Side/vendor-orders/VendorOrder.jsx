@@ -9,6 +9,8 @@ import { RiListSettingsLine } from 'react-icons/ri'
 import { BiMoneyWithdraw } from 'react-icons/bi'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import { MdOutlineCancel } from "react-icons/md"
+import { BsChevronLeft } from "react-icons/bs"
+import { BsChevronRight } from "react-icons/bs"
 import axios from 'axios'
 
 const VendorOrder = () => {
@@ -22,9 +24,11 @@ const VendorOrder = () => {
     const [clickedMenu, setClickedMenu] = useState(false);
     const [clickedSettings, setClickedSettings] = useState(false);
     const [clickedWithdrawal, setClickedWithdrawal] = useState(false);
+    const [loading, setLoading] = useState(false)
     const [orders, setOrders] = useState([])
     const [modal, setModal] = useState(false)
     const [packOrders, setPackOrders] = useState([])
+    const [pageNumber, setPageNumber] = useState(1);
     const history = useHistory();
 
 
@@ -116,15 +120,74 @@ const VendorOrder = () => {
 
 
     // Get All Orders
-    useEffect(() => {
-        axios.get("https://api-chow.onrender.com/api/orders", { headers })
+    // useEffect(() => {
+    //     axios.get(`https://api-chow.onrender.com/api/orders?page_number=1`, { headers })
+    //         .then(response => {
+    //             console.log(response.data.data.orders)
+    //             console.log(response.data.data.page_number)
+    //             console.log(response.data.data.total_pages)
+    //             localStorage.setItem("page-number", response.data.data.page_number)
+    //             localStorage.setItem("total-pages", response.data.data.total_pages)
+    //             setLoading(true)
+    //             setOrders(response.data.data.orders)
+    //         }).catch(e => {
+    //             console.log(e)
+    //             setLoading(false)
+    //         })
+    // }, [])
+
+    // const handleNext = (e) => {
+    //     e.preventDefault()
+    //     axios.get(`https://api-chow.onrender.com/api/orders?page_number=2`, { headers })
+    //     .then(response => {
+    //         console.log(response.data.data.orders)
+    //         localStorage.setItem("page-number", response.data.data.page_number)
+    //         localStorage.setItem("total-pages", response.data.data.total_pages)
+    //         setLoading(true)
+    //         setOrders(response.data.data.orders)
+    //     }).catch(e => {
+    //         console.log(e)
+    //         setLoading(false)
+    //     })
+    // }
+
+
+    // Fetch orders based on the given page number
+    const fetchOrders = (page) => {
+        axios.get(`https://api-chow.onrender.com/api/orders?page_number=${page}`, { headers })
             .then(response => {
-                console.log(response.data.data)
-                setOrders(response.data.data)
-            }).catch(e => {
-                console.log(e)
+                console.log(response.data.data.orders);
+                console.log(response.data.data.page_number);
+                console.log(response.data.data.total_pages);
+                setLoading(true);
+                setOrders(response.data.data.orders);
+                setPageNumber(response.data.data.page_number); // Update the current page number
+                localStorage.setItem("page-number", response.data.data.page_number);
+                localStorage.setItem("total-pages", response.data.data.total_pages);
             })
-    }, [])
+            .catch(e => {
+                console.log(e);
+                setLoading(false);
+            });
+    };
+
+    useEffect(() => {
+        fetchOrders(pageNumber); // Fetch orders for the initial page
+    }, [pageNumber]); // Fetch orders whenever the page number changes
+
+    const handleNext = (e) => {
+        e.preventDefault();
+        const nextPage = pageNumber + 1;
+        fetchOrders(nextPage); // Fetch orders for the next page
+    };
+
+    const handlePrevious = (e) => {
+        e.preventDefault();
+        const nextPage = pageNumber - 1;
+        fetchOrders(nextPage); // Fetch orders for the next page
+    };
+
+
 
     // show packs
     const handlePacks = (_id) => {
@@ -144,7 +207,8 @@ const VendorOrder = () => {
         setModal(false)
     }
 
-
+    const pagenumber = localStorage.getItem("page-number")
+    const totalPages = localStorage.getItem("total-pages")
 
     return (
         <div>
@@ -229,19 +293,45 @@ const VendorOrder = () => {
                                                 </div>
                                                 <div className='bottom-line-normal' style={{ bottom: '0' }}></div>
                                                 {
-                                                    orders.map(order => (
-                                                        <div key={order._id} className="order-menu-list"
-                                                            onClick={() => handlePacks(order.orderId)}
-                                                            style={{ cursor: "pointer" }}>
-                                                            <span className="order-list-text">{order.firstname}</span>
-                                                            <span className="order-list-text">{order.orderId}</span>
-                                                            <span className="order-list-text">₦ {order.total}</span>
-                                                            <span className="order-list-text">{order.orderTime}</span>
+                                                    loading ? (
+                                                        <div>
+                                                            {
+                                                                orders.map(order => (
+                                                                    <div key={order._id} className="order-menu-list"
+                                                                        onClick={() => handlePacks(order.orderId)}
+                                                                        style={{ cursor: "pointer" }}>
+                                                                        <span className="order-list-text">{order.firstname}</span>
+                                                                        <span className="order-list-text">{order.orderId}</span>
+                                                                        <span className="order-list-text">₦ {order.total}</span>
+                                                                        <span className="order-list-text">{order.orderTime}</span>
+                                                                    </div>
+
+                                                                ))
+                                                            }
                                                         </div>
-                                                    ))
+                                                    ) : (
+                                                        <div className="ring-all">Loading
+                                                            <span className='loading-ring-all'></span>
+                                                        </div>
+                                                    )
                                                 }
 
 
+                                                <div className='chev-icons'>
+                                                    <span
+                                                        className={`chev-left ${pageNumber <= 1 ? 'disabled' : ''}`}
+                                                        onClick={pageNumber <= 1 ? null : handlePrevious}
+                                                    >
+                                                        <BsChevronLeft />
+                                                    </span>
+                                                    <span className='page-text'>Page {pagenumber} of {totalPages}</span>
+                                                    <span
+                                                        className={`chev-right ${pageNumber >= totalPages ? 'disabled' : ''}`}
+                                                        onClick={pageNumber >= totalPages ? null : handleNext}
+                                                    >
+                                                        <BsChevronRight />
+                                                    </span>
+                                                </div>
 
                                             </div>
                                         </div>
