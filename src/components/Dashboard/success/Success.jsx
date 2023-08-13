@@ -78,17 +78,31 @@ const Success = () => {
 
     }
 
+    const handleCallbackProfile = (e) => {
+        e.preventDefault()
+
+        history.push("/profile")
+
+
+    }
+    const handleCallbackorder = (e) => {
+        e.preventDefault()
+
+        history.push("/order")
+
+
+    }
+
     return (
         <div>
             <div className="profile-container">
                 <div className="profile-nav-bar">
                     <div className="profile-logo-img" >
-                        <img src={Img} alt="logo img" style={{ cursor: 'pointer' }} />
+                        <img src={Img} alt="logo img" style={{ cursor: 'pointer' }} onClick={handleCallback} />
                     </div>
                     <div className="nav-icons">
-                        <span className="nav-icon"><CiUser /></span>
-                        <span className="nav-icon"><CiSearch /></span>
-                        <span className="nav-icon" ><CiShoppingCart /></span>
+                        <span className="nav-icon" onClick={handleCallbackProfile}><CiUser /></span>
+                        <span className="nav-icon" onClick={handleCallbackorder} ><CiShoppingCart /></span>
                     </div>
                     <div className='bottom-line' style={{ bottom: '0' }}></div>
                 </div>

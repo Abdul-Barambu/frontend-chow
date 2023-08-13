@@ -1,42 +1,43 @@
 import React, { useState, useEffect } from 'react'
 import "./VendorMenu.css"
-import "./AddNewFood.css"
 import Img from '../../../assets/logo.png'
 import { Grid } from '@mui/material'
 import { AiFillHome } from 'react-icons/ai'
 import { MdRestaurantMenu } from 'react-icons/md'
 import { BsDashCircleDotted } from 'react-icons/bs'
 import { RiListSettingsLine } from 'react-icons/ri'
+import { BiMoneyWithdraw } from 'react-icons/bi'
 import { FaEdit } from 'react-icons/fa'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import axios from 'axios'
-import AddNewFood from './AddNewFood'
 import { MdOutlineCancel } from 'react-icons/md'
+import AddNewDrink from './AddNewDrink'
 import Swal from 'sweetalert2'
-import { BiMoneyWithdraw } from 'react-icons/bi'
+import AddNewSide from './AddNewSide'
 
-const VendorMenu = () => {
+const VendorSides = () => {
 
     const [clickedHome, setClickedHome] = useState(false);
-    const [clickedOrder, setClickedOrder] = useState(false);
     const [activeNav, setActiveNav] = useState('')
+    const [clickedOrder, setClickedOrder] = useState(false);
     const [clickedMenu, setClickedMenu] = useState(false);
     const [clickedSettings, setClickedSettings] = useState(false);
     const [clickedWithdrawal, setClickedWithdrawal] = useState(false);
     const [available, setAvailable] = useState(false)
     const [text, setText] = useState(false)
-    const [meals, setMeals] = useState([])
+    const [drinks, setDrinks] = useState([])
     const [mealsMenu, setMealsMenu] = useState([])
     const [clickedButtons, setClickedButtons] = useState([]);
-    const [loading, setLoading] = useState(false)
     const [availabilityStatus, setAvailabilityStatus] = useState({});
-    const [dataLoaded, setDataLoaded] = useState(false)
-    const [modal, setModal] = useState(false)
-    const [modala, setModala] = useState(false)
-    const [price, setPrice] = useState('')
+    const [loading, setLoading] = useState(false)
+    const [dataLoaded, setDataLoaded] = useState(false);
+    const [modal, setModal] = useState(false);
+    const [modala, setModala] = useState(false);
     const [menuIdToUpdate, setMenuIdToUpdate] = useState(null);
-    const [refresh, setRefresh] = useState(false);
+    const [price, setPrice] = useState('')
+    const [refresh, setRefresh] = useState(false)
     const history = useHistory();
+
 
     // Auth
     const accessToken = localStorage.getItem("Access-Token-vendor");
@@ -46,15 +47,121 @@ const VendorMenu = () => {
     };
 
 
-    const refreshToken = localStorage.getItem("Refresh-Token");
 
-    const headersRef = {
-        Cookies: `refreshToken=${refreshToken}`,
+    const handleAvailable = (foodId) => {
+        // Check the current status of the food
+        const currentStatus = availabilityStatus[foodId];
+
+        if (currentStatus === "Available --") {
+            // Food is available, perform the API call to delete the food
+            const mealToUpdate = mealsMenu.find(menuMeal => menuMeal.food_id === foodId);
+            if (mealToUpdate) {
+                const menu_id = mealToUpdate._id;
+
+                axios.delete(`https://api-chow.onrender.com/api/vendors/menu/sides/${menu_id}`, { headers })
+                    .then(response => {
+                        console.log(response);
+
+                        // Food is deleted, set the availability status to "Not available"
+                        setAvailabilityStatus(prevStatus => ({
+                            ...prevStatus,
+                            [foodId]: "Not available"
+                        }));
+
+                        setRefresh(prevState => !prevState)
+                    })
+                    .catch(e => {
+                        console.log(e);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ERROR',
+                            text: 'Failed to remove side from meals menu'
+                        });
+                    });
+            }
+        } else {
+            // Food is not available, perform the API call to add the food
+            const food_meal_id = drinks.find(drink => drink.food_id === foodId);
+            if (food_meal_id) {
+                const food_item_id = food_meal_id.food_id;
+                const price = food_meal_id.price;
+                console.log(price)
+                console.log(food_item_id);
+
+                axios.post("https://api-chow.onrender.com/api/vendors/menu/sides", {
+                    food_item_id: food_item_id,
+                    price: price
+                }, { headers })
+                    .then(response => {
+                        console.log(response);
+
+                        // Food is added, set the availability status to "Available"
+                        setAvailabilityStatus(prevStatus => ({
+                            ...prevStatus,
+                            [foodId]: "Available --"
+                        }));
+
+                        setRefresh(prevState => !prevState)
+                    })
+                    .catch(e => {
+                        console.log(e);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ERROR',
+                            text: 'Failed to add side to meals menu'
+                        });
+                    });
+            }
+        }
     };
 
-    const refreshPage = () => {
-        setRefresh(!refresh);
+
+    const handleEdit = (foodId) => {
+        // Find the corresponding meal from mealsMenu using the food_id
+        const mealToUpdate = mealsMenu.find(menuMeal => menuMeal.food_id === foodId);
+        if (mealToUpdate) {
+            const menuId = mealToUpdate._id;
+            localStorage.setItem("meal_id", menuId);
+            setMenuIdToUpdate(menuId); // Set the _id to be used when updating the price
+            // setPrice(mealToUpdate.price); // Set the current price in the input field
+            setModala(true); // Open the modal
+        }
     };
+
+
+    const handleCancel = () => {
+        setModala(false)
+    }
+
+    // get the food _id from local storage
+    const menu_id = localStorage.getItem("meal_id")
+
+    // Call the update API
+    const handleUpdatePrice = (e) => {
+        e.preventDefault()
+        axios.patch("https://api-chow.onrender.com/api/vendor/menu/update/sides", {
+            menu_id: menu_id,
+            price: price
+        }, { headers })
+            .then(response => {
+                console.log(response)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'SUCCESS',
+                    text: 'Price updated successfully, click OK to continue'
+                });
+                setRefresh(prevState => !prevState)
+            })
+            .catch(e => {
+                console.log(e)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERROR',
+                    text: 'An error occured...'
+                });
+            })
+    }
+
 
 
     let coloredHome = [];
@@ -113,7 +220,6 @@ const VendorMenu = () => {
         setClickedOrder(false)
         setClickedMenu(false)
         setClickedSettings(false)
-        setClickedWithdrawal(false)
         history.push("/vendor-dashboard")
     }
     const handleClickedOrder = () => {
@@ -121,7 +227,6 @@ const VendorMenu = () => {
         setClickedOrder(true)
         setClickedMenu(false)
         setClickedSettings(false)
-        setClickedWithdrawal(false)
         history.push("/vendor-order")
     }
     const handleClickedMenu = () => {
@@ -129,14 +234,12 @@ const VendorMenu = () => {
         setClickedOrder(false)
         setClickedMenu(true)
         setClickedSettings(false)
-        setClickedWithdrawal(false)
     }
     const handleClickedSettings = () => {
         setClickedHome(false)
         setClickedOrder(false)
         setClickedMenu(false)
         setClickedSettings(true)
-        setClickedWithdrawal(false)
         history.push("/vendor-profile")
     }
 
@@ -154,136 +257,15 @@ const VendorMenu = () => {
     }, [])
 
 
-    const handleAvailable = (foodId) => {
-        // Check the current status of the food
-        const currentStatus = availabilityStatus[foodId];
-
-        if (currentStatus === "Available --") {
-            // Food is available, perform the API call to delete the food
-            const mealToUpdate = mealsMenu.find(menuMeal => menuMeal.food_id === foodId);
-            if (mealToUpdate) {
-                const menu_id = mealToUpdate._id;
-                console.log(menu_id)
-
-                axios.delete(`https://api-chow.onrender.com/api/vendors/menu/meals/${menu_id}`, { headers })
-                    .then(response => {
-                        console.log(response);
-
-                        // Food is deleted, set the availability status to "Not available"
-                        setAvailabilityStatus(prevStatus => ({
-                            ...prevStatus,
-                            [foodId]: "Not available"
-                        }));
-
-                        setRefresh(prevState => !prevState)
-                    })
-                    .catch(e => {
-                        console.log(e);
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'ERROR',
-                            text: 'Failed to remove food from meals menu'
-                        });
-                    });
-            }
-        } else {
-            // Food is not available, perform the API call to add the food
-            const food_meal_id = meals.find(meal => meal.food_id === foodId);
-            if (food_meal_id) {
-                const food_item_id = food_meal_id.food_id;
-                const price = food_meal_id.price;
-                console.log(price)
-                console.log(food_item_id);
-
-                axios.post("https://api-chow.onrender.com/api/vendors/menu/meals", {
-                    food_item_id: food_item_id,
-                    price: price
-                }, { headers })
-                    .then(response => {
-                        console.log(response);
-
-                        // Food is added, set the availability status to "Available"
-                        setAvailabilityStatus(prevStatus => ({
-                            ...prevStatus,
-                            [foodId]: "Available --"
-                        }));
-
-                        setRefresh(prevState => !prevState)
-                    })
-                    .catch(e => {
-                        console.log(e);
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'ERROR',
-                            text: 'Failed to add food to meals menu'
-                        });
-                    });
-            }
-        }
-    };
-
-
-    const handleEdit = (foodId) => {
-        // Find the corresponding meal from mealsMenu using the food_id
-        const mealToUpdate = mealsMenu.find(menuMeal => menuMeal.food_id === foodId);
-        if (mealToUpdate) {
-            const menuId = mealToUpdate._id;
-            localStorage.setItem("meal_id", menuId);
-            setMenuIdToUpdate(menuId); // Set the _id to be used when updating the price
-            // setPrice(mealToUpdate.price); // Set the current price in the input field
-            setModala(true); // Open the modal
-        }
-    };
-
-    const handleCancel = () => {
-        setModala(false)
-    }
-
-    // get the food _id from local storage
-    const menu_id = localStorage.getItem("meal_id")
-
-    // Call the update API
-    const handleUpdatePrice = (e) => {
-        e.preventDefault()
-        axios.patch("https://api-chow.onrender.com/api/vendor/menu/update/meals", {
-            menu_id: menu_id,
-            price: price
-        }, { headers })
-            .then(response => {
-                console.log(response)
-                Swal.fire({
-                    icon: 'success',
-                    title: 'SUCCESS',
-                    text: 'Price updated successfully, click ok to continue'
-                });
-                setRefresh(prevState => !prevState)
-                setModala(false)
-            })
-            .catch(e => {
-                console.log(e)
-                Swal.fire({
-                    icon: 'error',
-                    title: 'ERROR',
-                    text: 'An error occured...'
-                });
-            })
-    }
-
-
-
-    const handleVendorDrink = () => {
-        history.push("/vendor-drink")
-    }
-
-    const handleVendorSide = () => {
-        history.push("/vendor-side")
+    const handleVendorMenu = () => {
+        history.push("/vendor-menu")
     }
 
     const handleVendorSpecial = () => {
         history.push("/vendor-special")
     }
 
-    // Meal API
+    // Drinks
 
     const vendorId = localStorage.getItem("Vendor-Id")
 
@@ -291,20 +273,21 @@ const VendorMenu = () => {
         // Food API
         async function fetchData() {
             try {
-                const foodResponse = await axios.get("https://api-chow.onrender.com/api/food/meals");
+                const foodResponse = await axios.get("https://api-chow.onrender.com/api/food/sides");
                 console.log(foodResponse);
                 setLoading(true)
-                setMeals(foodResponse.data.data);
+                setDrinks(foodResponse.data.data);
                 setDataLoaded(true);
 
-                const menuResponse = await axios.get(`https://api-chow.onrender.com/api/vendors/menu/meals/${vendorId}`);
-                setMealsMenu(menuResponse.data.data);
+                // Menu
+                const menuResponse = await axios.get(`https://api-chow.onrender.com/api/vendors/menu/sides/${vendorId}`);
                 console.log(menuResponse);
-                const menuMeals = menuResponse.data.data;
+                setMealsMenu(menuResponse.data.data)
+                const menudrinks = menuResponse.data.data;
 
                 // Extract food_ids from both API responses
-                const foodApiFoodIds = foodResponse.data.data.map(meal => meal.food_id);
-                const menuApiFoodIds = menuMeals.map(menuMeal => menuMeal.food_id);
+                const foodApiFoodIds = foodResponse.data.data.map(drink => drink.food_id);
+                const menuApiFoodIds = menudrinks.map(menudrink => menudrink.food_id);
 
                 // Create an object with food_id as key and availability status as value
                 const statusObject = {};
@@ -322,14 +305,13 @@ const VendorMenu = () => {
 
     }, [refresh])
 
+    // Modal
     const handleAddDish = () => {
         setModal(!modal)
     }
 
-    const styling = {
-        container: {
-            paddingLeft: 0
-        }
+    const handleVendorDrink = () => {
+        history.push("/vendor-drink")
     }
 
 
@@ -345,7 +327,7 @@ const VendorMenu = () => {
                 {/* Main body */}
                 <div className="vendor-dashboard-body">
                     <Grid container spacing={3}>
-                        <Grid item lg={3} md={3} sm={3} >
+                        <Grid item lg={3} md={3} sm={3} padding={0} >
                             <div className="nav-menu">
                                 <div className={coloredHome} onClick={handleClickedHome}>
                                     <div className="menu-item">
@@ -394,60 +376,51 @@ const VendorMenu = () => {
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item lg={9} md={9} sm={9} xs={12} sx={styling.container}>
+                        <Grid item lg={9} md={9} sm={9} xs={12}>
                             <div className="vendor-menu-body">
                                 <div className="ven-menu-text">
                                     <h2 className="ven-text">Menu</h2>
                                     <div className="ven-menu-categories">
-                                        <span className="ven-category">Main Foods</span>
-                                        <span className="ven-category" onClick={handleVendorSide}>Sides</span>
+                                        <span className="ven-category" onClick={handleVendorMenu}>Main Foods</span>
+                                        <span className="ven-category">Sides</span>
                                         <span className="ven-category" onClick={handleVendorDrink}>Drinks</span>
                                         <span className="ven-category" onClick={handleVendorSpecial}>Specials</span>
                                     </div>
                                 </div>
                                 <div className='bottom-line-menu' style={{ bottom: '0' }}></div>
                                 <div className="ven-menu-foods">
-
-                                    {/* TODO: change icon to top */}
                                     {
                                         loading ? (
                                             <div className="row row-last order-list-container">
                                                 <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
                                                     <div className="add-new-dish" onClick={handleAddDish}>
                                                         <span className="add-dish-icon">+</span>
-                                                        <p className="add-dish-text">Add new dish</p>
+                                                        <p className="add-dish-text">Add new side</p>
                                                     </div>
                                                 </div>
-
                                                 {
-
-                                                    meals.map((meal, index) => (
-                                                        <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6" key={meal.food_id}>
-                                                            <div className="ven-menu-food">
-                                                                <img src={`https://api-chow.onrender.com/static/${meal.food_id}.jpg`} alt="Food img" className='ven-food-img' />
-                                                                <p className="ven-food-name">{meal.food_name}</p>
-                                                                <p className="ven-food-price">₦ {mealsMenu.find(menuMeal => menuMeal.food_id === meal.food_id)?.price}.00</p>
-                                                                <div
-                                                                    className={availabilityStatus[meal.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}
-                                                                    onClick={() => handleAvailable(meal.food_id)}
-                                                                >
-                                                                    <span
-                                                                        className={availabilityStatus[meal.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}
-                                                                    >
-                                                                        {availabilityStatus[meal.food_id]}
+                                                    drinks.map((drink, index) => (
+                                                        <div key={drink.food_id} className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                                            <div className="ven-menu-food" onClick={() => { handleAvailable(drink.food_id) }}>
+                                                                <img src={`https://api-chow.onrender.com/static/${drink.food_id}.jpg`} alt="Food img" className='ven-food-img' />
+                                                                <p className="ven-food-name">{drink.food_name}</p>
+                                                                <p className="ven-food-price">₦ {mealsMenu.find(menuMeal => menuMeal.food_id === drink.food_id)?.price}.00</p>
+                                                                <div className={availabilityStatus[drink.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
+                                                                    <span className={availabilityStatus[drink.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
+                                                                        {availabilityStatus[drink.food_id]}
                                                                     </span>
-                                                                    {availabilityStatus[meal.food_id] === "Available --" ? (
-                                                                        <FaEdit className='edit-icon' onClick={(e) => { e.stopPropagation(); handleEdit(meal.food_id); }} />
-                                                                    ) : ""}
+                                                                    {availabilityStatus[drink.food_id] === "Available --" ? <FaEdit className='edit-icon' onClick={(e) => { e.stopPropagation(); handleEdit(drink.food_id); }} /> : ""}
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     ))
                                                 }
                                             </div>
-                                        ) : (<div className="ring-all">Loading
-                                            <span className='loading-ring-all'></span>
-                                        </div>)
+                                        ) : (
+                                            <div className="ring-all">Loading
+                                                <span className='loading-ring-all'></span>
+                                            </div>
+                                        )
                                     }
                                 </div>
                             </div>
@@ -456,14 +429,13 @@ const VendorMenu = () => {
                 </div>
             </div>
 
-
             {/* Add new Dish */}
             {
                 modal && (
                     <div className='center-add'>
                         <div className="is-add"></div>
                         <div className="center-content-add">
-                            <AddNewFood handleAddDish={handleAddDish} />
+                            <AddNewSide handleAddDish={handleAddDish} />
                         </div>
 
                     </div>
@@ -495,6 +467,7 @@ const VendorMenu = () => {
                                             </div>
                                             <button type='Submit' className='add-btn'>Save</button>
                                         </div>
+
                                     </form>
                                 </div>
                             </div>
@@ -551,4 +524,4 @@ const VendorMenu = () => {
     )
 }
 
-export default VendorMenu
+export default VendorSides

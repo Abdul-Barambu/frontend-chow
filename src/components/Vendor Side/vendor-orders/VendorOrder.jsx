@@ -119,39 +119,6 @@ const VendorOrder = () => {
     }, [])
 
 
-    // Get All Orders
-    // useEffect(() => {
-    //     axios.get(`https://api-chow.onrender.com/api/orders?page_number=1`, { headers })
-    //         .then(response => {
-    //             console.log(response.data.data.orders)
-    //             console.log(response.data.data.page_number)
-    //             console.log(response.data.data.total_pages)
-    //             localStorage.setItem("page-number", response.data.data.page_number)
-    //             localStorage.setItem("total-pages", response.data.data.total_pages)
-    //             setLoading(true)
-    //             setOrders(response.data.data.orders)
-    //         }).catch(e => {
-    //             console.log(e)
-    //             setLoading(false)
-    //         })
-    // }, [])
-
-    // const handleNext = (e) => {
-    //     e.preventDefault()
-    //     axios.get(`https://api-chow.onrender.com/api/orders?page_number=2`, { headers })
-    //     .then(response => {
-    //         console.log(response.data.data.orders)
-    //         localStorage.setItem("page-number", response.data.data.page_number)
-    //         localStorage.setItem("total-pages", response.data.data.total_pages)
-    //         setLoading(true)
-    //         setOrders(response.data.data.orders)
-    //     }).catch(e => {
-    //         console.log(e)
-    //         setLoading(false)
-    //     })
-    // }
-
-
     // Fetch orders based on the given page number
     const fetchOrders = (page) => {
         axios.get(`https://api-chow.onrender.com/api/orders?page_number=${page}`, { headers })
@@ -300,7 +267,7 @@ const VendorOrder = () => {
                                                                     <div key={order._id} className="order-menu-list"
                                                                         onClick={() => handlePacks(order.orderId)}
                                                                         style={{ cursor: "pointer" }}>
-                                                                        <span className="order-list-text">{order.firstname}</span>
+                                                                        <span className="order-list-text">{`${order.firstname} ${order.lastname}`}</span>
                                                                         <span className="order-list-text">{order.orderId}</span>
                                                                         <span className="order-list-text">₦ {order.total}</span>
                                                                         <span className="order-list-text">{order.orderTime}</span>
@@ -363,7 +330,7 @@ const VendorOrder = () => {
                                             <div key={index} className="">
                                                 <div className="name-order-time-id">
                                                     <span className="order-name">{order.firstname}</span>
-                                                    <span className="order-updated">{order.updatedAt}</span>
+                                                    <span className="order-updated">{order.readable_updated_time}</span>
                                                     <span className="order-id">{order.orderId}</span>
                                                     <span className="order-list-text">{order.orderTime}</span>
                                                 </div>
@@ -384,6 +351,11 @@ const VendorOrder = () => {
                                                 ) : (
                                                     <p>No items in this order.</p>
                                                 )}
+
+                                                <div className="order-total">
+                                                    <span className="total-order-text">Packs: </span>
+                                                    <h2 className="total-order-total">{order.total_num_of_packs}</h2>
+                                                </div>
 
                                                 <div className="order-total">
                                                     <span className="total-order-text">Total:</span>

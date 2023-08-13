@@ -50,7 +50,7 @@ const Login = () => {
 
             if (userRole === "vendor") {
 
-               
+
 
                 localStorage.setItem("Access-Token-vendor", response.data.val.acessToken)
                 localStorage.setItem("Refresh-Token-vendor", response.data.val.refreshToken)
@@ -69,17 +69,26 @@ const Login = () => {
                         console.log(res)
                         localStorage.setItem("Vendor-Balance", res.data.data.balance)
                         localStorage.setItem("Total-Ordered", res.data.data.total_orders_served)
+
+                        // Set a unique key in localStorage to indicate successful login
+                        const uniqueKey = `loggedIn_${Date.now()}`;
+                        localStorage.setItem(uniqueKey, "true");
+
+
+                        history.push("/vendor-dashboard")
                     }).catch(e => {
                         console.log(e)
                     })
-
-                history.push("/vendor-dashboard")
             } else if (userRole === "student") {
 
                 localStorage.setItem("Access-Token", response.data.val.acessToken)
                 localStorage.setItem("Refresh-Token", response.data.val.refreshToken)
                 localStorage.setItem("User-Id", response.data.data.userId)
                 localStorage.setItem("student-username", username)
+
+                // Set a unique key in localStorage to indicate successful login
+                const uniqueKey = `loggedIn_${Date.now()}`;
+                localStorage.setItem(uniqueKey, "true");
 
                 history.push('/dashboard')
             }
@@ -93,6 +102,7 @@ const Login = () => {
                 });
                 setButton(false)
             }
+
         }).catch(error => {
             Swal.fire({
                 icon: 'error',

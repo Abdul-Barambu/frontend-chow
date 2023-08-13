@@ -20,6 +20,10 @@ const NavBar = ({ size, handleClick, setShow }) => {
     history.push("/order-drinks")
   }
 
+  const handleSide = () => {
+    history.push("/order-sides")
+  }
+
   const handleSpecial = () => {
     history.push("/order-specials")
   }
@@ -65,13 +69,13 @@ const NavBar = ({ size, handleClick, setShow }) => {
           </div>
           <div className="nav-icons">
             <span className="nav-icon" onClick={handleProfile}><CiUser /></span>
-            <span className="nav-icon"><CiSearch /></span>
             <span className="nav-icon" onClick={() => {setShow(false) }}><CiShoppingCart /></span>
             <span className='cart-size'>{size}</span>
           </div>
           <div className='bottom-line'></div>
           <div className="categories">
             <span className={mainColor} onClick={handleMain}>Main food</span>
+            <span className='drinks' onClick={handleSide}>Sides</span>
             <span className='drinks' onClick={handleDrink}>Drinks</span>
             <span className="specials" onClick={handleSpecial}>Specials</span>
           </div>

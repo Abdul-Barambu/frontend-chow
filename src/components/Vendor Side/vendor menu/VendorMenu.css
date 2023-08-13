@@ -284,4 +284,11 @@ p.ven-food-price {
         margin-bottom: 3rem;
     }
 
+    .ven-category {
+        font-size: 0.4rem;
+        font-weight: bolder;
+        font-family: "Poppins";
+        cursor: pointer;
+    }
+
 }

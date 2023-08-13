@@ -111,19 +111,6 @@ div.container-nav-cart {
 }
 
 
-.cart-size {
-    background: #D21A32;
-    color: white;
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    left: 7.5rem;
-    text-align: center;
-    border-radius: 70%;
-    font-weight: bold;
-}
-
-
 .bottom-line {
     position: relative;
     border-bottom: 1px solid #CDCCCC;
@@ -456,6 +443,15 @@ div.payment {
     font-family: 'Poppins';
     font-weight: 700;
 
+}
+
+.payment-btn.disabled {
+    background-color: #c0c0c0; /* Faded color for disabled state */
+    cursor: not-allowed; /* Show not-allowed cursor for disabled state */
+}
+.payment-btn.disabled:hover {
+    background-color: #c0c0c0; /* Faded color for disabled state */
+    cursor: not-allowed; /* Show not-allowed cursor for disabled state */
 }
 
 .payment-btn:hover {

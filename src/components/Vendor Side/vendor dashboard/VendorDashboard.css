@@ -295,6 +295,8 @@ p.dish-text {
 
 .order-normal-card {
     padding: 1.2rem 1rem .7rem;
+    box-Shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    border: none !important;
 }
 
 .btn-normal-card {
@@ -452,6 +454,14 @@ span.order-id {
     align-items: center;
     gap: 1.5rem;
     margin-left: 65%;
+    padding-top: 0;
+}
+
+.order-total-packs {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-left: 58%;
     padding-top: 1rem;
 }
 
@@ -888,6 +898,14 @@ span.order-id {
         gap: 1rem;
         padding-top: 2rem;
         margin-left: 60%;
+    }
+
+    .order-total-packs {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-left: 30%;
+        padding-top: 1rem;
     }
 }
 

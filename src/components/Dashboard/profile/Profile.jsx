@@ -11,6 +11,7 @@ import { BiLogOut } from 'react-icons/bi'
 import { BsCartDashFill } from 'react-icons/bs'
 import { AiTwotoneHome } from 'react-icons/ai'
 import { BiUserCircle } from 'react-icons/bi'
+import { MdOutlineCancel } from "react-icons/md"
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
@@ -26,11 +27,13 @@ const Profile = () => {
     const Email = { email }
 
     const [modal, setModal] = useState(false)
+    const [modala, setModala] = useState(false)
     const [activeNav, setActiveNav] = useState('')
     const history = useHistory()
     const [orderHistory, setOrderHistory] = useState([])
     const [dynamicIndex, setDynamicIndex] = useState(0);
     const [loading, setLoading] = useState(false)
+    const [packOrders, setPackOrders] = useState([])
 
     const date = new Date().toDateString();
     const time = new Date().toLocaleTimeString();
@@ -45,6 +48,10 @@ const Profile = () => {
         Authorization: `Bearer ${accessToken}`,
         Cookies: `refreshToken=${refreshToken}`,
     };
+
+    const handleCancel = () => {
+        setModala(false)
+    }
 
     const handleModal = () => {
         setModal(!modal)
@@ -119,6 +126,19 @@ const Profile = () => {
         });
     }
 
+    const handlePacks = (_id) => {
+        console.log(userId)
+        axios.get(`https://chow.onrender.com/api/v1/orders/myOders/${userId}`, { headers })
+            .then(response => {
+                console.log(response)
+                setPackOrders(response.data.data)
+                setModala(true)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }
+
     return (
         <div>
             <div className="profile-container">
@@ -128,7 +148,6 @@ const Profile = () => {
                     </div>
                     <div className="nav-icons">
                         <span className="nav-icon"><CiUser /></span>
-                        <span className="nav-icon"><CiSearch /></span>
                         <span className="nav-icon" ><CiShoppingCart /></span>
                     </div>
                     <div className='bottom-line' style={{ bottom: '0' }}></div>
@@ -138,7 +157,7 @@ const Profile = () => {
                 <div className="profile-main-body">
                     <div className="profile-grid">
                         <Grid container spacing={2}>
-                            <Grid lg={4} md={4} sm={4} xs={12}>
+                            <Grid item lg={4} md={4} sm={4} xs={12}>
                                 <div className="left-side-profile">
                                     <div className="profile-img-text">
                                         <img src={ProfileImg} alt="profile" />
@@ -162,14 +181,14 @@ const Profile = () => {
                                 </div>
                             </Grid>
 
-                            <Grid lg={8} md={8} sm={8} xs={12}>
+                            <Grid item lg={8} md={8} sm={8} xs={12}>
                                 <div className="right-side-profile">
                                     {
                                         modal && (
                                             <div className="profile-from">
                                                 <form onSubmit={handleChanges}>
                                                     <Grid container spacing={2}>
-                                                        <Grid lg={6} md={6} sm={6} xs={12}>
+                                                        <Grid item lg={6} md={6} sm={6} xs={12}>
                                                             <div className="mb-3 input-div">
                                                                 <label htmlFor="username" className="form-label label-text-profile">Username</label>
                                                                 <input type="text"
@@ -194,7 +213,7 @@ const Profile = () => {
                                                             </div>
                                                         </Grid>
 
-                                                        <Grid lg={6} md={6} sm={6} xs={12}>
+                                                        <Grid item lg={6} md={6} sm={6} xs={12}>
                                                             <div className="mb-3 input-div-pass">
                                                                 <label htmlFor="old-password" className="form-label label-text-profile">Old Password</label>
                                                                 <input type="password"
@@ -230,11 +249,10 @@ const Profile = () => {
                                     <div className='user-orders'>
                                         <div className="profile-order">
                                             <span className='profile-order-text'>Orders History</span>
-                                            <button className="filter-btn"><RiListSettingsLine className='filter-icon' /> Filter Order</button>
                                         </div>
                                         <div className="order-categories">
-                                            <span className="order-category">Customer</span>
-                                            <span className="order-category">Meal orders</span>
+                                            <span className="order-category">Order ID</span>
+                                            <span className="order-category">Vendor Name</span>
                                             <span className="order-category">Total Payment</span>
                                             <span className="order-category">Status</span>
                                         </div>
@@ -245,32 +263,22 @@ const Profile = () => {
                                                 <div className='order-list-container'>
                                                     {
                                                         orderHistory.map((order, index) => (
-                                                            <div key={index} className="order-history">
-
-                                                                {order.packs && order.packs.length > 0 ? (
-                                                                    <div>
-                                                                        {order.packs[0].items.map((item, itemIndex) => (
-                                                                            <div key={itemIndex} className='div-flex'>
-                                                                                <span className='detail-text'>Orders #{order.orderId}</span>
-                                                                                <span className='detail-text-menu'>{item.name}</span>
-                                                                                <span className='detail-text-price'>₦ {item.price}</span>
-                                                                                <span className={`${order.status === 'served' ? 'detail-text-status-green' : 'detail-text-status'}`}>
-                                                                                    {order.status}
-                                                                                </span>
-                                                                            </div>
-                                                                        ))}
-                                                                    </div>
-                                                                ) : (
-                                                                    <p>No items in this order.</p>
-                                                                )}
-
+                                                            <div key={index} className="order-history" onClick={() => handlePacks(order.orderId)} style={{ cursor: "pointer" }}>
+                                                                <div className='div-flex'>
+                                                                    <span className='detail-text'>Orders #{order.orderId}</span>
+                                                                    <span className='detail-text-menu'>---</span>
+                                                                    <span className='detail-text-price'>₦ {order.total}</span>
+                                                                    <span className={`${order.status === 'served' ? 'detail-text-status-green' : 'detail-text-status'}`}>
+                                                                        {order.status}
+                                                                    </span>
+                                                                </div>
 
                                                             </div>
                                                         ))
                                                     }
                                                 </div>
                                             ) : (
-                                                <div class="ring-profile">Loading
+                                                <div className="ring-profile">Loading
                                                     <span className='loading-ring-profile'></span>
                                                 </div>
                                             )
@@ -282,6 +290,75 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+
+
+
+            {/* each packs */}
+
+            {
+                modala && (<div>
+                    <div className='center-add'>
+                        <div className="is-add"></div>
+                        <div className="center-content-add">
+                            <div className="payment-container-add">
+                                <div className="cancel-icon-add"><MdOutlineCancel className='cancel-add' onClick={handleCancel} /></div>
+                                <div className='input-food-div'>
+                                    <div className="order-view">
+                                        <h2 className="o-v">Order View</h2>
+                                    </div>
+
+                                    {
+                                        packOrders.map((orders, index) => (
+                                            <div key={index} className="">
+                                                <div className="name-order-time-id">
+                                                    <span className="order-name">---</span>
+                                                    <span className="order-updated">{orders.updatedAt}</span>
+                                                    <span className="order-id">{orders.orderId}</span>
+                                                    <span className="order-list-text">{orders.orderTime}</span>
+                                                </div>
+
+                                                <div className='bottom-line-order' style={{ bottom: '0' }}></div>
+                                                {orders.packs && orders.packs.length > 0 ? (
+                                                    <div>
+                                                        {orders.packs[0].items.map((item, itemIndex) => (
+                                                            <div key={itemIndex}>
+                                                                <div className="name-order-price">
+                                                                    <span className="name-order-name">{item.name}</span>
+                                                                    <span className="time-order-price">₦ {item.price}.00</span>
+                                                                </div>
+
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                ) : (
+                                                    <p>No items in this order.</p>
+                                                )}
+
+                                                <div className="order-total-packs">
+                                                    <span className="total-order-text">Amount of packs = </span>
+                                                    <h2 className="total-order-total">{orders.total_num_of_packs}</h2>
+                                                </div>
+
+                                                <div className="order-total">
+                                                    <span className="total-order-text">Total:</span>
+                                                    <h2 className="total-order-total">₦ {orders.total}.00</h2>
+                                                </div>
+
+
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                )
+            }
+
+
+
+
 
             {/* Nav */}
             <nav>

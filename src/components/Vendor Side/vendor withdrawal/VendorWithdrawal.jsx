@@ -21,6 +21,7 @@ const VendorWithdrawal = () => {
   const [account_number, setAccountNumber] = useState("")
   const [bankCode, setBankCode] = useState('');
   const [accountName, setAccountName] = useState("")
+  const [amount, setAmount] = useState("")
   const [invalid, setInvalid] = useState(false)
   const [withdrawalPin, setWithdrawalPin] = useState("")
   const [getBanks, setGetBanks] = useState([])
@@ -287,6 +288,17 @@ const VendorWithdrawal = () => {
                                 {invalid ? (
                                   <span className='invalid-account-name'>Invalid Account Number</span>
                                 ) : ""}
+                              </div>
+                              <div className="mb-3 input-div">
+                                <label htmlFor="amount" className="form-label label-text-withdrawal">Amount</label>
+                                <input type="text" style={{ border: "1.34px solid black", width: "100%", fontWeight: "700", fontFamily: "Poppins" }}
+                                  className="form-control withdrawal-input-vendor"
+                                  id="amount"
+                                  placeholder="Amount"
+                                  name='amount'
+                                  value={amount}
+                                  onChange={e => setAmount(e.target.value)}
+                                />
                               </div>
                               <div className="mb-3 input-div">
                                 <label htmlFor="pin" className="form-label label-text-withdrawal">Withdrawal Pin</label>

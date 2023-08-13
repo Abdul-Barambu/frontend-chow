@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min'
 import Specials from './Specials/Specials'
 import NavBar from './nav/NavBar';
+import Sides from './Sides/Sides'
 
 
 
@@ -71,6 +72,11 @@ const Order = () => {
 
         {
           show ? <Route path='/order-drinks' exact><Drinks size={cart.length} handleClick={handleClick} setShow={setShow} /></Route>
+            : <Route path='' exact></Route>
+        }
+
+        {
+          show ? <Route path='/order-sides' exact><Sides size={cart.length} handleClick={handleClick} setShow={setShow} /></Route>
             : <Route path='' exact></Route>
         }
 

@@ -25,6 +25,8 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
     const [price, setPrice] = useState(0)
     const [pricePack, setPricePack] = useState(0)
     const [packAmount, setPackAmount] = useState('')
+    const [selectedPack, setSelectedPack] = useState('none');
+    const [selectedTime, setSelectedTime] = useState('');
 
     if (count > 2000) {
         setCount(2000)
@@ -79,6 +81,8 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
             setPricePack(pricepackValue)
             console.log(pricepackValue)
         }
+
+        setSelectedPack(pack);
 
     }
 
@@ -183,7 +187,11 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
         const time = document.getElementById("time").value
         console.log(time)
         localStorage.setItem("Time", time)
+
+        setSelectedTime(time);
     }
+
+    const isButtonDisabled = selectedPack === 'none' || selectedTime === '';
 
     return (
         <div>
@@ -194,7 +202,6 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                     </div>
                     <div className="nav-icons">
                         <span className="nav-icon" onClick={handleProfile}><CiUser /></span>
-                        <span className="nav-icon"><CiSearch /></span>
                         <span className="nav-icon" onClick={() => setShow(false)}><CiShoppingCart /></span>
                         <span className='cart-size'>{size}</span>
                     </div>
@@ -259,7 +266,6 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                     <span className='pack-text'>Pack: </span>
                                     <select name="pack" id="pack" className='pack-select' onChange={handleSmall}>
                                         <option value="none">None</option>
-                                        <option value=""></option>
                                         <option value="smallPack" id='smallPack'>smallPack</option>
                                         <option value="bigPack" id='bigPack'>bigPack</option>
                                         <option value="plasticPack" id='plasticPack'>plasticPack</option>
@@ -268,7 +274,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                 <br />
                                 {/* Amount of Packs */}
                                 <div className="pack">
-                                    <span className='pack-text'>Amount: </span>
+                                    <span className='pack-text'>Amount of packs: </span>
                                     <select name="amount" id="pack-amount" className='amount-select' onChange={handlePackAmount}>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -282,8 +288,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                 <div className="time">
                                     <span className='time-text'>Time: </span>
                                     <select name="time" id="time" className='time-select' onChange={handleTime}>
-                                        <option value="">Choose...</option>
-                                        <option value=""></option>
+                                        <option value="">Choose</option>
                                         <option value="15mins">15 minutes</option>
                                         <option value="30mins">30 minutes</option>
                                         <option value="1hr">1 hour</option>
@@ -292,7 +297,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                 </div>
                                 <hr />
                                  <div className="time">
-                                    <span className='time-text'>VAT: </span>
+                                    <span className='time-text'>FEE: </span>
                                     <span className="total-amount">₦ 30.00</span>
                                 </div>
                                 <div className="grand-total">
@@ -300,7 +305,8 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                     <span className="total-amount">₦ {packAmount}.00</span>
                                 </div>
                                 <div className="payment">
-                                    <button className="payment-btn" onClick={handlePayment}>Proceed To Payments</button>
+                                    <button className={`payment-btn ${selectedPack === 'none' || selectedTime === '' ? 'disabled' : ''}`}
+                                    onClick={handlePayment} disabled={isButtonDisabled}>Proceed To Payments</button>
                                 </div>
                             </div>
                         </Grid>

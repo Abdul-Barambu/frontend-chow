@@ -23,7 +23,6 @@ const Budget = () => {
                     </div>
                     <div className="nav-icons">
                         <span className="nav-icon"><CiUser /></span>
-                        <span className="nav-icon"><CiSearch /></span>
                         <span className="nav-icon" ><CiShoppingCart /></span>
                     </div>
                     <div className='bottom-line' style={{ bottom: '0' }}></div>

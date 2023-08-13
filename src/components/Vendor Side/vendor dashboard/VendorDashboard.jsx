@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './VendorDashboard.css'
 import Img from '../../../assets/logo.png'
+import Normal from '../../../assets/normal.jpg'
+import Night from '../../../assets/night.jpg'
 import { Grid } from '@mui/material'
 import { AiFillHome } from 'react-icons/ai'
 import { MdRestaurantMenu } from 'react-icons/md'
@@ -161,9 +163,21 @@ const VendorDashboard = () => {
         history.push("/")
     }
 
+    const loggedInKeys = Object.keys(localStorage).filter(key => key.startsWith("loggedIn_"));
+
+    useEffect(() => {
+        if (loggedInKeys.length > 0) {
+            // If there is a unique key, display the success message
+            setTimeout(() => {
+                // Remove the unique key from localStorage after showing the message
+                localStorage.removeItem(loggedInKeys[0]);
+            }, 3000);
+        }
+    }, [loggedInKeys]);
+
     return (
         <div>
-            {success && <div className='success-login'>Logged in successfully</div>}
+            {loggedInKeys.length > 0 && <div className='success-login'>Logged in successfully</div>}
             <div className='container-vendor-dashboard'>
                 <div className="container-vendor-navbar">
                     <div className="logo-img-vendor">
@@ -240,14 +254,14 @@ const VendorDashboard = () => {
                                     <div className="row">
                                         <div className="col-lg-6 col-md-6">
                                             <div className="total-revenue">
-                                                <div className="money-icon"><TbCurrencyNaira className='naira-icon' /> +32.60%</div>
+                                                <div className="money-icon"><TbCurrencyNaira className='naira-icon' /></div>
                                                 <h2 className='revenue-amount'>₦ {vendorBalance}.00</h2>
                                                 <p className="revenue-text">Total Revenue</p>
                                             </div>
                                         </div>
                                         <div className="col-lg-6 col-md-6">
                                             <div className="total-dish">
-                                                <div className="dish-icon"><CiBookmarkMinus className='bookmark-icon' /> -12.12%</div>
+                                                <div className="dish-icon"><CiBookmarkMinus className='bookmark-icon' /></div>
                                                 <h2 className='dish-amount'>{totalOrdered}</h2>
                                                 <p className="dish-text">Total Dish Ordered</p>
                                             </div>
@@ -262,6 +276,7 @@ const VendorDashboard = () => {
                                     <div className="row">
                                         <div className="col-sm-6 mb-3 mb-sm-0">
                                             <div className="card order-normal-card">
+                                                <img src={Normal} className="card-img-top" alt="Normal picture" />
                                                 <div className="card-body">
                                                     <h3 className="card-title-normal">Today's Orders</h3>
                                                     <p className="card-text-normal-today">Click to view today's normal orders.</p>
@@ -273,6 +288,7 @@ const VendorDashboard = () => {
 
                                         <div className="col-sm-6 mb-3 mb-sm-0">
                                             <div className="card order-normal-card">
+                                                <img src={Night} className="card-img-top" alt="night picture" />
                                                 <div className="card-body">
                                                     <h3 className="card-title-normal">Night Orders</h3>
                                                     <p className="card-text-normal-today">Click to view today's night orders.</p>

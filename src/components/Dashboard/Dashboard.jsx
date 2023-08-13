@@ -87,16 +87,27 @@ const Dashboard = () => {
         history.push("/budget")
     }
 
+    const loggedInKeys = Object.keys(localStorage).filter(key => key.startsWith("loggedIn_"));
+
+    useEffect(() => {
+        if (loggedInKeys.length > 0) {
+            // If there is a unique key, display the success message
+            setTimeout(() => {
+                // Remove the unique key from localStorage after showing the message
+                localStorage.removeItem(loggedInKeys[0]);
+            }, 3000);
+        }
+    }, [loggedInKeys]);
+
     return (
         <div className='dashboard-container'>
-           {success &&  <div className='success-login'>Logged in successfully</div>}
+            {loggedInKeys.length > 0 && <div className='success-login'>Logged in successfully</div>}
             <div className="nav">
                 <div className="logo-img">
                     <img src={Logo} alt="logo img" />
                 </div>
                 <div className="nav-icons">
                     <span className="nav-icon" onClick={handleProfile}><CiUser /></span>
-                    <span className="nav-icon"><CiSearch /></span>
                     <span className="nav-icon"><CiShoppingCart /></span>
                 </div>
             </div>

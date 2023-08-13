@@ -180,30 +180,31 @@ const VendorDashboardNormal = () => {
                 Authorization: `Bearer ${accessToken}`
             };
 
-            const serveButtonText = serveButton[_id] || 'Serve'; // Default to 'Serve' if undefined
-
-            // Use a ternary operator to determine which API to call based on button text
-            const apiUrl = serveButtonText === 'Serve'
-                ? `https://api-chow.onrender.com/api/orders/serve/${_id}`
-                : `https://api-chow.onrender.com/api/orders/unserve/${_id}`;
-
-            // Call the appropriate API based on button text
-            const response = await axios.patch(apiUrl, {}, { headers });
-            console.log("API Response:", response);
-
-            // Toggle the button text based on the current text
-            const buttonText = serveButtonText === 'Serve' ? 'Unserve' : 'Serve';
-            setServeButton(prevButtonTexts => ({ ...prevButtonTexts, [_id]: buttonText }));
-
-
-            // Save the state in session storage
-            // sessionStorage.setItem('serveButtonState', JSON.stringify(prevButtonTexts));
-
-        } catch (error) {
-            console.error("Error occurred while handling serve:", error);
-        }
-    };
-
+              // Determine the new button text based on the current text
+              const newButtonText = serveButton[_id] === 'Unserve' ? 'Serve' : 'Unserve';
+    
+              // Call the appropriate API based on button text
+              const apiUrl = newButtonText === 'Serve'
+                  ? `https://api-chow.onrender.com/api/orders/unserve/${_id}`
+                  : `https://api-chow.onrender.com/api/orders/serve/${_id}`;
+      
+              // Call the API to serve/un-serve the order
+              const response = await axios.patch(apiUrl, {}, { headers });
+              console.log("API Response:", response);
+      
+              // Update the button text and status of the order locally
+              setServeButton(prevButtonTexts => ({ ...prevButtonTexts, [_id]: newButtonText }));
+              setNormal(prevNormal =>
+                  prevNormal.map(order =>
+                      order._id === _id ? { ...order, status: newButtonText === 'Serve' ? 'Pending' : 'Served' } : order
+                  )
+              );
+      
+          } catch (error) {
+              console.error("Error occurred while handling serve:", error);
+          }
+      };
+  
     // Retrieve the initial state from session storage when the component mounts
     useEffect(() => {
         const initialServeButtonState = JSON.parse(sessionStorage.getItem('serveButtonState')) || {};
@@ -326,7 +327,7 @@ const VendorDashboardNormal = () => {
                                                                         <div key={norm._id} className="order-menu-list"
                                                                             onClick={() => { handlePacks(norm._id) }}
                                                                             style={{ cursor: "pointer" }}>
-                                                                            <span className="order-list-text">{norm.firstname}</span>
+                                                                            <span className="order-list-text">{`${norm.firstname} ${norm.lastname}`}</span>
                                                                             <span className="order-list-text">{norm.orderId}</span>
                                                                             <span className="order-list-text">₦ {norm.total}</span>
                                                                             <span className="order-list-text">{norm.orderTime}</span>
@@ -374,7 +375,7 @@ const VendorDashboardNormal = () => {
                                             <div key={index} className="">
                                                 <div className="name-order-time-id">
                                                     <span className="order-name">{order.firstname}</span>
-                                                    <span className="order-updated">{order.updatedAt}</span>
+                                                    <span className="order-updated">{order.readable_updated_time}</span>
                                                     <span className="order-id">{order.orderId}</span>
                                                     <span className="order-list-text">{order.orderTime}</span>
                                                 </div>
@@ -395,6 +396,11 @@ const VendorDashboardNormal = () => {
                                                 ) : (
                                                     <p>No items in this order.</p>
                                                 )}
+
+                                                <div className="order-total">
+                                                    <span className="total-order-text">Packs: </span>
+                                                    <h2 className="total-order-total">{order.total_num_of_packs}</h2>
+                                                </div>
 
                                                 <div className="order-total">
                                                     <span className="total-order-text">Total:</span>

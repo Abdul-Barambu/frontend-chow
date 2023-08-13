@@ -1,0 +1,597 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap');
+
+
+/* Loading */
+
+.ring
+{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:150px;
+  height:150px;
+  background:transparent;
+  border-radius:50%;
+  text-align:center;
+  line-height:150px;
+  font-family:sans-serif;
+  font-size:20px;
+  color: #D21A32;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  text-shadow:0 0 10px #D21A32;
+  box-shadow:0 0 20px rgba(0,0,0,.5);
+}
+.ring:before
+{
+  content:'';
+  position:absolute;
+  top:-3px;
+  left:-3px;
+  width:100%;
+  height:100%;
+  border:3px solid transparent;
+  border-top:3px solid #D21A32;
+  border-right:3px solid #D21A32;
+  border-radius:50%;
+  animation:animateC 2s linear infinite;
+}
+span.loading-ring
+{
+  display:block;
+  position:absolute;
+  top:calc(50% - 2px);
+  left:50%;
+  width:50%;
+  height:4px;
+  background:transparent;
+  transform-origin:left;
+  animation:animate 2s linear infinite;
+}
+span.loading-ring:before
+{
+  content:'';
+  position:absolute;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:#D21A32;
+  top:-6px;
+  right:-8px;
+  box-shadow:0 0 20px #D21A32;
+}
+@keyframes animateC
+{
+  0%
+  {
+    transform:rotate(0deg);
+  }
+  100%
+  {
+    transform:rotate(360deg);
+  }
+}
+@keyframes animate
+{
+  0%
+  {
+    transform:rotate(45deg);
+  }
+  100%
+  {
+    transform:rotate(405deg);
+  }
+}
+
+div.container-drink {
+    /* box-shadow: 0px 0px 2px 0px #000; */
+    border-radius: 8px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: .3rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+    background: #F5F5F5;
+}
+
+div.container-nav {
+    background-color: white;
+}
+
+.img-logo {
+    margin-left: 30px;
+    margin-bottom: 1.3rem;
+}
+
+.bottom-line {
+    position: relative;
+    border-bottom: 1px solid #CDCCCC;
+    bottom: 1rem;
+}
+
+div.cart-main-drink{
+    padding: 1rem;
+}
+
+.categories {
+    margin-left: 30px;
+    display: flex;
+    gap: 2rem;
+}
+
+/* span.main {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 1rem;
+}
+
+.main-true {
+    color: #D21A32;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.main-false {
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+} */
+
+span.drinks {
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+span.drinks:hover{
+    color: #D21A32;
+}
+
+span.drinks-red {
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    color: #D21A32;
+}
+
+/* span.drinks {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 1rem;
+}
+
+span.specials {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 1rem;
+} */
+
+
+/* MAIN BODY */
+div.main-body {
+    background: #F5F5F5;
+    margin: 1rem 1rem;
+}
+
+.cart-main-drink {
+    /* box-shadow: 0px 0px 1px 0px #000; */
+    background-color: white;
+    border-radius: 10px;
+    padding: .3rem;
+    margin-bottom: 2.5rem;
+
+
+}
+
+.main-drink {
+    display: flex;
+}
+
+.drink-name {
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    padding-left: 4px;
+}
+
+.drink-price {
+    display: flex;
+    position: absolute;
+    margin-top: 1.5rem;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 12px;
+     color: #D21A32;
+
+}
+
+.drink-qty {
+    display: flex;
+    position: absolute;
+    margin-top: 3.5rem;
+    border: 1px solid #CDCCCC;
+}
+
+.count-inc{
+    padding: 0 10px;
+}
+
+.drink-arrow {
+    background: #D21A32;
+    padding: 0 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: lightgray;
+    cursor: pointer;
+
+}
+
+@media screen and (max-width: 1024px) {
+    .drink-name {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 23px;
+        padding-left: 4px;
+    }
+
+    .drink-price {
+        display: flex;
+        position: absolute;
+        margin-top: 1rem;
+    }
+
+    .drink-qty {
+        display: flex;
+        position: absolute;
+        margin-top: 2.8rem;
+        gap: .1rem;
+        border: 1px solid #CDCCCC;
+    }
+
+    .drink-arrow {
+        background: #D21A32;
+        padding: 2px 8px;
+        color: lightgray;
+        cursor: pointer;
+
+    }
+}
+
+@media screen and (max-width: 840px) {
+    div.container-drink {
+        /* box-shadow: 0px 0px 2px 0px #000; */
+        border-radius: 8px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: .3rem;
+        margin-left: auto;
+        margin-right: auto;
+        /* width: 98%; */
+        background: #F5F5F5;
+    }
+
+    .cart-main-drink {
+        /* box-shadow: 0px 0px 1px 0px #000; */
+        background-color: white;
+        border-radius: 7px;
+        padding: .3rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .drink-name {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 23px;
+        padding-left: 4px;
+    }
+
+    .drink-price {
+        display: flex;
+        position: absolute;
+        margin-top: 1rem;
+    }
+
+    .drink-arrow {
+        background: #D21A32;
+        padding: 3px 10px;
+        color: lightgray;
+        cursor: pointer;
+
+    }
+}
+
+@media screen and (max-width: 768px) {
+    div.container-drink {
+        /* box-shadow: 0px 0px 2px 0px #000; */
+        border-radius: 8px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: .3rem;
+        margin-left: auto;
+        margin-right: auto;
+        /* width: 97%; */
+        /* height: 100vh; */
+        background: #F5F5F5;
+    }
+
+    div.order-row {
+        margin-top: 1rem;
+        margin-left: 0;
+    }
+
+    .cart-main-drink {
+        /* box-shadow: 0px 0px 1px 0px #000; */
+        background-color: white;
+        border-radius: 7px;
+        padding: .3rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .drink-name {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 23px;
+        padding-left: 4px;
+    }
+    .drink-price {
+        display: flex;
+        position: absolute;
+        margin-top: 1rem;
+    }
+
+    .drink-arrow {
+        background: #D21A32;
+        padding: 3px 8px;
+        color: lightgray;
+        cursor: pointer;
+
+    }
+}
+
+@media screen and (max-width: 414px) {
+    div.container-drink {
+        /* box-shadow: 0px 0px 2px 0px #000; */
+        border-radius: 8px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: .3rem;
+        margin-left: auto;
+        margin-right: auto;
+        /* width: 94%; */
+        /* height: 100vh; */
+        background: #F5F5F5;
+    }
+
+    div.order-row {
+        margin-top: 1rem;
+        margin-left: 0;
+        /* display: flex;
+        flex-direction: column; */
+    }
+
+    .cart-main-drink {
+        /* box-shadow: 0px 0px 1px 0px #000; */
+        background-color: white;
+        border-radius: 7px;
+        padding: .3rem;
+        margin-bottom: 2.5rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .drink-name {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 27px;
+        line-height: 23px;
+        padding-left: 4px;
+    }
+
+    .drink-price {
+        display: flex;
+        position: absolute;
+        margin-top: 1.3rem;
+    }
+
+    .drink-qty {
+        display: flex;
+        position: absolute;
+        margin-top: 3rem;
+        gap: .1rem;
+        border: 1px solid #CDCCCC;
+    }
+
+    .drink-arrow {
+        background: #D21A32;
+        padding: 3px 8px;
+        color: lightgray;
+        cursor: pointer;
+
+    }
+}
+
+@media screen and (max-width: 390px) {
+    div.container-drink {
+        /* box-shadow: 0px 0px 2px 0px #000; */
+        border-radius: 8px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: .3rem;
+        margin-left: auto;
+        margin-right: auto;
+        /* width: 94%; */
+        background: #F5F5F5;
+    }
+
+    div.order-row {
+        margin-top: 1rem;
+        margin-left: 0;
+    }
+
+    .cart-main-drink {
+        /* box-shadow: 0px 0px 1px 0px #000; */
+        background-color: white;
+        border-radius: 7px;
+        padding: .3rem;
+        margin-bottom: 2.5rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .drink-name {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 23px;
+        padding-left: 4px;
+    }
+
+    .drink-price{
+        margin-top: 2rem;
+    }
+
+    .drink-qty{
+        margin-top: 4.5rem;
+    }
+
+    .drink-arrow {
+        background: #D21A32;
+        padding: 3px 8px;
+        color: lightgray;
+        cursor: pointer;
+
+    }
+}
+
+@media screen and (max-width: 370px) {
+    div.container-drink {
+        /* box-shadow: 0px 0px 2px 0px #000; */
+        border-radius: 8px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: .3rem;
+        margin-left: auto;
+        margin-right: auto;
+        /* width: 94%; */
+        background: #F5F5F5;
+    }
+
+    div.order-row {
+        margin-top: 1rem;
+        margin-left: 0;
+    }
+
+    .cart-main-drink {
+        /* box-shadow: 0px 0px 1px 0px #000; */
+        background-color: white;
+        border-radius: 7px;
+        padding: .3rem;
+        margin-bottom: 2.5rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .drink-name {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 23px;
+        padding-left: 4px;
+    }
+
+    .drink-price{
+        margin-top: 1rem;
+    }
+
+    .drink-qty{
+        margin-top: 3rem;
+    }
+
+    .drink-arrow {
+        background: #D21A32;
+        padding: 3px 8px;
+        color: lightgray;
+        cursor: pointer;
+
+    }
+}
+
+@media screen and (max-width: 280px) {
+    div.container-drink {
+        /* box-shadow: 0px 0px 2px 0px #000; */
+        border-radius: 8px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: .3rem;
+        margin-left: auto;
+        margin-right: auto;
+        /* width: 94%; */
+        background: #F5F5F5;
+    }
+
+    div.order-row {
+        margin-top: 1rem;
+        margin-left: 0;
+    }
+
+    .cart-main-drink {
+        /* box-shadow: 0px 0px 1px 0px #000; */
+        background-color: white;
+        border-radius: 7px;
+        padding: .3rem;
+        margin-bottom: 2.5rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .drink-name {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 23px;
+        padding-left: 4px;
+    }
+
+    .price-arrow {
+        background: #D21A32;
+        padding: 3px 8px;
+        color: white;
+        cursor: pointer;
+
+    }
+}

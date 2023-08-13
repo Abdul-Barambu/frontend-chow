@@ -260,6 +260,10 @@ const VendorMenuDrinks = () => {
         history.push("/vendor-menu")
     }
 
+    const handleVendorSide = () => {
+        history.push("/vendor-side")
+    }
+
     const handleVendorSpecial = () => {
         history.push("/vendor-special")
     }
@@ -376,6 +380,7 @@ const VendorMenuDrinks = () => {
                                     <h2 className="ven-text">Menu</h2>
                                     <div className="ven-menu-categories">
                                         <span className="ven-category" onClick={handleVendorMenu}>Main Foods</span>
+                                        <span className="ven-category" onClick={handleVendorSide}>Sides</span>
                                         <span className="ven-category">Drinks</span>
                                         <span className="ven-category" onClick={handleVendorSpecial}>Specials</span>
                                     </div>

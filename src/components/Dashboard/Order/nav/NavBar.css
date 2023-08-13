@@ -81,6 +81,18 @@ span.drinks-red {
     color: #D21A32;
 }
 
+.cart-size {
+    background: #D21A32;
+    color: white;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    left: 4.5rem;
+    text-align: center;
+    border-radius: 70%;
+    font-weight: bold;
+}
+
 span.cart-size-nav{
     background: white;
     width: 20px;
