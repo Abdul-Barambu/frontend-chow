@@ -7,6 +7,7 @@ import { MdRestaurantMenu } from 'react-icons/md'
 import { BsDashCircleDotted } from 'react-icons/bs'
 import { RiListSettingsLine } from 'react-icons/ri'
 import { BiMoneyWithdraw } from 'react-icons/bi'
+import { MdDelete } from 'react-icons/md'
 import { FaEdit } from 'react-icons/fa'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import axios from 'axios'
@@ -43,124 +44,6 @@ const VendorMenuSpecials = () => {
     const headers = {
         Authorization: `Bearer ${accessToken}`
     };
-
-    const handleAvailable = (foodId) => {
-        // Check the current status of the food
-        const currentStatus = availabilityStatus[foodId];
-
-        if (currentStatus === "Available --") {
-            // Food is available, perform the API call to delete the food
-            const mealToUpdate = mealsMenu.find(menuMeal => menuMeal.food_id === foodId);
-            if (mealToUpdate) {
-                const menu_id = mealToUpdate._id;
-
-                axios.delete(`https://api-chow.onrender.com/api/vendors/menu/specials/${menu_id}`, { headers })
-                    .then(response => {
-                        console.log(response);
-
-                        // Food is deleted, set the availability status to "Not available"
-                        setAvailabilityStatus(prevStatus => ({
-                            ...prevStatus,
-                            [foodId]: "Not available"
-                        }));
-
-                    })
-                    .catch(e => {
-                        console.log(e);
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'ERROR',
-                            text: 'Failed to remove drink from meals menu'
-                        });
-                    });
-            }
-        } else {
-            // Food is not available, perform the API call to add the food
-            const food_meal_id = specials.find(special => special.food_id === foodId);
-            if (food_meal_id) {
-                const food_name = food_meal_id.food_name;
-                const price = food_meal_id.price;
-                console.log(price)
-                console.log(food_name);
-
-                axios.post("https://api-chow.onrender.com/api/vendors/menu/specials", {
-                    food_name: food_name,
-                    price: price
-                }, { headers })
-                    .then(response => {
-                        console.log(response);
-
-                        // Food is added, set the availability status to "Available"
-                        setAvailabilityStatus(prevStatus => ({
-                            ...prevStatus,
-                            [foodId]: "Available --"
-                        }));
-
-                    })
-                    .catch(e => {
-                        console.log(e);
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'ERROR',
-                            text: 'Failed to add drink to meals menu'
-                        });
-                    });
-            }
-        }
-    };
-
-
-    const handleEdit = (foodId) => {
-        // Find the corresponding meal from mealsMenu using the food_id
-        const mealToUpdate = mealsMenu.find(menuMeal => menuMeal.food_id === foodId);
-        if (mealToUpdate) {
-            const menuId = mealToUpdate._id;
-            localStorage.setItem("meal_id", menuId);
-            setMenuIdToUpdate(menuId); // Set the _id to be used when updating the price
-            // setPrice(mealToUpdate.price); // Set the current price in the input field
-            setModala(true); // Open the modal
-        }
-    };
-
-
-    const handleCancel = () => {
-        setModala(false)
-    }
-
-    // get the food _id from local storage
-    const menu_id = localStorage.getItem("meal_id")
-
-    // Call the update API
-    const handleUpdatePrice = (e) => {
-        e.preventDefault()
-        axios.patch("https://api-chow.onrender.com/api/vendor/menu/update/specials", {
-            menu_id: menu_id,
-            price: price
-        }, { headers })
-            .then(response => {
-                console.log(response)
-                window.location.reload()
-            })
-            .catch(e => {
-                console.log(e)
-                Swal.fire({
-                    icon: 'error',
-                    title: 'ERROR',
-                    text: 'An error occured...'
-                });
-            })
-    }
-
-    useEffect(() => {
-        const storedClickedButtons = JSON.parse(localStorage.getItem('clickedButtons') || '[]');
-        setClickedButtons(storedClickedButtons);
-    }, []);
-
-    // Update local storage whenever the "clickedButtons" state changes.
-    useEffect(() => {
-        localStorage.setItem('clickedButtons', JSON.stringify(clickedButtons));
-    }, [clickedButtons]);
-
 
     let coloredHome = [];
     let coloredOrder = [];
@@ -267,6 +150,7 @@ const VendorMenuSpecials = () => {
     }
 
     // Specials
+    
 
     const vendorId = localStorage.getItem("Vendor-Id")
 
@@ -274,29 +158,12 @@ const VendorMenuSpecials = () => {
         // Food API
         async function fetchData() {
             try {
-                const foodResponse = await axios.get("https://api-chow.onrender.com/api/food/specials");
+                const foodResponse = await axios.get(`https://api-chow.onrender.com/api/vendors/menu/specials/${vendorId}`, {headers});
                 console.log(foodResponse);
                 setLoading(true)
                 setSpecials(foodResponse.data.data);
                 setDataLoaded(true);
 
-                // Menu
-                const menuResponse = await axios.get(`https://api-chow.onrender.com/api/vendors/menu/specials/${vendorId}`);
-                console.log(menuResponse);
-                setMealsMenu(menuResponse.data.data)
-                const menuspecials = menuResponse.data.data;
-
-                // Extract food_ids from both API responses
-                const foodApiFoodIds = foodResponse.data.data.map(special => special.food_id);
-                const menuApiFoodIds = menuspecials.map(menuspecial => menuspecial.food_id);
-
-                // Create an object with food_id as key and availability status as value
-                const statusObject = {};
-                foodApiFoodIds.forEach(food_id => {
-                    statusObject[food_id] = menuApiFoodIds.includes(food_id) ? "Available --" : "Not available";
-                });
-
-                setAvailabilityStatus(statusObject);
             } catch (error) {
                 console.log(error);
             }
@@ -305,6 +172,27 @@ const VendorMenuSpecials = () => {
         fetchData();
 
     }, [])
+
+    // delete special food
+    const handleDelete = (_id) => {
+        console.log(_id)
+        axios.delete(`https://api-chow.onrender.com/api/vendors/menu/specials/${_id}`, {headers})
+        .then(res => {
+            console.log(res)
+            Swal.fire({
+                icon: 'success',
+                title: 'DELETED',
+                text: 'Food deleted successfully, Click OK to continue'
+            });
+        }).catch(e => {
+            console.log(e)
+            Swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text: 'An Error Occured'
+            });
+        })
+    }
 
     // Modal
     const handleAddDish = () => {
@@ -396,17 +284,12 @@ const VendorMenuSpecials = () => {
                                                 </div>
                                                 {
                                                     specials.map((special, index) => (
-                                                        <div key={special.food_id} className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                                                            <div className="ven-menu-food" onClick={() => { handleAvailable(special.food_id) }}>
-                                                                <img src={`https://api-chow.onrender.com/static/${special.food_id}.jpg`} alt="Food img" className='ven-food-img' />
-                                                                <p className="ven-food-name">{special.food_name}</p>
+                                                        <div key={special._id} className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                                            <div className="ven-menu-food">
+                                                                <img src={`https://api-chow.onrender.com${special.image_url}`} alt="Food img" className='ven-food-img' />
+                                                                <p className="ven-food-name">{special.food_item}</p>
                                                                 <p className="ven-food-price">₦ {special.price}.00</p>
-                                                                <div className={availabilityStatus[special.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
-                                                                    <span className={availabilityStatus[special.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
-                                                                        {availabilityStatus[special.food_id]}
-                                                                    </span>
-                                                                    {availabilityStatus[special.food_id] === "Available --" ? <FaEdit className='edit-icon' onClick={(e) => { e.stopPropagation(); handleEdit(special.food_id); }} /> : ""}
-                                                                </div>
+                                                                <p className='remove-food' onClick={() => handleDelete(special._id)}><MdDelete className='delete-icon-special-remove' /> Remove</p>
                                                             </div>
                                                         </div>
                                                     ))
@@ -432,41 +315,6 @@ const VendorMenuSpecials = () => {
                         <div className="is-add"></div>
                         <div className="center-content-add">
                             <AddNewSpecial handleAddDish={handleAddDish} />
-                        </div>
-
-                    </div>
-                )
-            }
-
-            {/* Edit price */}
-            {
-                modala && (
-                    <div className='center-add'>
-                        <div className="is-add"></div>
-                        <div className="center-content-add">
-                            {/* <EditPrice handleEdit={handleEdit} /> */}
-
-                            <div className="payment-container-add">
-                                <div className="cancel-icon-add"><MdOutlineCancel className='cancel-add' onClick={handleCancel} /></div>
-                                <div className='input-food-div'>
-                                    <form onSubmit={handleUpdatePrice}>
-                                        <div className="form">
-                                            <div className="mb-3">
-                                                <label htmlFor="price" className="form-label label-text-add">New Price</label>
-                                                <input type='text'
-                                                    className="form-control input-add"
-                                                    id="price" placeholder="₦ 00.00"
-                                                    value={price}
-                                                    onChange={(e) => setPrice(e.target.value)}
-                                                    required
-                                                />
-                                            </div>
-                                            <button type='Submit' className='add-btn'>Save</button>
-                                        </div>
-
-                                    </form>
-                                </div>
-                            </div>
                         </div>
 
                     </div>

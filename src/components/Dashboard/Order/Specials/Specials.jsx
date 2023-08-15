@@ -89,7 +89,7 @@ const Specials = ({ handleClick, setShow, size }) => {
                   <Grid item lg={3} md={4} sm={4} xs={12}>
                     <div key={item._id} className="cart-main-special">
                       <div className="main-special">
-                        <img src={Img} alt="" />
+                        <img src={`https://api-chow.onrender.com${item.image_url}`} alt="special custom img" style={{ width: '90px', height: '90px', borderRadius: '10px' }} />
                         <span className='special-name'>{item.food_item}
                           <span className="special-price">₦ {item.price}.00</span>
                         </span>

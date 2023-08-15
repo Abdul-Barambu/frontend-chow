@@ -228,6 +228,24 @@ p.ven-food-price {
     padding: .5rem 0;
 }
 
+p.remove-food{
+    background: #e3919c;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: .5rem 0;
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+    font-family: "Poppins";
+    font-size: .9rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.delete-icon-special-remove{
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+
 #avai-status {
     font-family: "Poppins";
     font-size: .9rem;

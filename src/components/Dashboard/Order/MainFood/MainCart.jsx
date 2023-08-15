@@ -220,7 +220,8 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                     <div className='main-div-food'>
                                         <div key={item._id} className="main-cart">
                                             <div className="main-food" >
-                                                <img src={`https://api-chow.onrender.com/static/${item.food_id}.jpg`} alt="food-img" style={{ width: '100px', height: '100px', borderRadius: '10px' }} />
+                                                {/* <img src={`https://api-chow.onrender.com/static/${item.food_id}.jpg`} alt="food-img" style={{ width: '100px', height: '100px', borderRadius: '10px' }} /> */}
+                                                <img src={`https://api-chow.onrender.com${item.image_url}`} alt="food-img" style={{ width: '90px', height: '90px', borderRadius: '10px' }} />
                                                 <span className='food-name'>
                                                     <span className="food-text">{item.food_name}{item.food_item}</span>
                                                     <div className="price-per-qty-div">
