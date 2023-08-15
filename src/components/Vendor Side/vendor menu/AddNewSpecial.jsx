@@ -28,6 +28,9 @@ const AddNewSpecial = ({ handleAddDish }) => {
                 title: 'SUCCESS',
                 text: 'Food added successfully, Click OK to continue'
             });
+            setTimeout(() => {
+                window.location.reload()
+            }, 1000)
         }).catch(e => {
             console.log(e)
             Swal.fire({
