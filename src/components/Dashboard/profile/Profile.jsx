@@ -4,6 +4,8 @@ import Img from '../../../assets/logo.png'
 import ProfileImg from '../../../assets/profile-img.png'
 import { CiUser } from 'react-icons/ci'
 import { CiSearch } from 'react-icons/ci'
+import { BsChevronLeft } from "react-icons/bs"
+import { BsChevronRight } from "react-icons/bs"
 import { CiShoppingCart } from 'react-icons/ci'
 import { Grid } from '@mui/material'
 import { RiListSettingsLine } from 'react-icons/ri'
@@ -31,9 +33,13 @@ const Profile = () => {
     const [activeNav, setActiveNav] = useState('')
     const history = useHistory()
     const [orderHistory, setOrderHistory] = useState([])
+    const [ven, setVen] = useState([])
     const [dynamicIndex, setDynamicIndex] = useState(0);
     const [loading, setLoading] = useState(false)
     const [packOrders, setPackOrders] = useState([])
+    const [venPack, setVenPack] = useState([])
+    const [selectedOrderId, setSelectedOrderId] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
 
     const date = new Date().toDateString();
     const time = new Date().toLocaleTimeString();
@@ -100,16 +106,23 @@ const Profile = () => {
     // Food order history api
 
     useEffect(() => {
-        axios.get(`https://chow.onrender.com/api/v1/orders/myOders/${userId}`, { headers })
+        axios.get(`https://chow.onrender.com/api/v1/orders/myOders/${userId}?page=${currentPage}&limit=10`, { headers })
             .then(res => {
                 console.log(res.data.data)
                 setOrderHistory(res.data.data)
+
+                const vendorIds = res.data.data.map(order => order.vendorId);
+                setVen(vendorIds)
                 setLoading(true)
                 // TODO: render order history
             }).catch(e => {
                 console.log(e)
             })
-    }, [userId])
+    }, [userId, currentPage]);
+
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    };
 
     const handleHome = () => {
         history.push('/dashboard')
@@ -132,6 +145,9 @@ const Profile = () => {
             .then(response => {
                 console.log(response)
                 setPackOrders(response.data.data)
+
+                const vendorIdsPack = response.data.data.map(orders => orders.vendorId);
+                setVenPack(vendorIdsPack)
                 setModala(true)
             })
             .catch(e => {
@@ -262,20 +278,30 @@ const Profile = () => {
                                             loading ? (
                                                 <div className='order-list-container'>
                                                     {
-                                                        orderHistory.map((order, index) => (
+                                                        orderHistory && orderHistory.map((order, index) => (
                                                             <div key={index} className="order-history" onClick={() => handlePacks(order.orderId)} style={{ cursor: "pointer" }}>
                                                                 <div className='div-flex'>
-                                                                    <span className='detail-text'>Orders #{order.orderId}</span>
-                                                                    <span className='detail-text-menu'>---</span>
+                                                                    <span className='detail-text'>Order #{order.orderId}</span>
+                                                                    {/* Render vendor usernames based on the index */}
+                                                                    {ven[index] && <span className='detail-text-menu'>{ven[index].username}</span>}
                                                                     <span className='detail-text-price'>₦ {order.total}</span>
                                                                     <span className={`${order.status === 'served' ? 'detail-text-status-green' : 'detail-text-status'}`}>
                                                                         {order.status}
                                                                     </span>
                                                                 </div>
-
                                                             </div>
                                                         ))
                                                     }
+
+                                                    <div className='chev-icons'>
+                                                        <span  onClick={() => handlePageChange(currentPage - 1)}>
+                                                            <BsChevronLeft style={{fontSize: '1.5rem', cursor: 'pointer'}} />
+                                                        </span>
+                                                        {/* <span className='page-text'>Page {pagenumber} of {totalPages}</span> */}
+                                                        <span onClick={() => handlePageChange(currentPage + 1)}>
+                                                            <BsChevronRight style={{fontSize: '1.5rem', cursor: 'pointer'}} />
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             ) : (
                                                 <div className="ring-profile">Loading
@@ -311,7 +337,8 @@ const Profile = () => {
                                         packOrders.map((orders, index) => (
                                             <div key={index} className="">
                                                 <div className="name-order-time-id">
-                                                    <span className="order-name">---</span>
+                                                    {/* Render vendor usernames based on the index */}
+                                                    {venPack[index] && <span className="order-name">{venPack[index].username}</span>}
                                                     <span className="order-updated">{orders.updatedAt}</span>
                                                     <span className="order-id">{orders.orderId}</span>
                                                     <span className="order-list-text">{orders.orderTime}</span>
@@ -335,8 +362,14 @@ const Profile = () => {
                                                 )}
 
                                                 <div className="order-total-packs">
-                                                    <span className="total-order-text">Amount of packs = </span>
-                                                    <h2 className="total-order-total">{orders.total_num_of_packs}</h2>
+                                                    {
+                                                        orders.packs.map((pack, packIndex) => (
+                                                            <div>
+                                                                <span className="total-order-text">Amount of packs = </span>
+                                                                <h2 className="total-order-total">{pack.amount}</h2>
+                                                            </div>
+                                                        ))
+                                                    }
                                                 </div>
 
                                                 <div className="order-total">

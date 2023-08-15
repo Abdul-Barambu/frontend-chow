@@ -275,7 +275,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                 <br />
                                 {/* Amount of Packs */}
                                 <div className="pack">
-                                    <span className='pack-text'>Amount of packs: </span>
+                                    <span className='pack-text'>Number of packs: </span>
                                     <select name="amount" id="pack-amount" className='amount-select' onChange={handlePackAmount}>
                                         <option value="1">1</option>
                                         <option value="2">2</option>

@@ -180,31 +180,31 @@ const VendorDashboardNormal = () => {
                 Authorization: `Bearer ${accessToken}`
             };
 
-              // Determine the new button text based on the current text
-              const newButtonText = serveButton[_id] === 'Unserve' ? 'Serve' : 'Unserve';
-    
-              // Call the appropriate API based on button text
-              const apiUrl = newButtonText === 'Serve'
-                  ? `https://api-chow.onrender.com/api/orders/unserve/${_id}`
-                  : `https://api-chow.onrender.com/api/orders/serve/${_id}`;
-      
-              // Call the API to serve/un-serve the order
-              const response = await axios.patch(apiUrl, {}, { headers });
-              console.log("API Response:", response);
-      
-              // Update the button text and status of the order locally
-              setServeButton(prevButtonTexts => ({ ...prevButtonTexts, [_id]: newButtonText }));
-              setNormal(prevNormal =>
-                  prevNormal.map(order =>
-                      order._id === _id ? { ...order, status: newButtonText === 'Serve' ? 'Pending' : 'Served' } : order
-                  )
-              );
-      
-          } catch (error) {
-              console.error("Error occurred while handling serve:", error);
-          }
-      };
-  
+            // Determine the new button text based on the current text
+            const newButtonText = serveButton[_id] === 'Unserve' ? 'Serve' : 'Unserve';
+
+            // Call the appropriate API based on button text
+            const apiUrl = newButtonText === 'Serve'
+                ? `https://api-chow.onrender.com/api/orders/unserve/${_id}`
+                : `https://api-chow.onrender.com/api/orders/serve/${_id}`;
+
+            // Call the API to serve/un-serve the order
+            const response = await axios.patch(apiUrl, {}, { headers });
+            console.log("API Response:", response);
+
+            // Update the button text and status of the order locally
+            setServeButton(prevButtonTexts => ({ ...prevButtonTexts, [_id]: newButtonText }));
+            setNormal(prevNormal =>
+                prevNormal.map(order =>
+                    order._id === _id ? { ...order, status: newButtonText === 'Serve' ? 'Pending' : 'Served' } : order
+                )
+            );
+
+        } catch (error) {
+            console.error("Error occurred while handling serve:", error);
+        }
+    };
+
     // Retrieve the initial state from session storage when the component mounts
     useEffect(() => {
         const initialServeButtonState = JSON.parse(sessionStorage.getItem('serveButtonState')) || {};
@@ -389,7 +389,17 @@ const VendorDashboardNormal = () => {
                                                                     <span className="name-order-name">{item.name}</span>
                                                                     <span className="time-order-price">₦ {item.price}.00</span>
                                                                 </div>
+                                                                { }
+                                                            </div>
+                                                        ))}
 
+                                                        {order.packs.map((pack, itemIndex) => (
+                                                            <div key={itemIndex}>
+                                                                <div className="order-total" style={{marginTop: '2rem'}}>
+                                                                    <span className="total-order-text-pack">Pack Type: </span>
+                                                                    <span className="total-order-total-pack">{pack.packType}</span>
+                                                                </div>
+                                                                { }
                                                             </div>
                                                         ))}
                                                     </div>

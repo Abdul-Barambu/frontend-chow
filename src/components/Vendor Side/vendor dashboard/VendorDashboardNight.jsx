@@ -392,6 +392,16 @@ const VendorDashboardNight = () => {
 
                                                             </div>
                                                         ))}
+
+                                                        {order.packs.map((pack, itemIndex) => (
+                                                            <div key={itemIndex}>
+                                                                <div className="order-total" style={{ marginTop: '2rem' }}>
+                                                                    <span className="total-order-text-pack">Pack Type: </span>
+                                                                    <span className="total-order-total-pack">{pack.packType}</span>
+                                                                </div>
+                                                                { }
+                                                            </div>
+                                                        ))}
                                                     </div>
                                                 ) : (
                                                     <p>No items in this order.</p>
