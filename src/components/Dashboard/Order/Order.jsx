@@ -66,22 +66,22 @@ const Order = () => {
 
       <Switch>
         {
-          show ? <Route path='/order-main' exact><MainFood size={cart.length} handleClick={handleClick} setShow={setShow} /></Route>
+          show ? <Route path='/order-main' exact><MainFood size={cart.length} cart={cart} setCart={setCart} handleClick={handleClick} setShow={setShow} /></Route>
             : <Route path='' exact></Route>
         }
 
         {
-          show ? <Route path='/order-drinks' exact><Drinks size={cart.length} handleClick={handleClick} setShow={setShow} /></Route>
+          show ? <Route path='/order-drinks' exact><Drinks size={cart.length} cart={cart} setCart={setCart} handleClick={handleClick} setShow={setShow} /></Route>
             : <Route path='' exact></Route>
         }
 
         {
-          show ? <Route path='/order-sides' exact><Sides size={cart.length} handleClick={handleClick} setShow={setShow} /></Route>
+          show ? <Route path='/order-sides' exact><Sides size={cart.length} cart={cart} setCart={setCart} handleClick={handleClick} setShow={setShow} /></Route>
             : <Route path='' exact></Route>
         }
 
         {
-          show ? <Route path='/order-specials' exact><Specials size={cart.length} handleClick={handleClick} setShow={setShow} /></Route>
+          show ? <Route path='/order-specials' exact><Specials size={cart.length} cart={cart} setCart={setCart} handleClick={handleClick} setShow={setShow} /></Route>
             : <Route path='' exact></Route>
         }
       </Switch>

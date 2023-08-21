@@ -104,9 +104,6 @@ const Payment = ({ handlePayment, price }) => {
                     <button className='card-btn' onClick={handleCardPayment}>Card</button>
                     <button className="wallet-btn" onClick={handleWalletPayment}>Wallet</button>
                 </div>
-                <div className="payment-buttons">
-                    <button className="continue-btn">Continue</button>
-                </div>
             </div>
 
             {/* Proceed Payment */}

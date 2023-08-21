@@ -50,8 +50,6 @@ const Login = () => {
 
             if (userRole === "vendor") {
 
-
-
                 localStorage.setItem("Access-Token-vendor", response.data.val.acessToken)
                 localStorage.setItem("Refresh-Token-vendor", response.data.val.refreshToken)
                 localStorage.setItem("Vendor-Id", response.data.data.userId)

@@ -81,7 +81,6 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
             setPricePack(pricepackValue)
             console.log(pricepackValue)
         }
-
         setSelectedPack(pack);
 
     }
@@ -92,31 +91,31 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
         localStorage.setItem("Pack-Amount", packAmount);
         let packAmountType = localStorage.getItem("Pack-Amount")
 
-        if(packAmountType === "1"){
+        if (packAmountType === "1") {
             const calculatePackAmount = pricePack + 0
             setPackAmount(calculatePackAmount)
             console.log(calculatePackAmount)
         }
 
-        else if(packAmountType === "2"){
+        else if (packAmountType === "2") {
             const calculatePackAmount = pricePack * 2
             setPackAmount(calculatePackAmount)
             console.log(calculatePackAmount)
         }
 
-        else if(packAmountType === "3"){
+        else if (packAmountType === "3") {
             const calculatePackAmount = pricePack * 3
             setPackAmount(calculatePackAmount)
             console.log(calculatePackAmount)
         }
 
-        else if(packAmountType === "4"){
+        else if (packAmountType === "4") {
             const calculatePackAmount = pricePack * 4
             setPackAmount(calculatePackAmount)
             console.log(calculatePackAmount)
         }
 
-        else if(packAmountType === "5"){
+        else if (packAmountType === "5") {
             const calculatePackAmount = pricePack * 5
             setPackAmount(calculatePackAmount)
             console.log(calculatePackAmount)
@@ -133,14 +132,21 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
     }
 
     const handleRemove = (_id) => {
-        const arr = cart.filter(item => item._id !== _id)
-        setCart(arr)
-    }
+        const updatedCart = cart.filter(item => item._id !== _id);
+        setCart(updatedCart);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+    };
 
     useEffect(() => {
         handlePrice()
         handleSmall()
         handlePackAmount()
+
+        // Populate cart from local storage
+        const storedCart = JSON.parse(localStorage.getItem('cart'));
+        if (storedCart) {
+            setCart(storedCart);
+        }
     })
 
     const handleLogo = () => {
@@ -275,7 +281,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                 <br />
                                 {/* Amount of Packs */}
                                 <div className="pack">
-                                    <span className='pack-text'>Number of packs: </span>
+                                    <span className='number-packs'>Number of packs: </span>
                                     <select name="amount" id="pack-amount" className='amount-select' onChange={handlePackAmount}>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -284,7 +290,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                         <option value="5">5</option>
                                     </select>
                                 </div>
-                            
+
                                 <hr />
                                 <div className="time">
                                     <span className='time-text'>Time: </span>
@@ -297,7 +303,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                     </select>
                                 </div>
                                 <hr />
-                                 <div className="time">
+                                <div className="time">
                                     <span className='time-text'>FEE: </span>
                                     <span className="total-amount">₦ 30.00</span>
                                 </div>
@@ -307,7 +313,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                 </div>
                                 <div className="payment">
                                     <button className={`payment-btn ${selectedPack === 'none' || selectedTime === '' ? 'disabled' : ''}`}
-                                    onClick={handlePayment} disabled={isButtonDisabled}>Proceed To Payments</button>
+                                        onClick={handlePayment} disabled={isButtonDisabled}>Proceed To Payments</button>
                                 </div>
                             </div>
                         </Grid>

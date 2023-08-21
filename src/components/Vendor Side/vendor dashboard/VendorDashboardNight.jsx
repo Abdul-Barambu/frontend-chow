@@ -390,14 +390,20 @@ const VendorDashboardNight = () => {
                                                                     <span className="time-order-price">₦ {item.price}.00</span>
                                                                 </div>
 
+
                                                             </div>
                                                         ))}
+
+                                                        <div className="name-order-price">
+                                                            <span className="name-order-name">Bonus</span>
+                                                            <span className="time-order-price">₦ 10.00</span>
+                                                        </div>
 
                                                         {order.packs.map((pack, itemIndex) => (
                                                             <div key={itemIndex}>
                                                                 <div className="order-total" style={{ marginTop: '2rem' }}>
-                                                                    <span className="total-order-text-pack">Pack Type: </span>
-                                                                    <span className="total-order-total-pack">{pack.packType}</span>
+                                                                    <span className="total-order-text-pack" style={{ fontWeight: '700' }}>Pack Type: </span>
+                                                                    <span className="total-order-total-pack" style={{ color: '#D21A32', fontWeight: '700' }}>{pack.packType}</span>
                                                                 </div>
                                                                 { }
                                                             </div>

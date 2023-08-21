@@ -354,6 +354,12 @@ div.pack {
     font-family: 'Poppins';
 }
 
+.number-packs {
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-family: 'Poppins';
+}
+
 .pack-select {
     color: #D21A32;
     padding: .3rem .1rem .3rem 2rem;
@@ -723,6 +729,12 @@ div.payment {
         margin-left: 0;
         /* display: flex;
         flex-direction: column; */
+    }
+
+    .number-packs {
+        font-size: 1.1rem;
+        font-weight: 700;
+        font-family: 'Poppins';
     }
 
     .cart-main-food {
@@ -1160,6 +1172,22 @@ div.payment {
         margin-right: auto;
         /* width: 94%; */
         background: #F5F5F5;
+    }
+
+    .number-packs {
+        font-size: .9rem;
+        font-weight: 700;
+        font-family: 'Poppins';
+    }
+    .pack-text {
+        font-size: 1rem !important;
+        font-weight: 700;
+        font-family: 'Poppins';
+    }
+    .time-text {
+        font-size: .9rem !important;
+        font-weight: 700;
+        font-family: 'Poppins';
     }
 
     div.order-row {

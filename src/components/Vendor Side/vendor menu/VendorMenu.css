@@ -166,9 +166,9 @@ h2.ven-text {
 
 .ven-menu-food {
     border: 1px solid #D21A32;
-    border-radius: 10px;
+    border-radius: 15px;
     text-align: center;
-    padding: .5rem 0 0;
+    padding: 0;
     cursor: pointer;
     margin-bottom: 0.5rem;
 }
@@ -176,6 +176,14 @@ h2.ven-text {
 img.ven-food-img {
     width: 90%;
     height: 128px;
+    border-radius: 10px;
+}
+
+img.ven-food-img-not {
+    width: 90%;
+    height: 128px;
+    margin-top: 2.5rem;
+    border-radius: 10px;
 }
 
 p.ven-food-name {
@@ -209,8 +217,8 @@ p.ven-food-price {
 
 .ven-food-status-colored {
     background: rgb(200, 239, 200);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
     padding: .5rem 0;
 }
 
@@ -228,7 +236,7 @@ p.ven-food-price {
     padding: .5rem 0;
 }
 
-p.remove-food{
+p.remove-food {
     background: #e3919c;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -241,7 +249,7 @@ p.remove-food{
     color: #ffffff;
 }
 
-.delete-icon-special-remove{
+.delete-icon-special-remove {
     color: #ffffff;
     font-size: 1.5rem;
 }
@@ -268,11 +276,21 @@ p.remove-food{
 }
 
 .edit-icon {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    float: right;
+    color: green;
+    margin: 0 0 .5rem 0;
+    padding: 0 .5rem;
+    width: 30px;
+    height: 30px;
+    background: rgb(200, 239, 200);
+    ;
+    border-radius: 50%;
 }
 
 .order-list-container {
-    max-height: 500px; /* Adjust the height as needed */
+    max-height: 500px;
+    /* Adjust the height as needed */
     overflow: auto;
 }
 

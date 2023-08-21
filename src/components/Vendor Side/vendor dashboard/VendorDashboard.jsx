@@ -14,6 +14,7 @@ import { BiMoneyWithdraw } from 'react-icons/bi'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import Switch from 'react-ios-switch';
 
 const VendorDashboard = () => {
 
@@ -23,18 +24,24 @@ const VendorDashboard = () => {
     const [clickedHome, setClickedHome] = useState(false);
     const [clickedOrder, setClickedOrder] = useState(false);
     const [clickedMenu, setClickedMenu] = useState(false);
+    const [toggle, setToggle] = useState(false);
     const [clickedSettings, setClickedSettings] = useState(false);
     const [activeNav, setActiveNav] = useState('')
     const [clickedWithdrawal, setClickedWithdrawal] = useState(false);
     const [success, setSuccess] = useState(false)
     const [balances, setBalances] = useState([])
     const history = useHistory();
+    const [avaiText, setAvaiText] = useState(false)
+    const [checked, setChecked] = useState(false);
 
     const accessToken = localStorage.getItem("Access-Token-vendor");
 
     const headers = {
         Authorization: `Bearer ${accessToken}`
     };
+
+
+
 
 
     let coloredHome = [];
@@ -124,9 +131,13 @@ const VendorDashboard = () => {
         axios.get("https://api-chow.onrender.com/api/vendors/user", { headers })
             .then(res => {
                 console.log(res)
-                setBalances(res.data.data.balance)
-                localStorage.setItem("Vendor-Balance", res.data.data.balance)
-                localStorage.setItem("Total-Ordered", res.data.data.total_orders_served)
+                console.log(res);
+                setBalances(res.data.data.balance);
+                setToggle(res.data.data.is_taking_orders);
+                localStorage.setItem("Vendor-Balance", res.data.data.balance);
+                localStorage.setItem("Total-Ordered", res.data.data.total_orders_served);
+                localStorage.setItem("Toggle", res.data.data.is_taking_orders);
+                setChecked(res.data.data.is_taking_orders);
             }).catch(e => {
                 console.log(e)
             })
@@ -134,6 +145,28 @@ const VendorDashboard = () => {
 
     const vendorBalance = localStorage.getItem("Vendor-Balance")
     const totalOrdered = localStorage.getItem("Total-Ordered")
+    // const Toggle = localStorage.getItem("Toggle")
+
+    const handleChecked = async () => {
+        setChecked(!checked)
+
+
+        try {
+            if (checked) {
+                await axios.patch('https://api-chow.onrender.com/api/vendors/user/not_taking_orders', {}, { headers })
+                console.log('Not available')
+            } else {
+                await axios.patch('https://api-chow.onrender.com/api/vendors/user/taking_orders', {}, { headers })
+                console.log('Availale')
+            }
+            setToggle(!checked);
+            setAvaiText(!avaiText);
+        } catch (error) {
+            console.error("An error occurred:", error);
+        }
+
+    }
+
 
     const handleNormal = (e) => {
         e.preventDefault()
@@ -243,10 +276,29 @@ const VendorDashboard = () => {
                                 <div className="dash-out">
                                     <div className="dashboard-text">
                                         <span className="dash-text">Dashboard</span> <br />
-                                        <span className="profile-date">{date} - {time}</span>
+                                        <span className="profile-date">{date}</span>
                                     </div>
-                                    <div className="profile-vendor-logout">
-                                        <button className="logout-ven-btn" onClick={out}>Logout</button>
+                                    <div className="toggle-logout">
+                                        <div className='toggle'>
+                                            <Switch className="toggle-icon .ios-switch"
+                                                checked={checked}
+                                                disabled={undefined}
+                                                handleColor="white"
+                                                name={undefined}
+                                                offColor="white"
+                                                onChange={() => { handleChecked() }}
+                                                onColor="red"
+                                                pendingOffColor={undefined}
+                                                pendingOnColor={undefined}
+                                                readOnly={undefined}
+                                                style={undefined}
+                                            />
+                                            <br />
+                                            <span className="profile-date avai-ched">{checked ? 'Available now' : 'Not available'}</span>
+                                        </div>
+                                        <div className="profile-vendor-logout">
+                                            <button className="logout-ven-btn" onClick={out}>Logout</button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='bottom-line-dashboard' style={{ bottom: '0' }}></div>
@@ -278,10 +330,8 @@ const VendorDashboard = () => {
                                             <div className="card order-normal-card">
                                                 <img src={Normal} className="card-img-top" alt="Normal picture" />
                                                 <div className="card-body">
-                                                    <h3 className="card-title-normal">Today's Orders</h3>
-                                                    <p className="card-text-normal-today">Click to view today's normal orders.</p>
-                                                    <p className="card-text-normal">View and manage today's orders from your student customers. Deliver delicious meals to brighten their day!</p>
-                                                    <button className="btn-normal-card" onClick={handleNormal}>Click me</button>
+                                                    <h3 className="card-title-normal">Day Orders</h3>
+                                                    <button className="btn-normal-card" onClick={handleNormal}>Proceed</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -291,9 +341,7 @@ const VendorDashboard = () => {
                                                 <img src={Night} className="card-img-top" alt="night picture" />
                                                 <div className="card-body">
                                                     <h3 className="card-title-normal">Night Orders</h3>
-                                                    <p className="card-text-normal-today">Click to view today's night orders.</p>
-                                                    <p className="card-text-normal">View, prepare and handle late-night orders for students. Keep them fueled during their study sessions!</p>
-                                                    <button className="btn-normal-card" onClick={handleNight}>Click me</button>
+                                                    <button className="btn-normal-card" onClick={handleNight}>Proceed</button>
                                                 </div>
                                             </div>
                                         </div>

@@ -131,6 +131,8 @@ const Profile = () => {
     const handleLogout = () => {
         localStorage.removeItem("Refresh-Token");
         localStorage.removeItem("Access-Token");
+        localStorage.removeItem("clickedButtons");
+        localStorage.removeItem("cart");
         history.push('/')
         Swal.fire({
             icon: 'success',

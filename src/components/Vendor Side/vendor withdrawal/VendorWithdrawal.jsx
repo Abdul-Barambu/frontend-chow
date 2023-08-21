@@ -158,6 +158,9 @@ const VendorWithdrawal = () => {
         console.error(error);
         setInvalid(true)
         setAccountName('')
+        setAccountNumber('')
+        const selectElement = document.getElementById("bankNames");
+        selectElement.selectedIndex = 0; // Reset to the default "Choose bank..." option
       });
   }
 

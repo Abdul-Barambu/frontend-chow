@@ -20,22 +20,25 @@ const AddNewFood = ({ handleAddDish }) => {
         axios.post("https://api-chow.onrender.com/api/vendors/menu/custom/meals", {
             name: name,
             price: price
-        }, {headers})
-        .then(response => {
-            console.log(response)
-            Swal.fire({
-                icon: 'success',
-                title: 'SUCCESS',
-                text: 'Food added successfully, Click OK to continue'
-            });
-        }).catch(e => {
-            console.log(e)
-            Swal.fire({
-                icon: 'error',
-                title: 'ERROR',
-                text: 'An Error Occured'
-            });
-        })
+        }, { headers })
+            .then(response => {
+                console.log(response)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'SUCCESS',
+                    text: 'Food added successfully, Click OK to continue'
+                });
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1000)
+            }).catch(e => {
+                console.log(e)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERROR',
+                    text: 'An Error Occured'
+                });
+            })
     }
 
     return (

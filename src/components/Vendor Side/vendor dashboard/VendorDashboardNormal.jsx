@@ -309,7 +309,7 @@ const VendorDashboardNormal = () => {
                                     <div className="row">
                                         <div className="col-lg-12">
                                             <div className="normal-order" style={{ marginBottom: '2rem' }}>
-                                                <h2 className="normal-text">Today's Normal Orders</h2>
+                                                <h2 className="normal-text">Day Orders</h2>
                                                 <div className="order-menu-text">
                                                     <span className="order-text-menu">Customer</span>
                                                     <span className="order-text-menu">Order</span>
@@ -392,12 +392,16 @@ const VendorDashboardNormal = () => {
                                                                 { }
                                                             </div>
                                                         ))}
+                                                        <div className="name-order-price">
+                                                                    <span className="name-order-name">Bonus</span>
+                                                                    <span className="time-order-price">₦ 10.00</span>
+                                                                </div>
 
                                                         {order.packs.map((pack, itemIndex) => (
                                                             <div key={itemIndex}>
-                                                                <div className="order-total" style={{marginTop: '2rem'}}>
-                                                                    <span className="total-order-text-pack">Pack Type: </span>
-                                                                    <span className="total-order-total-pack">{pack.packType}</span>
+                                                                <div className="order-total" style={{ marginTop: '2rem' }}>
+                                                                    <span className="total-order-text-pack" style={{ fontWeight: '700' }}>Pack Type: </span>
+                                                                    <span className="total-order-total-pack" style={{ color: '#D21A32', fontWeight: '700' }}>{pack.packType}</span>
                                                                 </div>
                                                                 { }
                                                             </div>

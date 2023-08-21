@@ -286,6 +286,16 @@ h2.dish-amount {
     font-size: 1.6rem;
 }
 
+div.toggle-logout{
+    display: flex;
+    gap: 2rem;
+}
+
+.toggle-icon{
+    font-size: 0.5rem;
+    margin-left: 1rem;
+}
+
 p.dish-text {
     margin: 0;
     color: darkgray;
@@ -369,6 +379,38 @@ span.order-text-menu {
     justify-content: space-between;
     align-items: center;
 }
+
+
+/* switch*/
+
+/* Apply these styles to your iOS-style switch */
+.ios-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px; /* Adjust the width as needed */
+    height: 34px; /* Adjust the height as needed */
+    border-radius: 17px; /* Half of the height for rounded appearance */
+    background-color: #ccc;
+    cursor: pointer;
+  }
+  
+  .ios-switch::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 30px; /* Width of the handle */
+    height: 30px; /* Height of the handle */
+    border-radius: 50%;
+    background-color: white;
+    transition: transform 0.3s;
+  }
+  
+  /* Change the handle position when switch is checked */
+  .ios-switch.checked::before {
+    transform: translateX(calc(100% - 2px));
+  }
+  
 
 span.order-list-text {
     font-size: 0.75rem;
@@ -549,6 +591,14 @@ span.order-id {
     color: #D21A32;
 }
 
+.moon-sun-img{
+    display: flex;
+}
+
+.sun-moon-img{
+    width: 55%;
+}
+
 /* Screen Responsiveness */
 
 /* Ipad */
@@ -689,7 +739,6 @@ span.order-id {
         padding: 0;
     }
     
-    
     .order-normal-card {
         padding: .5rem;
     }
@@ -711,6 +760,10 @@ span.order-id {
     .card-text-normal {
         font-family: "Poppins";
         font-size: 0.7rem;
+    }
+
+    .avai-ched{
+        margin-left: 1rem;
     }
 }
 
@@ -907,6 +960,10 @@ span.order-id {
         margin-left: 30%;
         padding-top: 1rem;
     }
+
+    .avai-ched{
+        font-size: 0.4rem;
+    }
 }
 
 
@@ -978,5 +1035,14 @@ span.order-id {
         padding-top: 2rem;
         margin-left: 60%;
     }
+
+    span.dash-text {
+        font-size: .9rem ;
+        font-family: "Poppins";
+        color: #D21A32;
+        font-weight: 700;
+        margin-right: 1.5rem;
+    }
+.avai-ched{}
 
 }

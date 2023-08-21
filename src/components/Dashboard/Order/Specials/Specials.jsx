@@ -9,7 +9,7 @@ import { Grid } from '@mui/material'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
-const Specials = ({ handleClick, setShow, size }) => {
+const Specials = ({ handleClick, setShow, size, cart, setCart }) => {
 
   const [count, setCount] = useState(1);
   const [countOne, setCountOne] = useState(1);
@@ -21,11 +21,15 @@ const Specials = ({ handleClick, setShow, size }) => {
   const [clickedButtons, setClickedButtons] = useState([]);
 
   // Function to handle button click and update clicked buttons
-  const handleClickChange = (itemId) => {
-    if (!clickedButtons.includes(itemId)) {
-      setClickedButtons((prevClickedButtons) => [...prevClickedButtons, itemId]);
+  const handleClickChange = (item) => {
+    if (!clickedButtons.includes(item._id)) {
+      setClickedButtons((prevClickedButtons) => [...prevClickedButtons, item._id]);
+      const updatedCart = [...cart, item];
+      setCart(updatedCart);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
   };
+
 
   if (countOne < 1) {
     setCountOne(1)
@@ -98,7 +102,7 @@ const Specials = ({ handleClick, setShow, size }) => {
                         <button
                           className={clickedButtons.includes(item._id) ? 'btn-cart-green' : 'btn-cart-red'}
                           onClick={() => {
-                            handleClickChange(item._id)
+                            handleClickChange(item)
                             handleClick(item)
                           }}>
                           {clickedButtons.includes(item._id) ? 'Added to Cart' : 'Add to Cart'}

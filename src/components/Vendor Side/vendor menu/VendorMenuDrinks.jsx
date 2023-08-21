@@ -7,9 +7,10 @@ import { MdRestaurantMenu } from 'react-icons/md'
 import { BsDashCircleDotted } from 'react-icons/bs'
 import { RiListSettingsLine } from 'react-icons/ri'
 import { BiMoneyWithdraw } from 'react-icons/bi'
-import { FaEdit } from 'react-icons/fa'
+import { FaPencilAlt } from 'react-icons/fa'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import axios from 'axios'
+import { MdDelete } from 'react-icons/md'
 import { MdOutlineCancel } from 'react-icons/md'
 import AddNewDrink from './AddNewDrink'
 import Swal from 'sweetalert2'
@@ -30,6 +31,7 @@ const VendorMenuDrinks = () => {
     const [availabilityStatus, setAvailabilityStatus] = useState({});
     const [loading, setLoading] = useState(false)
     const [dataLoaded, setDataLoaded] = useState(false);
+    const [customFood, setCustomFood] = useState([])
     const [modal, setModal] = useState(false);
     const [modala, setModala] = useState(false);
     const [menuIdToUpdate, setMenuIdToUpdate] = useState(null);
@@ -51,7 +53,7 @@ const VendorMenuDrinks = () => {
         // Check the current status of the food
         const currentStatus = availabilityStatus[foodId];
 
-        if (currentStatus === "Available --") {
+        if (currentStatus === "Available ") {
             // Food is available, perform the API call to delete the food
             const mealToUpdate = mealsMenu.find(menuMeal => menuMeal.food_id === foodId);
             if (mealToUpdate) {
@@ -97,7 +99,7 @@ const VendorMenuDrinks = () => {
                         // Food is added, set the availability status to "Available"
                         setAvailabilityStatus(prevStatus => ({
                             ...prevStatus,
-                            [foodId]: "Available --"
+                            [foodId]: "Available "
                         }));
 
                         setRefresh(prevState => !prevState)
@@ -203,7 +205,7 @@ const VendorMenuDrinks = () => {
 
     if (text) {
         availableText.push('Available   ')
-        availableText.push(<FaEdit />)
+        availableText.push(<FaPencilAlt />)
     } else {
         availableText.push('Not available')
     }
@@ -295,7 +297,7 @@ const VendorMenuDrinks = () => {
                 // Create an object with food_id as key and availability status as value
                 const statusObject = {};
                 foodApiFoodIds.forEach(food_id => {
-                    statusObject[food_id] = menuApiFoodIds.includes(food_id) ? "Available --" : "Not available";
+                    statusObject[food_id] = menuApiFoodIds.includes(food_id) ? "Available " : "Not available";
                 });
 
                 setAvailabilityStatus(statusObject);
@@ -311,6 +313,47 @@ const VendorMenuDrinks = () => {
     // Modal
     const handleAddDish = () => {
         setModal(!modal)
+    }
+
+    // Custom foods
+    useEffect(() => {
+        axios.get(`https://api-chow.onrender.com/api/vendors/menu/custom/drinks/${vendorId}`, { headers })
+            .then(response => {
+                console.log(response)
+                setCustomFood(response.data.data)
+            }).catch(error => {
+                console.log(error)
+            })
+    }, [])
+
+    const styling = {
+        container: {
+            paddingLeft: 0
+        }
+    }
+
+    // delete drink food
+    const handleDelete = (_id) => {
+        console.log(_id)
+        axios.delete(`https://api-chow.onrender.com/api/vendors/menu/drinks/${_id}`, { headers })
+            .then(res => {
+                console.log(res)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'DELETED',
+                    text: 'Food deleted successfully, Click OK to continue'
+                });
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1000)
+            }).catch(e => {
+                console.log(e)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERROR',
+                    text: 'An Error Occured'
+                });
+            })
     }
 
     return (
@@ -400,14 +443,17 @@ const VendorMenuDrinks = () => {
                                                     drinks.map((drink, index) => (
                                                         <div key={drink.food_id} className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
                                                             <div className="ven-menu-food" onClick={() => { handleAvailable(drink.food_id) }}>
-                                                                <img src={`https://api-chow.onrender.com/static/${drink.food_id}.jpg`} alt="Food img" className='ven-food-img' />
+                                                                {availabilityStatus[drink.food_id] === "Available " ? (
+                                                                    <FaPencilAlt className='edit-icon' onClick={(e) => { e.stopPropagation(); handleEdit(drink.food_id); }} />
+                                                                ) : ""}
+                                                                <img src={`https://api-chow.onrender.com/static/${drink.food_id}.jpg`} alt="Food img" 
+                                                                className={availabilityStatus[drink.food_id] === "Available " ? 'ven-food-img' : 'ven-food-img-not'} style={{borderRadius: '20px'}} />
                                                                 <p className="ven-food-name">{drink.food_name}</p>
                                                                 <p className="ven-food-price">₦ {mealsMenu.find(menuMeal => menuMeal.food_id === drink.food_id)?.price}.00</p>
-                                                                <div className={availabilityStatus[drink.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
-                                                                    <span className={availabilityStatus[drink.food_id] === "Available --" ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
+                                                                <div className={availabilityStatus[drink.food_id] === "Available " ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
+                                                                    <span className={availabilityStatus[drink.food_id] === "Available " ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
                                                                         {availabilityStatus[drink.food_id]}
                                                                     </span>
-                                                                    {availabilityStatus[drink.food_id] === "Available --" ? <FaEdit className='edit-icon' onClick={(e) => { e.stopPropagation(); handleEdit(drink.food_id); }} /> : ""}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -419,6 +465,43 @@ const VendorMenuDrinks = () => {
                                                 <span className='loading-ring-all'></span>
                                             </div>
                                         )
+                                    }
+                                </div>
+                            </div>
+                        </Grid>
+                        <Grid item lg={3} md={3} sm={3} xs={12} sx={styling.container}>
+
+                        </Grid>
+                        {/* Custom food */}
+                        <Grid item lg={9} md={9} sm={9} xs={12} sx={styling.container}>
+                            <div className="vendor-menu-body">
+                                <div className="ven-menu-text">
+                                    <h2 className="ven-text" style={{ fontWeight: '700' }}>Custom</h2>
+                                </div>
+                                <div className='bottom-line-menu' style={{ bottom: '0' }}></div>
+                                <div className="ven-menu-foods">
+
+                                    {/* TODO: change icon to top */}
+                                    {
+                                        loading ? (
+                                            <div className="row row-last order-list-container">
+
+                                                {
+                                                    customFood.map((food, index) => (
+                                                        <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6" key={index}>
+                                                            <div className="ven-menu-food">
+                                                                <img src={`https://api-chow.onrender.com${food.image_url}`} alt="Food img" className='ven-food-img' style={{ width: '130px' }} />
+                                                                <p className="ven-food-name">{food.food_name}</p>
+                                                                <p className="ven-food-price">₦ {food.price}.00</p>
+                                                                <p className='remove-food' onClick={() => handleDelete(food._id)}><MdDelete className='delete-icon-special-remove' /> Remove</p>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                        ) : (<div className="ring-all">Loading
+                                            <span className='loading-ring-all'></span>
+                                        </div>)
                                     }
                                 </div>
                             </div>

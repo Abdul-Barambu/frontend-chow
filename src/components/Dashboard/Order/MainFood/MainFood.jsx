@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 
-const MainFood = ({ handleClick, setShow, size }) => {
+const MainFood = ({ handleClick, setShow, size, cart, setCart }) => {
 
   const [count, setCount] = useState(100);
   const [countOne, setCountOne] = useState(100);
@@ -21,12 +21,15 @@ const MainFood = ({ handleClick, setShow, size }) => {
   const [clickedButtons, setClickedButtons] = useState([]);
 
   // Function to handle button click and update clicked buttons
-  const handleClickChange = (itemId) => {
-    if (!clickedButtons.includes(itemId)) {
-      setClickedButtons((prevClickedButtons) => [...prevClickedButtons, itemId]);
+  const handleClickChange = (item) => {
+    if (!clickedButtons.includes(item._id)) {
+      setClickedButtons((prevClickedButtons) => [...prevClickedButtons, item._id]);
+      const updatedCart = [...cart, item];
+      setCart(updatedCart);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
   };
-  
+
 
   if (count > 2000) {
     setCount(2000)
@@ -82,6 +85,12 @@ const MainFood = ({ handleClick, setShow, size }) => {
       }).catch(err => {
         console.log(err)
       })
+
+    // Populate cart from local storage
+    const storedCart = JSON.parse(localStorage.getItem('cart'));
+    if (storedCart) {
+      setCart(storedCart);
+    }
   }, [])
 
 
@@ -89,7 +98,7 @@ const MainFood = ({ handleClick, setShow, size }) => {
   return (
     <div>
       <div className="container-food">
-        
+
         <div className='main-body'>
           {
             loading ? (<Grid container spacing={2}>
@@ -107,7 +116,7 @@ const MainFood = ({ handleClick, setShow, size }) => {
                         <button
                           className={clickedButtons.includes(item._id) ? 'btn-cart-green' : 'btn-cart-red'}
                           onClick={() => {
-                            handleClickChange(item._id)
+                            handleClickChange(item)
                             handleClick(item)
                           }}>
                           {clickedButtons.includes(item._id) ? 'Added to Cart' : 'Add to Cart'}
