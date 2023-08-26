@@ -464,8 +464,8 @@ const VendorMenu = () => {
                                                                 {availabilityStatus[meal.food_id] === "Available" ? (
                                                                     <FaPencilAlt className='edit-icon' onClick={(e) => { e.stopPropagation(); handleEdit(meal.food_id); }} />
                                                                 ) : ""}
-                                                                <img src={`https://api-chow.onrender.com/static/${meal.food_id}.jpg`} alt="Food img" 
-                                                                className={availabilityStatus[meal.food_id] === "Available" ? 'ven-food-img' : 'ven-food-img-not'} />
+                                                                <img src={`https://api-chow.onrender.com/static/${meal.food_id}.jpg`} alt="Food img"
+                                                                    className={availabilityStatus[meal.food_id] === "Available" ? 'ven-food-img' : 'ven-food-img-not'} />
                                                                 <p className="ven-food-name">{meal.food_name}</p>
                                                                 <p className="ven-food-price">₦ {mealsMenu.find(menuMeal => menuMeal.food_id === meal.food_id)?.price}.00</p>
                                                                 <div
@@ -508,7 +508,7 @@ const VendorMenu = () => {
                                         loading ? (
                                             <div className="row row-last order-list-container">
 
-                                                {
+                                                {customFood.length > 0 ? (
                                                     customFood.map((food, index) => (
                                                         <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6" key={index}>
                                                             <div className="ven-menu-food">
@@ -519,7 +519,9 @@ const VendorMenu = () => {
                                                             </div>
                                                         </div>
                                                     ))
-                                                }
+                                                ) : (
+                                                    <p style={{textAlign: 'center', fontWeight: '700', color: '#D21A32'}}>No Custom food</p>
+                                                )}
                                             </div>
                                         ) : (<div className="ring-all">Loading
                                             <span className='loading-ring-all'></span>

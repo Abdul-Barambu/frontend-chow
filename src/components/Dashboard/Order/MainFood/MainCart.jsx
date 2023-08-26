@@ -147,7 +147,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
         if (storedCart) {
             setCart(storedCart);
         }
-    })
+    }, [])
 
     const handleLogo = () => {
         history.push("/order")
@@ -270,7 +270,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                             <div className="cart-main-food">
                                 <hr />
                                 <div className="pack">
-                                    <span className='pack-text'>Pack: </span>
+                                    <span className='pack-text'>Pack Type: </span>
                                     <select name="pack" id="pack" className='pack-select' onChange={handleSmall}>
                                         <option value="none">None</option>
                                         <option value="smallPack" id='smallPack'>smallPack</option>
@@ -281,7 +281,7 @@ const MainCart = ({ cart, setCart, handleChange, size, setShow }) => {
                                 <br />
                                 {/* Amount of Packs */}
                                 <div className="pack">
-                                    <span className='number-packs'>Number of packs: </span>
+                                    <span className='number-packs'>Packs: </span>
                                     <select name="amount" id="pack-amount" className='amount-select' onChange={handlePackAmount}>
                                         <option value="1">1</option>
                                         <option value="2">2</option>

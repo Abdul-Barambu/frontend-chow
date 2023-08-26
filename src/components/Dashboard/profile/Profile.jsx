@@ -106,7 +106,7 @@ const Profile = () => {
     // Food order history api
 
     useEffect(() => {
-        axios.get(`https://chow.onrender.com/api/v1/orders/myOders/${userId}?page=${currentPage}&limit=10`, { headers })
+        axios.get(`https://chow.onrender.com/api/v1/orders/myOders/${userId}`, { headers })
             .then(res => {
                 console.log(res.data.data)
                 setOrderHistory(res.data.data)
@@ -134,11 +134,11 @@ const Profile = () => {
         localStorage.removeItem("clickedButtons");
         localStorage.removeItem("cart");
         history.push('/')
-        Swal.fire({
-            icon: 'success',
-            title: 'LOGOUT',
-            text: 'Logged Out Successfully'
-        });
+        // Swal.fire({
+        //     icon: 'success',
+        //     title: 'LOGOUT',
+        //     text: 'Logged Out Successfully'
+        // });
     }
 
     const handlePacks = (_id) => {
@@ -295,15 +295,15 @@ const Profile = () => {
                                                         ))
                                                     }
 
-                                                    <div className='chev-icons'>
+                                                    {/* <div className='chev-icons'>
                                                         <span  onClick={() => handlePageChange(currentPage - 1)}>
                                                             <BsChevronLeft style={{fontSize: '1.5rem', cursor: 'pointer'}} />
                                                         </span>
-                                                        {/* <span className='page-text'>Page {pagenumber} of {totalPages}</span> */}
+                                                        <span className='page-text'>Page {pagenumber} of {totalPages}</span>
                                                         <span onClick={() => handlePageChange(currentPage + 1)}>
                                                             <BsChevronRight style={{fontSize: '1.5rem', cursor: 'pointer'}} />
                                                         </span>
-                                                    </div>
+                                                    </div> */}
                                                 </div>
                                             ) : (
                                                 <div className="ring-profile">Loading
@@ -323,7 +323,7 @@ const Profile = () => {
 
             {/* each packs */}
 
-            {
+            {/* {
                 modala && (<div>
                     <div className='center-add'>
                         <div className="is-add"></div>
@@ -339,7 +339,6 @@ const Profile = () => {
                                         packOrders.map((orders, index) => (
                                             <div key={index} className="">
                                                 <div className="name-order-time-id">
-                                                    {/* Render vendor usernames based on the index */}
                                                     {venPack[index] && <span className="order-name">{venPack[index].username}</span>}
                                                     <span className="order-updated">{orders.updatedAt}</span>
                                                     <span className="order-id">{orders.orderId}</span>
@@ -389,7 +388,7 @@ const Profile = () => {
                     </div>
                 </div>
                 )
-            }
+            } */}
 
 
 

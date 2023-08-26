@@ -426,6 +426,30 @@ div.profile-main-body {
     }
 }
 
+@media screen and (max-width: 795px) {
+    .left-side-profile {
+        background: white;
+        border-radius: 10px;
+        margin-top: 1rem;
+        margin-left: 1rem;
+        padding: 4rem .5rem;
+        height: 50vh;
+    }
+
+    .setting-btn {
+        width: 100%;
+        border: 1.5px solid #D21A32;
+        border-radius: 10px;
+        background: #F7F7FB;
+        color: #D21A32;
+        text-align: left;
+        padding: .6rem .4rem;
+        font-family: 'Poppins';
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+}
+
 @media screen and (max-width: 770px) {
     .profile-name {
         font-size: .6rem;
@@ -459,6 +483,7 @@ div.profile-main-body {
         font-size: 0.6rem;
     }
 }
+
 
 /* Phones */
 

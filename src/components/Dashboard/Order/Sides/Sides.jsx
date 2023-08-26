@@ -94,7 +94,7 @@ const Sides = ({ size, handleClick, setShow, cart, setCart }) => {
                   <Grid item lg={3} md={4} sm={4} xs={12}>
                     <div key={item._id} className="cart-main-drink">
                       <div className="main-drink">
-                        <img src={`https://api-chow.onrender.com/static/${item.food_id}.jpg`} alt="food-img" style={{ width: '100px', height: '100px', borderRadius: '10px' }} />
+                        <img src={`https://api-chow.onrender.com/static/${item.food_id}.jpg`} alt="food-img" className='cart-img-chow' />
                         <span className='drink-name'>{item.food_name}
                           <span className="drink-price">₦ {item.price}.00</span>
                           {/* <span className="drink-qty">

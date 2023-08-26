@@ -165,11 +165,6 @@ const VendorProfile = () => {
     const out = () => {
         localStorage.removeItem("Refresh-Token-vendor");
         localStorage.removeItem("Access-Token-vendor");
-        Swal.fire({
-            icon: 'success',
-            title: 'SUCCESS',
-            text: 'Logged Out Successfully'
-        });
         history.push("/")
     }
 

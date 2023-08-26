@@ -107,7 +107,7 @@ const MainFood = ({ handleClick, setShow, size, cart, setCart }) => {
                   <Grid item lg={3} md={4} sm={4} xs={12}>
                     <div key={item._id} className="cart-main-food">
                       <div className="main-food">
-                        <img src={`https://api-chow.onrender.com/static/${item.food_id}.jpg`} alt="food-img" style={{ width: '100px', height: '100px', borderRadius: '10px' }} />
+                        <img src={`https://api-chow.onrender.com/static/${item.food_id}.jpg`} alt="food-img" className='cart-img-chow' />
                         <span className='food-name'>{item.food_name}
                           <span className="special-price">₦ {item.price}.00</span>
                         </span>

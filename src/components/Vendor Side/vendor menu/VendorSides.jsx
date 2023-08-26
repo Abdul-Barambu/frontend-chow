@@ -310,7 +310,7 @@ const VendorSides = () => {
     // Modal
     const handleAddDish = () => {
         setModal(!modal)
-        
+
     }
 
     const handleVendorDrink = () => {
@@ -445,11 +445,11 @@ const VendorSides = () => {
                                                     drinks.map((drink, index) => (
                                                         <div key={drink.food_id} className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
                                                             <div className="ven-menu-food" onClick={() => { handleAvailable(drink.food_id) }}>
-                                                            {availabilityStatus[drink.food_id] === "Available " ? (
+                                                                {availabilityStatus[drink.food_id] === "Available " ? (
                                                                     <FaPencilAlt className='edit-icon' onClick={(e) => { e.stopPropagation(); handleEdit(drink.food_id); }} />
                                                                 ) : ""}
-                                                                <img src={`https://api-chow.onrender.com/static/${drink.food_id}.jpg`} alt="Food img" 
-                                                                className={availabilityStatus[drink.food_id] === "Available " ? 'ven-food-img' : 'ven-food-img-not'} style={{borderRadius: '20px'}} />
+                                                                <img src={`https://api-chow.onrender.com/static/${drink.food_id}.jpg`} alt="Food img"
+                                                                    className={availabilityStatus[drink.food_id] === "Available " ? 'ven-food-img' : 'ven-food-img-not'} style={{ borderRadius: '20px' }} />
                                                                 <p className="ven-food-name">{drink.food_name}</p>
                                                                 <p className="ven-food-price">₦ {mealsMenu.find(menuMeal => menuMeal.food_id === drink.food_id)?.price}.00</p>
                                                                 <div className={availabilityStatus[drink.food_id] === "Available " ? 'ven-food-status-colored avai-status-colored' : 'ven-food-status avai-status'}>
@@ -488,18 +488,21 @@ const VendorSides = () => {
                                         loading ? (
                                             <div className="row row-last order-list-container">
 
-                                                {
+                                                {customFood.length > 0 ? (
                                                     customFood.map((food, index) => (
                                                         <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6" key={index}>
                                                             <div className="ven-menu-food">
-                                                                <img src={`https://api-chow.onrender.com${food.image_url}`} alt="Food img" className='ven-food-img' style={{width: '130px'}} />
+                                                                <img src={`https://api-chow.onrender.com${food.image_url}`} alt="Food img" className='ven-food-img' style={{ width: '130px' }} />
                                                                 <p className="ven-food-name">{food.food_name}</p>
                                                                 <p className="ven-food-price">₦ {food.price}.00</p>
                                                                 <p className='remove-food' onClick={() => handleDelete(food._id)}><MdDelete className='delete-icon-special-remove' /> Remove</p>
                                                             </div>
                                                         </div>
                                                     ))
-                                                }
+                                                ) : (
+                                                    <p style={{ textAlign: 'center', fontWeight: '700', color: '#D21A32' }}>No Custom Side</p>
+                                                )}
+
                                             </div>
                                         ) : (<div className="ring-all">Loading
                                             <span className='loading-ring-all'></span>

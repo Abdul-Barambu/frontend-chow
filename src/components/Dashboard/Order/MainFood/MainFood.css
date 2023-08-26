@@ -2,85 +2,82 @@
 
 /* Loading */
 
-.ring
-{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:150px;
-  height:150px;
-  background:transparent;
-  border-radius:50%;
-  text-align:center;
-  line-height:150px;
-  font-family:sans-serif;
-  font-size:20px;
-  color: #D21A32;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  text-shadow:0 0 10px #D21A32;
-  box-shadow:0 0 20px rgba(0,0,0,.5);
+.ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    background: transparent;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 150px;
+    font-family: sans-serif;
+    font-size: 20px;
+    color: #D21A32;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #D21A32;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
 }
-.ring:before
-{
-  content:'';
-  position:absolute;
-  top:-3px;
-  left:-3px;
-  width:100%;
-  height:100%;
-  border:3px solid transparent;
-  border-top:3px solid #D21A32;
-  border-right:3px solid #D21A32;
-  border-radius:50%;
-  animation:animateC 2s linear infinite;
+
+.ring:before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top: 3px solid #D21A32;
+    border-right: 3px solid #D21A32;
+    border-radius: 50%;
+    animation: animateC 2s linear infinite;
 }
-span.loading-ring
-{
-  display:block;
-  position:absolute;
-  top:calc(50% - 2px);
-  left:50%;
-  width:50%;
-  height:4px;
-  background:transparent;
-  transform-origin:left;
-  animation:animate 2s linear infinite;
+
+span.loading-ring {
+    display: block;
+    position: absolute;
+    top: calc(50% - 2px);
+    left: 50%;
+    width: 50%;
+    height: 4px;
+    background: transparent;
+    transform-origin: left;
+    animation: animate 2s linear infinite;
 }
-span.loading-ring:before
-{
-  content:'';
-  position:absolute;
-  width:16px;
-  height:16px;
-  border-radius:50%;
-  background:#D21A32;
-  top:-6px;
-  right:-8px;
-  box-shadow:0 0 20px #D21A32;
+
+span.loading-ring:before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #D21A32;
+    top: -6px;
+    right: -8px;
+    box-shadow: 0 0 20px #D21A32;
 }
-@keyframes animateC
-{
-  0%
-  {
-    transform:rotate(0deg);
-  }
-  100%
-  {
-    transform:rotate(360deg);
-  }
+
+@keyframes animateC {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
-@keyframes animate
-{
-  0%
-  {
-    transform:rotate(45deg);
-  }
-  100%
-  {
-    transform:rotate(405deg);
-  }
+
+@keyframes animate {
+    0% {
+        transform: rotate(45deg);
+    }
+
+    100% {
+        transform: rotate(405deg);
+    }
 }
 
 div.container-food {
@@ -178,6 +175,13 @@ span.drinks-red {
     margin-bottom: 1rem;
 } */
 
+
+/* Cart images */
+.cart-img-chow {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
 
 /* MAIN BODY */
 div.main-body {
@@ -372,7 +376,7 @@ div.pack {
 
 .amount-select {
     color: #D21A32;
-    padding: .1rem 2.5rem .1rem 3.5rem;
+    padding: .1rem 2.5rem .1rem 3.8rem;
     border: 1px solid #D21A32;
     border-radius: 10px;
     font-size: 1.2rem;
@@ -382,7 +386,7 @@ div.pack {
 
 
 
-.input-amount{
+.input-amount {
     width: 44%;
     border-radius: 10px;
     border: 1px solid #D21A32;
@@ -390,7 +394,7 @@ div.pack {
     color: #D21A32;
     font-size: 1.2rem;
     font-weight: 700;
-    
+
 }
 
 div.time {
@@ -452,12 +456,17 @@ div.payment {
 }
 
 .payment-btn.disabled {
-    background-color: #c0c0c0; /* Faded color for disabled state */
-    cursor: not-allowed; /* Show not-allowed cursor for disabled state */
+    background-color: #c0c0c0;
+    /* Faded color for disabled state */
+    cursor: not-allowed;
+    /* Show not-allowed cursor for disabled state */
 }
+
 .payment-btn.disabled:hover {
-    background-color: #c0c0c0; /* Faded color for disabled state */
-    cursor: not-allowed; /* Show not-allowed cursor for disabled state */
+    background-color: #c0c0c0;
+    /* Faded color for disabled state */
+    cursor: not-allowed;
+    /* Show not-allowed cursor for disabled state */
 }
 
 .payment-btn:hover {
@@ -508,7 +517,7 @@ div.payment {
         border: 1px solid #CDCCCC;
     }
 
-    .food-price-qty{
+    .food-price-qty {
         font-size: 1rem;
     }
 
@@ -529,13 +538,13 @@ div.payment {
 
     }
 
-    .p-amount{
+    .p-amount {
         font-size: 1.3rem;
         font-weight: 700;
         font-family: 'Poppins';
     }
-    
-    .input-amount{
+
+    .input-amount {
         width: 15%;
         border-radius: 10px;
         border: 1px solid #D21A32;
@@ -543,7 +552,7 @@ div.payment {
         color: #D21A32;
         font-size: 1.2rem;
         font-weight: 700;
-        
+
     }
 }
 
@@ -604,13 +613,13 @@ div.payment {
 
     }
 
-    .p-amount{
+    .p-amount {
         font-size: 1.3rem;
         font-weight: 700;
         font-family: 'Poppins';
     }
-    
-    .input-amount{
+
+    .input-amount {
         width: 19%;
         border-radius: 10px;
         border: 1px solid #D21A32;
@@ -618,7 +627,7 @@ div.payment {
         color: #D21A32;
         font-size: 1.2rem;
         font-weight: 700;
-        
+
     }
 }
 
@@ -676,13 +685,13 @@ div.payment {
 
     }
 
-    .p-amount{
+    .p-amount {
         font-size: 1.3rem;
         font-weight: 700;
         font-family: 'Poppins';
     }
-    
-    .input-amount{
+
+    .input-amount {
         width: 20%;
         border-radius: 10px;
         border: 1px solid #D21A32;
@@ -690,7 +699,46 @@ div.payment {
         color: #D21A32;
         font-size: 1.2rem;
         font-weight: 700;
-        
+
+    }
+}
+
+@media screen and (max-width: 760px) {
+
+    /* Cart images */
+    .cart-img-chow {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (max-width: 695px) {
+
+    /* Cart images */
+    .cart-img-chow {
+        width: 60px;
+        height: 60px;
+        border-radius: 10px;
+    }
+
+    .food-name {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 8px;
+        line-height: 23px;
+        padding-left: 4px;
+    }
+
+    .cart-main-food {
+        /* box-shadow: 0px 0px 1px 0px #000; */
+        background-color: white;
+        border-radius: 7px;
+        padding: 1rem;
+        margin-bottom: 2.5rem;
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -773,7 +821,7 @@ div.payment {
 
     }
 
-    .food-price{
+    .food-price {
         margin-top: 2.5rem;
     }
 
@@ -857,13 +905,13 @@ div.payment {
         font-family: 'Poppins';
     }
 
-    .p-amount{
+    .p-amount {
         font-size: 1.3rem;
         font-weight: 700;
         font-family: 'Poppins';
     }
-    
-    .input-amount{
+
+    .input-amount {
         width: 44%;
         border-radius: 10px;
         border: 1px solid #D21A32;
@@ -871,7 +919,7 @@ div.payment {
         color: #D21A32;
         font-size: 1.2rem;
         font-weight: 700;
-        
+
     }
 
     div.time {
@@ -998,7 +1046,7 @@ div.payment {
 
     }
 
-    .food-price{
+    .food-price {
         margin-top: 2.5rem;
     }
 
@@ -1078,13 +1126,13 @@ div.payment {
         font-family: 'Poppins';
     }
 
-    .p-amount{
+    .p-amount {
         font-size: 1.3rem;
         font-weight: 700;
         font-family: 'Poppins';
     }
-    
-    .input-amount{
+
+    .input-amount {
         width: 48%;
         border-radius: 10px;
         border: 1px solid #D21A32;
@@ -1092,7 +1140,7 @@ div.payment {
         color: #D21A32;
         font-size: 1.2rem;
         font-weight: 700;
-        
+
     }
 
     div.time {
@@ -1179,11 +1227,13 @@ div.payment {
         font-weight: 700;
         font-family: 'Poppins';
     }
+
     .pack-text {
         font-size: 1rem !important;
         font-weight: 700;
         font-family: 'Poppins';
     }
+
     .time-text {
         font-size: .9rem !important;
         font-weight: 700;
@@ -1231,7 +1281,7 @@ div.payment {
 
     }
 
-    .food-price{
+    .food-price {
         margin-top: 2.5rem;
     }
 
@@ -1311,13 +1361,13 @@ div.payment {
         font-family: 'Poppins';
     }
 
-    .p-amount{
+    .p-amount {
         font-size: 1.3rem;
         font-weight: 700;
         font-family: 'Poppins';
     }
-    
-    .input-amount{
+
+    .input-amount {
         width: 52%;
         border-radius: 10px;
         border: 1px solid #D21A32;
@@ -1325,7 +1375,7 @@ div.payment {
         color: #D21A32;
         font-size: 1.2rem;
         font-weight: 700;
-        
+
     }
 
     div.time {
@@ -1434,7 +1484,7 @@ div.payment {
     .price-arrow {
         background: #D21A32;
         padding: 3px 8px;
-    margin-bottom: 2.5rem;
+        margin-bottom: 2.5rem;
         color: white;
         cursor: pointer;
 
@@ -1454,7 +1504,7 @@ div.payment {
 
     }
 
-    .food-price{
+    .food-price {
         margin-top: 2.5rem;
     }
 
@@ -1534,13 +1584,13 @@ div.payment {
         font-family: 'Poppins';
     }
 
-    .p-amount{
+    .p-amount {
         font-size: 1.3rem;
         font-weight: 700;
         font-family: 'Poppins';
     }
-    
-    .input-amount{
+
+    .input-amount {
         width: 48%;
         border-radius: 10px;
         border: 1px solid #D21A32;
@@ -1548,7 +1598,7 @@ div.payment {
         color: #D21A32;
         font-size: 1.2rem;
         font-weight: 700;
-        
+
     }
 
     div.time {
@@ -1675,7 +1725,7 @@ div.payment {
 
     }
 
-    .food-price{
+    .food-price {
         margin-top: 2.5rem;
     }
 
@@ -1756,13 +1806,13 @@ div.payment {
         margin-left: 0.5rem;
     }
 
-    .p-amount{
+    .p-amount {
         font-size: 1rem;
         font-weight: 700;
         font-family: 'Poppins';
     }
-    
-    .input-amount{
+
+    .input-amount {
         width: 54%;
         border-radius: 10px;
         border: 1px solid #D21A32;
@@ -1770,7 +1820,7 @@ div.payment {
         color: #D21A32;
         font-size: .8rem;
         font-weight: 700;
-        
+
     }
 
     div.time {
