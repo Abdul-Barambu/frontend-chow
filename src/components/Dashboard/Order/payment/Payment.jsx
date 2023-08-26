@@ -41,12 +41,13 @@ const Payment = ({ handlePayment, price }) => {
 
                 localStorage.setItem("Refrence-code", res.data.data.ref.data.access_code)
                 localStorage.setItem("Payment-url", res.data.data.ref.data.authorization_url)
-                localStorage.removeItem("cart");
 
                 setModal(!modal)
             }).catch(e => {
                 console.log(e)
             })
+
+        localStorage.removeItem("cart");
     }
 
 
